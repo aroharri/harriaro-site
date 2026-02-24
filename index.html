@@ -240,6 +240,12 @@ nav {
   to   { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
 .hero-kicker   { animation: fadeUp 0.6s 0.05s ease both; }
 .hero-promise  { animation: fadeUp 0.6s 0.2s  ease both; }
 .hero-divider  { animation: fadeUp 0.6s 0.35s ease both; }
@@ -667,7 +673,7 @@ nav {
 
 .modal {
   width: 100%;
-  max-width: 580px;
+  max-width: 620px;
   max-height: 90vh;
   overflow-y: auto;
   scrollbar-width: none;
@@ -684,7 +690,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 
 .modal-close {
@@ -700,23 +706,57 @@ nav {
 
 .modal-close:hover { color: var(--off-white); }
 
-.modal-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(28px, 5vw, 42px);
-  font-weight: 900;
-  line-height: 1.1;
-  margin-bottom: 16px;
+/* Step indicator */
+.step-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 32px;
 }
 
-.modal-sub {
-  font-size: 15px;
+.step-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--line);
+  transition: background 0.3s;
+}
+
+.step-dot.active { background: var(--accent); }
+.step-dot.done { background: var(--off-white); }
+
+.step-line {
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+  max-width: 32px;
+}
+
+/* Step content */
+.form-step {
+  display: none;
+  animation: fadeUp 0.3s ease both;
+}
+
+.form-step.active { display: block; }
+
+.step-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.step-sub {
+  font-size: 14px;
   color: var(--grey);
   line-height: 1.7;
-  margin-bottom: 40px;
+  margin-bottom: 32px;
 }
 
 .form-group {
-  margin-bottom: 24px;
+  margin-bottom: 22px;
 }
 
 .form-group label {
@@ -730,7 +770,8 @@ nav {
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select {
   width: 100%;
   background: transparent;
   border: 1px solid var(--line);
@@ -739,35 +780,83 @@ nav {
   font-size: 15px;
   padding: 14px 16px;
   transition: border-color 0.2s;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.form-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6560' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+.form-group select option {
+  background: var(--black);
+  color: var(--off-white);
 }
 
 .form-group input:focus,
-.form-group textarea:focus {
+.form-group textarea:focus,
+.form-group select:focus {
   outline: none;
   border-color: var(--accent);
 }
 
 .form-group textarea {
-  min-height: 120px;
+  min-height: 80px;
   resize: vertical;
 }
 
-.form-submit {
-  width: 100%;
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Buttons */
+.form-nav {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.form-btn-next {
+  flex: 1;
   background: var(--accent);
   color: var(--off-white);
   border: none;
-  padding: 18px 36px;
+  padding: 16px 32px;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   cursor: pointer;
   transition: background 0.2s;
-  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
-.form-submit:hover { background: var(--accent-light); }
+.form-btn-next:hover { background: var(--accent-light); }
+
+.form-btn-back {
+  background: transparent;
+  color: var(--grey);
+  border: 1px solid var(--line);
+  padding: 16px 24px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.form-btn-back:hover { color: var(--off-white); border-color: var(--off-white); }
 
 .form-note {
   font-family: 'IBM Plex Mono', monospace;
@@ -776,6 +865,67 @@ nav {
   letter-spacing: 0.06em;
   margin-top: 16px;
   text-align: center;
+}
+
+/* Result screens */
+.result-screen {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.result-icon {
+  font-size: 48px;
+  margin-bottom: 24px;
+}
+
+.result-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 900;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.result-text {
+  font-size: 15px;
+  color: var(--grey);
+  line-height: 1.75;
+  margin-bottom: 24px;
+  max-width: 460px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.result-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.result-link {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--accent-light);
+  transition: color 0.2s;
+  text-decoration: none;
+}
+
+.result-link:hover { color: var(--off-white); }
+
+/* Calendly embed */
+.calendly-wrap {
+  margin-top: 16px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.calendly-inline-widget {
+  min-width: 280px;
+  height: 660px;
 }
 
 /* ══════════════════════════════════════════════════════
@@ -799,6 +949,7 @@ nav {
   .faq-header { grid-template-columns: 1fr; gap: 24px; }
   .site-footer { padding: 24px; flex-direction: column; gap: 20px; text-align: center; }
   .footer-stamp { text-align: center; }
+  .form-row { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -895,8 +1046,8 @@ nav {
       <p>Kiinteä kuukausihinta sisältää kaiken: sparrauksen, AI-järjestelmien rakentamisen, jatkuvan tuen ja päivitykset.</p>
     </div>
     <div class="price-block-right">
-      <div class="price-big">800€</div>
-      <div class="price-small">/ kuukausi + alv</div>
+      <div class="price-big">2000€</div>
+      <div class="price-small">/ kuukausi, alv 0%</div>
     </div>
   </div>
 </section>
@@ -957,11 +1108,11 @@ nav {
   <div class="faq-list">
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
-        Mitä konkreettisesti saan 800 eurolla kuussa?
+        Mitä konkreettisesti saan 2000 eurolla kuussa?
         <span class="faq-arrow">+</span>
       </button>
       <div class="faq-a">
-        Saat <strong>strategisen sparrauskumppanin</strong> ja <strong>AI-rakentajan</strong> samassa paketissa. Käytännössä tämä tarkoittaa säännöllisiä sparraussessioita, räätälöityjä AI-automaatioita liiketoimintaasi, jatkuvaa tukea ja järjestelmien ylläpitoa. Kaikki sisältyy kiinteään kuukausihintaan.
+        Saat <strong>strategisen sparrauskumppanin</strong> ja <strong>AI-rakentajan</strong> samassa paketissa. Käytännössä tämä tarkoittaa säännöllisiä sparraussessioita, räätälöityjä AI-automaatioita liiketoimintaasi, jatkuvaa tukea ja järjestelmien ylläpitoa. Kiinteä kuukausihinta kattaa kaiken — ei yllätyksiä, ei tuntilaskutusta.
       </div>
     </div>
 
@@ -1043,36 +1194,158 @@ nav {
 <div class="backdrop" id="backdrop" onclick="closeModalOutside(event)">
   <div class="modal">
     <div class="modal-head">
-      <span>Varaa kartoitus</span>
+      <span>Kartoitus</span>
       <button class="modal-close" onclick="closeModal()">&times;</button>
     </div>
-    <h2 class="modal-title">Aloitetaan tästä.</h2>
-    <p class="modal-sub">Kerro lyhyesti yrityksestäsi niin palaan asiaan vuorokauden sisällä ja sovitaan aika puhelulle.</p>
-    <form id="contactForm" onsubmit="handleSubmit(event)">
-      <div class="form-group">
-        <label for="name">Nimi</label>
-        <input type="text" id="name" name="name" required placeholder="Etunimi Sukunimi">
+
+    <!-- Step indicator -->
+    <div class="step-indicator" id="stepIndicator">
+      <div class="step-dot active" data-step="1"></div>
+      <div class="step-line"></div>
+      <div class="step-dot" data-step="2"></div>
+      <div class="step-line"></div>
+      <div class="step-dot" data-step="3"></div>
+    </div>
+
+    <!-- STEP 1: Perustiedot -->
+    <div class="form-step active" id="step1">
+      <h2 class="step-title">Kerro itsestäsi.</h2>
+      <p class="step-sub">Perustiedot auttavat ymmärtämään lähtötilanteesi.</p>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="f-name">Nimi</label>
+          <input type="text" id="f-name" required placeholder="Etunimi Sukunimi">
+        </div>
+        <div class="form-group">
+          <label for="f-email">Sähköposti</label>
+          <input type="email" id="f-email" required placeholder="nimi@yritys.fi">
+        </div>
       </div>
+
       <div class="form-group">
-        <label for="email">Sähköposti</label>
-        <input type="email" id="email" name="email" required placeholder="nimi@yritys.fi">
+        <label for="f-company">Yritys</label>
+        <input type="text" id="f-company" placeholder="Yrityksen nimi">
       </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="f-role">Roolisi</label>
+          <select id="f-role">
+            <option value="" disabled selected>Valitse</option>
+            <option value="owner">Yrittäjä / omistaja</option>
+            <option value="ceo">Toimitusjohtaja</option>
+            <option value="exec">Johtoryhmä</option>
+            <option value="other">Muu</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="f-team">Tiimin koko</label>
+          <select id="f-team">
+            <option value="" disabled selected>Valitse</option>
+            <option value="1-5">1–5 henkeä</option>
+            <option value="6-15">6–15 henkeä</option>
+            <option value="16-50">16–50 henkeä</option>
+            <option value="50+">Yli 50 henkeä</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-nav">
+        <button type="button" class="form-btn-next" onclick="goStep(2)">Seuraava &#8594;</button>
+      </div>
+      <p class="form-note">Tietosi ovat luottamuksellisia. Ei spämmiä.</p>
+    </div>
+
+    <!-- STEP 2: Tilannekuva -->
+    <div class="form-step" id="step2">
+      <h2 class="step-title">Tilannekuvasi.</h2>
+      <p class="step-sub">Nämä kysymykset auttavat molempia arvioimaan sopiiko yhteistyö.</p>
+
       <div class="form-group">
-        <label for="company">Yritys</label>
-        <input type="text" id="company" name="company" placeholder="Yrityksen nimi">
+        <label for="f-timewaste">Mihin käytät eniten aikaa joka ei suoraan tuota rahaa?</label>
+        <textarea id="f-timewaste" rows="2" placeholder="Esim. raportointi, manuaalinen tiedonhaku, tarjousten tekeminen..."></textarea>
       </div>
+
       <div class="form-group">
-        <label for="message">Mitä haluaisit ratkaista?</label>
-        <textarea id="message" name="message" placeholder="Kerro lyhyesti suurin haaste tai mahdollisuus jonka näet..."></textarea>
+        <label for="f-tenhours">Mitä tekisit jos sinulla olisi 10 tuntia enemmän viikossa?</label>
+        <textarea id="f-tenhours" rows="2" placeholder="Esim. myyntiä, strategiatyötä, tuotekehitystä..."></textarea>
       </div>
-      <button type="submit" class="form-submit">Lähetä viesti &#8599;</button>
-    </form>
-    <p class="form-note">Vastaan vuorokauden sisällä. Ei spämmiä, ei myyntilistaa.</p>
+
+      <div class="form-group">
+        <label for="f-ai">Miten hyödynnät tekoälyä tällä hetkellä?</label>
+        <select id="f-ai">
+          <option value="" disabled selected>Valitse</option>
+          <option value="none">Ei lainkaan</option>
+          <option value="occasional">Satunnaisesti</option>
+          <option value="active">Aktiivisesti mutta hajautetusti</option>
+          <option value="systematic">Systemaattisesti</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="f-budget">Kuinka paljon investoit vuodessa liiketoimintasi kehittämiseen?</label>
+        <select id="f-budget">
+          <option value="" disabled selected>Valitse</option>
+          <option value="under10k">Alle 10 000 €</option>
+          <option value="10-30k">10 000–30 000 €</option>
+          <option value="30-100k">30 000–100 000 €</option>
+          <option value="over100k">Yli 100 000 €</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="f-workstyle">Miten toimit yleensä ulkoisten kumppanien kanssa?</label>
+        <select id="f-workstyle">
+          <option value="" disabled selected>Valitse</option>
+          <option value="freehand">Annan vapaat kädet ja luotan tuloksiin</option>
+          <option value="spar">Haluan sparrata yhdessä mutta luotan toteutuksessa</option>
+          <option value="control">Haluan olla mukana joka vaiheessa ja hyväksyä yksityiskohdat</option>
+          <option value="noexp">En ole käyttänyt ulkoisia kumppaneita aiemmin</option>
+        </select>
+      </div>
+
+      <div class="form-nav">
+        <button type="button" class="form-btn-back" onclick="goStep(1)">&#8592; Takaisin</button>
+        <button type="button" class="form-btn-next" onclick="goStep(3)">Seuraava &#8594;</button>
+      </div>
+    </div>
+
+    <!-- STEP 3A: Good match — Calendly -->
+    <div class="form-step" id="step3a">
+      <div class="result-screen">
+        <h2 class="result-title">Hyvältä näyttää.</h2>
+        <p class="result-text">Varataan 30 minuuttia. Käydään tilanteesi läpi, tunnistetaan missä tekoäly tuottaisi sinulle eniten hyötyä ja katsotaan sopiiko yhteistyö.</p>
+      </div>
+      <div class="calendly-wrap">
+        <div class="calendly-inline-widget" id="calendlyEmbed"
+             data-url="https://calendly.com/aro-harri/30min?hide_gdpr_banner=1&background_color=0a0a0a&text_color=f0ebe3&primary_color=c8401a"
+             style="min-width:280px;height:660px;">
+        </div>
+      </div>
+      <p class="form-note">30 min puhelu. Ei myyntipuhetta, ei sitoumuksia.</p>
+    </div>
+
+    <!-- STEP 3B: Not a match — Friendly redirect -->
+    <div class="form-step" id="step3b">
+      <div class="result-screen">
+        <h2 class="result-title">Kiitos ajastasi.</h2>
+        <p class="result-text" id="mismatchText"></p>
+        <p class="result-text" style="font-size:13px; margin-top:8px;">Tämä ei tarkoita ettei yrityksesi voisi hyötyä tekoälystä — se tarkoittaa vain että juuri tämä yhteistyömalli ei ehkä ole paras vaihtoehto sinulle juuri nyt.</p>
+        <div class="result-links" id="mismatchLinks"></div>
+      </div>
+    </div>
+
   </div>
 </div>
 
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
 <script>
+var currentStep = 1;
+
 function openModal() {
+  resetForm();
   document.getElementById('backdrop').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -1086,30 +1359,135 @@ function closeModalOutside(e) {
   if (e.target === e.currentTarget) closeModal();
 }
 
+function resetForm() {
+  currentStep = 1;
+  showStep(1);
+  var inputs = document.querySelectorAll('.modal input, .modal textarea, .modal select');
+  inputs.forEach(function(el) {
+    if (el.tagName === 'SELECT') { el.selectedIndex = 0; }
+    else { el.value = ''; }
+  });
+}
+
+function showStep(n) {
+  document.querySelectorAll('.form-step').forEach(function(s) { s.classList.remove('active'); });
+  var stepEl = document.getElementById('step' + n);
+  if (stepEl) stepEl.classList.add('active');
+
+  // Update dots
+  document.querySelectorAll('.step-dot').forEach(function(dot, i) {
+    var stepNum = i + 1;
+    dot.classList.remove('active', 'done');
+    if (stepNum < n || (n >= 3 && stepNum < 3)) dot.classList.add('done');
+    else if (stepNum === Math.min(n, 3)) dot.classList.add('active');
+  });
+
+  // Scroll modal to top
+  var modal = document.querySelector('.modal');
+  if (modal) modal.scrollTop = 0;
+}
+
+function goStep(target) {
+  // Validate before moving forward
+  if (target > currentStep) {
+    if (currentStep === 1 && !validateStep1()) return;
+    if (currentStep === 2 && !validateStep2()) return;
+  }
+
+  if (target === 3) {
+    // Evaluate match
+    var result = evaluateMatch();
+    if (result.match) {
+      currentStep = 3;
+      showStep('3a');
+    } else {
+      currentStep = 3;
+      showMismatch(result.reason);
+      showStep('3b');
+    }
+    return;
+  }
+
+  currentStep = target;
+  showStep(target);
+}
+
+function validateStep1() {
+  var name = document.getElementById('f-name').value.trim();
+  var email = document.getElementById('f-email').value.trim();
+  if (!name) { shakeField('f-name'); return false; }
+  if (!email || !email.includes('@')) { shakeField('f-email'); return false; }
+  return true;
+}
+
+function validateStep2() {
+  // Step 2 is soft — no hard validation, but selects should have values
+  return true;
+}
+
+function shakeField(id) {
+  var el = document.getElementById(id);
+  el.style.borderColor = 'var(--accent)';
+  el.focus();
+  el.style.animation = 'none';
+  el.offsetHeight; // reflow
+  el.style.animation = 'shake 0.4s ease';
+  setTimeout(function() { el.style.animation = ''; }, 400);
+}
+
+function evaluateMatch() {
+  var role = document.getElementById('f-role').value;
+  var team = document.getElementById('f-team').value;
+  var budget = document.getElementById('f-budget').value;
+  var workstyle = document.getElementById('f-workstyle').value;
+
+  // Disqualifiers — prioritized
+  if (budget === 'under10k') return { match: false, reason: 'budget' };
+  if (team === '50+') return { match: false, reason: 'team_size' };
+  if (workstyle === 'control') return { match: false, reason: 'workstyle' };
+  if (role === 'other') return { match: false, reason: 'role' };
+
+  return { match: true };
+}
+
+function showMismatch(reason) {
+  var text = '';
+  var links = '';
+
+  switch (reason) {
+    case 'budget':
+      text = 'Palveluni on suunniteltu yrityksille jotka investoivat kehittämiseen jatkuvasti. Hyvä uutinen: alkuun pääsee hyvin myös omatoimisesti.';
+      links = '<a class="result-link" href="https://chat.openai.com" target="_blank" rel="noopener">ChatGPT — aloita tekoälyn käyttö ilmaiseksi &#8599;</a>' +
+              '<a class="result-link" href="https://www.tekoalyakatemia.fi" target="_blank" rel="noopener">Tekoälyakatemia — suomenkielisiä kursseja &#8599;</a>' +
+              '<a class="result-link" href="https://www.youtube.com/results?search_query=tekoäly+yrittäjälle" target="_blank" rel="noopener">YouTube — tekoäly yrittäjälle &#8599;</a>';
+      break;
+    case 'team_size':
+      text = 'Yli 50 hengen organisaatioille suosittelen laajempia konsulttitaloja jotka pystyvät vastaamaan skaalaasi. Oma mallini toimii parhaiten pk-yritysten ketteryydellä.';
+      links = '<a class="result-link" href="https://www.reaktor.com" target="_blank" rel="noopener">Reaktor — teknologiakonsultointi &#8599;</a>' +
+              '<a class="result-link" href="https://www.futurice.com" target="_blank" rel="noopener">Futurice — digitaalinen muutos &#8599;</a>';
+      break;
+    case 'workstyle':
+      text = 'Työtapani perustuu luottamukseen ja vapauteen toimia. Tuotan parhaat tulokset kun saan sparrata ja toteuttaa itsenäisesti. Jos kaipaat tiivistä kontrollia joka vaiheessa, perinteisempi projektikonsultointi palvelee sinua paremmin.';
+      links = '<a class="result-link" href="https://www.upwork.com" target="_blank" rel="noopener">Upwork — löydä projektikonsultti &#8599;</a>';
+      break;
+    case 'role':
+      text = 'Palveluni edellyttää suoraa yhteistyötä päätöksentekijän kanssa. Vinkkaa tästä yrityksenne yrittäjälle tai toimitusjohtajalle — hän voi varata ajan suoraan.';
+      links = '';
+      break;
+  }
+
+  document.getElementById('mismatchText').innerHTML = text;
+  document.getElementById('mismatchLinks').innerHTML = links;
+}
+
 function toggleFaq(btn) {
-  const wasOpen = btn.classList.contains('open');
-  document.querySelectorAll('.faq-q').forEach(q => q.classList.remove('open'));
-  document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+  var wasOpen = btn.classList.contains('open');
+  document.querySelectorAll('.faq-q').forEach(function(q) { q.classList.remove('open'); });
+  document.querySelectorAll('.faq-a').forEach(function(a) { a.classList.remove('open'); });
   if (!wasOpen) {
     btn.classList.add('open');
     btn.nextElementSibling.classList.add('open');
   }
-}
-
-function handleSubmit(e) {
-  e.preventDefault();
-  const form = e.target;
-  const btn = form.querySelector('.form-submit');
-  btn.textContent = 'Lähetetty \u2713';
-  btn.style.background = '#2a7d3f';
-  btn.disabled = true;
-  setTimeout(function() {
-    closeModal();
-    form.reset();
-    btn.textContent = 'Lähetä viesti \u2197';
-    btn.style.background = '';
-    btn.disabled = false;
-  }, 2000);
 }
 
 document.addEventListener('keydown', function(e) {
