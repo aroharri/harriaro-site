@@ -1082,6 +1082,34 @@ nav {
   height: 660px;
 }
 
+/* ── SECTION LINKS ──────────────────────────────────── */
+.section-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--accent-light);
+  text-decoration: none;
+  padding: 12px 0;
+  margin-top: 8px;
+  transition: color 0.2s;
+}
+
+.section-link:hover { color: var(--off-white); }
+
+.section-link-wrap {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 48px 24px;
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .section-link-wrap { padding: 0 24px 16px; }
+}
+
 /* ══════════════════════════════════════════════════════
    RESPONSIVE
 ══════════════════════════════════════════════════════ */
@@ -1191,6 +1219,9 @@ nav {
       <p>Tiedät että pitäisi pysyä perässä. Mutta kuka ehtii opetella, kun perusbisnes vie kaiken ajan?</p>
     </div>
   </div>
+  <div class="section-link-wrap" style="padding-top:0;">
+    <a href="vertailu.html" class="section-link">Vertaa vaihtoehtoja &#8599;</a>
+  </div>
 </section>
 
 <!-- ── CASE STUDY ── -->
@@ -1270,6 +1301,9 @@ nav {
       <div class="price-big">2000€</div>
       <div class="price-small">/ kuukausi, alv 0%</div>
     </div>
+  </div>
+  <div class="section-link-wrap" style="text-align:right; padding-top:24px;">
+    <a href="palvelu.html" class="section-link">Katso koko palvelukuvaus &#8599;</a>
   </div>
 </section>
 
