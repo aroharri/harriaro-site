@@ -970,6 +970,45 @@ nav {
   gap: 16px;
 }
 
+/* Chip selectors */
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.chip {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 14px;
+  color: var(--grey);
+  background: transparent;
+  border: 1px solid var(--line);
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.chip:hover {
+  border-color: var(--off-white);
+  color: var(--off-white);
+}
+
+.chip.selected {
+  border-color: var(--accent);
+  color: var(--off-white);
+  background: rgba(200,64,26,0.12);
+}
+
+.chip-hint {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--grey);
+  letter-spacing: 0.06em;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
 /* Buttons */
 .form-nav {
   display: flex;
@@ -1136,6 +1175,7 @@ nav {
   .site-footer { padding: 24px; flex-direction: column; gap: 20px; text-align: center; }
   .footer-stamp { text-align: center; }
   .form-row { grid-template-columns: 1fr; }
+  .chip { padding: 10px 16px; font-size: 13px; }
 }
 </style>
 </head>
@@ -1472,26 +1512,23 @@ nav {
         <input type="text" id="f-company" placeholder="Yrityksen nimi">
       </div>
 
-      <div class="form-row">
-        <div class="form-group">
-          <label for="f-role">Roolisi</label>
-          <select id="f-role">
-            <option value="" disabled selected>Valitse</option>
-            <option value="owner">Yrittäjä / omistaja</option>
-            <option value="ceo">Toimitusjohtaja</option>
-            <option value="exec">Johtoryhmä</option>
-            <option value="other">Muu</option>
-          </select>
+      <div class="form-group">
+        <label>Roolisi</label>
+        <div class="chip-group" data-group="role">
+          <button type="button" class="chip" data-value="owner" onclick="toggleChip(this)">Yrittäjä / omistaja</button>
+          <button type="button" class="chip" data-value="ceo" onclick="toggleChip(this)">Toimitusjohtaja</button>
+          <button type="button" class="chip" data-value="exec" onclick="toggleChip(this)">Johtoryhmä</button>
+          <button type="button" class="chip" data-value="other" onclick="toggleChip(this)">Muu</button>
         </div>
-        <div class="form-group">
-          <label for="f-team">Tiimin koko</label>
-          <select id="f-team">
-            <option value="" disabled selected>Valitse</option>
-            <option value="1-5">1–5 henkeä</option>
-            <option value="6-15">6–15 henkeä</option>
-            <option value="16-50">16–50 henkeä</option>
-            <option value="50+">Yli 50 henkeä</option>
-          </select>
+      </div>
+
+      <div class="form-group">
+        <label>Tiimin koko</label>
+        <div class="chip-group" data-group="team">
+          <button type="button" class="chip" data-value="1-5" onclick="toggleChip(this)">1–5 hlö</button>
+          <button type="button" class="chip" data-value="6-15" onclick="toggleChip(this)">6–15 hlö</button>
+          <button type="button" class="chip" data-value="16-50" onclick="toggleChip(this)">16–50 hlö</button>
+          <button type="button" class="chip" data-value="50+" onclick="toggleChip(this)">50+ hlö</button>
         </div>
       </div>
 
@@ -1507,46 +1544,51 @@ nav {
       <p class="step-sub">Nämä kysymykset auttavat molempia arvioimaan sopiiko yhteistyö.</p>
 
       <div class="form-group">
-        <label for="f-timewaste">Mihin käytät eniten aikaa joka ei suoraan tuota rahaa?</label>
-        <textarea id="f-timewaste" rows="2" placeholder="Esim. raportointi, manuaalinen tiedonhaku, tarjousten tekeminen..."></textarea>
+        <label>Mihin aikasi uppoaa?</label>
+        <p class="chip-hint">Valitse kaikki jotka sopivat.</p>
+        <div class="chip-group" data-group="timesinks" data-multi="true">
+          <button type="button" class="chip" data-value="raportointi" onclick="toggleChip(this)">Raportointi</button>
+          <button type="button" class="chip" data-value="tiedonhaku" onclick="toggleChip(this)">Tiedonhaku</button>
+          <button type="button" class="chip" data-value="tarjoukset" onclick="toggleChip(this)">Tarjoukset</button>
+          <button type="button" class="chip" data-value="manuaalinen" onclick="toggleChip(this)">Manuaalinen data-työ</button>
+          <button type="button" class="chip" data-value="hallinto" onclick="toggleChip(this)">Hallinto &amp; byrokratia</button>
+          <button type="button" class="chip" data-value="muu" onclick="toggleChip(this)">Muu</button>
+        </div>
       </div>
 
       <div class="form-group">
-        <label for="f-tenhours">Mitä tekisit jos sinulla olisi 10 tuntia enemmän viikossa?</label>
-        <textarea id="f-tenhours" rows="2" placeholder="Esim. myyntiä, strategiatyötä, tuotekehitystä..."></textarea>
+        <label>Miten hyödynnät tekoälyä?</label>
+        <div class="chip-group" data-group="ai">
+          <button type="button" class="chip" data-value="none" onclick="toggleChip(this)">Ei lainkaan</button>
+          <button type="button" class="chip" data-value="tried" onclick="toggleChip(this)">Kokeiltu muttei jäänyt</button>
+          <button type="button" class="chip" data-value="occasional" onclick="toggleChip(this)">Satunnaisesti</button>
+          <button type="button" class="chip" data-value="active" onclick="toggleChip(this)">Aktiivisesti</button>
+        </div>
       </div>
 
       <div class="form-group">
-        <label for="f-ai">Miten hyödynnät tekoälyä tällä hetkellä?</label>
-        <select id="f-ai">
-          <option value="" disabled selected>Valitse</option>
-          <option value="none">Ei lainkaan</option>
-          <option value="occasional">Satunnaisesti</option>
-          <option value="active">Aktiivisesti mutta hajautetusti</option>
-          <option value="systematic">Systemaattisesti</option>
-        </select>
+        <label>Budjetti kehittämiseen vuodessa?</label>
+        <div class="chip-group" data-group="budget">
+          <button type="button" class="chip" data-value="under10k" onclick="toggleChip(this)">Alle 10 000 €</button>
+          <button type="button" class="chip" data-value="10-30k" onclick="toggleChip(this)">10–30 000 €</button>
+          <button type="button" class="chip" data-value="30-100k" onclick="toggleChip(this)">30–100 000 €</button>
+          <button type="button" class="chip" data-value="over100k" onclick="toggleChip(this)">Yli 100 000 €</button>
+        </div>
       </div>
 
       <div class="form-group">
-        <label for="f-budget">Kuinka paljon investoit vuodessa liiketoimintasi kehittämiseen?</label>
-        <select id="f-budget">
-          <option value="" disabled selected>Valitse</option>
-          <option value="under10k">Alle 10 000 €</option>
-          <option value="10-30k">10 000–30 000 €</option>
-          <option value="30-100k">30 000–100 000 €</option>
-          <option value="over100k">Yli 100 000 €</option>
-        </select>
+        <label>Miten toimit kumppanien kanssa?</label>
+        <div class="chip-group" data-group="workstyle">
+          <button type="button" class="chip" data-value="freehand" onclick="toggleChip(this)">Vapaat kädet</button>
+          <button type="button" class="chip" data-value="spar" onclick="toggleChip(this)">Sparraus + luottamus</button>
+          <button type="button" class="chip" data-value="control" onclick="toggleChip(this)">Mukana joka vaiheessa</button>
+          <button type="button" class="chip" data-value="noexp" onclick="toggleChip(this)">Ei kokemusta</button>
+        </div>
       </div>
 
       <div class="form-group">
-        <label for="f-workstyle">Miten toimit yleensä ulkoisten kumppanien kanssa?</label>
-        <select id="f-workstyle">
-          <option value="" disabled selected>Valitse</option>
-          <option value="freehand">Annan vapaat kädet ja luotan tuloksiin</option>
-          <option value="spar">Haluan sparrata yhdessä mutta luotan toteutuksessa</option>
-          <option value="control">Haluan olla mukana joka vaiheessa ja hyväksyä yksityiskohdat</option>
-          <option value="noexp">En ole käyttänyt ulkoisia kumppaneita aiemmin</option>
-        </select>
+        <label for="f-freetext">Haluatko kertoa jotain lisää?</label>
+        <textarea id="f-freetext" rows="2" placeholder="Valinnainen — kerro vapaasti jos haluat."></textarea>
       </div>
 
       <div class="form-nav">
@@ -1606,11 +1648,9 @@ function closeModalOutside(e) {
 function resetForm() {
   currentStep = 1;
   showStep(1);
-  var inputs = document.querySelectorAll('.modal input, .modal textarea, .modal select');
-  inputs.forEach(function(el) {
-    if (el.tagName === 'SELECT') { el.selectedIndex = 0; }
-    else { el.value = ''; }
-  });
+  var inputs = document.querySelectorAll('.modal input, .modal textarea');
+  inputs.forEach(function(el) { el.value = ''; });
+  document.querySelectorAll('.modal .chip').forEach(function(c) { c.classList.remove('selected'); });
 }
 
 function showStep(n) {
@@ -1679,11 +1719,27 @@ function shakeField(id) {
   setTimeout(function() { el.style.animation = ''; }, 400);
 }
 
+function toggleChip(el) {
+  var group = el.parentElement;
+  var isMulti = group.dataset.multi === 'true';
+  if (isMulti) {
+    el.classList.toggle('selected');
+  } else {
+    group.querySelectorAll('.chip').forEach(function(c) { c.classList.remove('selected'); });
+    el.classList.add('selected');
+  }
+}
+
+function getChipValue(groupName) {
+  var sel = document.querySelector('[data-group="' + groupName + '"] .chip.selected');
+  return sel ? sel.dataset.value : '';
+}
+
 function evaluateMatch() {
-  var role = document.getElementById('f-role').value;
-  var team = document.getElementById('f-team').value;
-  var budget = document.getElementById('f-budget').value;
-  var workstyle = document.getElementById('f-workstyle').value;
+  var role = getChipValue('role');
+  var team = getChipValue('team');
+  var budget = getChipValue('budget');
+  var workstyle = getChipValue('workstyle');
 
   // Disqualifiers — prioritized
   if (budget === 'under10k') return { match: false, reason: 'budget' };
