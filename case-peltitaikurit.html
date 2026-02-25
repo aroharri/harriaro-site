@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case: Peltitaikurit — Älä osta liikennettä, jos sivustosi on seula | Harri Aro</title>
+<meta name="description" content="Peltitaikureille yritettiin myydä 5 000 € SEO-höttöä. Torppasin sen. Tässä on mitä oikeasti tehtiin ja mitä siitä seurasi.">
+<meta name="theme-color" content="#0a0a0a">
+<meta property="og:title" content="Case: Peltitaikurit — Älä osta liikennettä, jos sivustosi on seula">
+<meta property="og:description" content="Red Team -sparrausta, tekoälypohjaista data-analyysiä ja suoraa puhetta. Näin säästimme yrittäjän rahat ja löysimme oikeat vuotokohdat.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+<link href="fonts/fonts.css" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #0a0a0a;
+  --off-white: #f0ebe3;
+  --grey: #6b6560;
+  --accent: #c8401a;
+  --accent-light: #e05535;
+  --line: rgba(240,235,227,0.1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--off-white);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 999;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ── NAV ─────────────────────────────────────────────── */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 48px;
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-logo {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--grey);
+  text-transform: uppercase;
+}
+
+.nav-back {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--grey);
+  transition: color 0.2s;
+}
+
+.nav-back:hover { color: var(--off-white); }
+
+/* ── SHARED ──────────────────────────────────────────── */
+.section-kicker {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--grey);
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.section-kicker::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+}
+
+/* ── HERO ────────────────────────────────────────────── */
+.pg-hero {
+  padding: 80px 48px 64px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.pg-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 7vw, 72px);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  margin-bottom: 32px;
+}
+
+.pg-hero h1 em {
+  display: block;
+  font-style: italic;
+  color: var(--accent-light);
+  font-size: 0.6em;
+  margin-top: 8px;
+}
+
+.pg-hero-body {
+  font-size: 19px;
+  color: var(--grey);
+  max-width: 600px;
+  line-height: 1.7;
+}
+
+.pg-hero-body strong { color: var(--off-white); font-weight: 400; }
+
+/* ── CASE META ───────────────────────────────────────── */
+.case-meta {
+  border-top: 1px solid var(--line);
+  padding: 48px 48px;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+}
+
+.meta-item {
+  background: var(--black);
+  padding: 32px 40px;
+}
+
+.meta-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--grey);
+  margin-bottom: 10px;
+}
+
+.meta-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.meta-value small {
+  display: block;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--grey);
+  margin-top: 4px;
+}
+
+/* ── RESULT BLOCKS ───────────────────────────────────── */
+.result-section {
+  border-top: 1px solid var(--line);
+  padding: 80px 48px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.result-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+}
+
+.result-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 24px;
+}
+
+.result-body {
+  max-width: 640px;
+}
+
+.result-body p {
+  font-size: 16px;
+  color: var(--grey);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.result-body p:last-child { margin-bottom: 0; }
+
+.result-body strong { color: var(--off-white); font-weight: 400; }
+
+.result-highlight {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: var(--accent-light);
+  letter-spacing: 0.04em;
+  border-left: 2px solid var(--accent);
+  padding: 12px 20px;
+  margin-top: 24px;
+}
+
+/* ── QUOTE ───────────────────────────────────────────── */
+.case-quote {
+  border-top: 1px solid var(--line);
+  padding: 80px 48px;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.case-quote blockquote {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(20px, 3vw, 26px);
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1.5;
+  max-width: 700px;
+  margin: 0 auto 24px;
+}
+
+.case-quote blockquote::before { content: '\201C'; color: var(--accent); }
+.case-quote blockquote::after  { content: '\201D'; color: var(--accent); }
+
+.quote-author {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--grey);
+  letter-spacing: 0.06em;
+}
+
+/* ── PROMPTS ─────────────────────────────────────────── */
+.prompts-section {
+  border-top: 1px solid var(--line);
+  padding: 80px 48px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.prompts-intro {
+  font-size: 16px;
+  color: var(--grey);
+  line-height: 1.8;
+  max-width: 640px;
+  margin-bottom: 48px;
+}
+
+.prompts-intro strong { color: var(--off-white); font-weight: 400; }
+
+.prompt-card {
+  border: 1px solid var(--line);
+  margin-bottom: 24px;
+  transition: border-color 0.3s;
+}
+
+.prompt-card:hover { border-color: rgba(240,235,227,0.2); }
+
+.prompt-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.prompt-head-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.prompt-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+
+.prompt-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.prompt-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grey);
+  border: 1px solid var(--line);
+  padding: 4px 10px;
+}
+
+.prompt-toggle {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 18px;
+  color: var(--grey);
+  transition: transform 0.3s, color 0.3s;
+}
+
+.prompt-card.open .prompt-toggle {
+  transform: rotate(45deg);
+  color: var(--accent-light);
+}
+
+.prompt-body {
+  display: none;
+  padding: 0 32px 32px;
+}
+
+.prompt-card.open .prompt-body { display: block; }
+
+.prompt-context {
+  font-size: 14px;
+  color: var(--grey);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.prompt-block {
+  position: relative;
+  background: rgba(240,235,227,0.03);
+  border: 1px solid var(--line);
+  padding: 40px 24px 24px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12.5px;
+  line-height: 1.8;
+  color: var(--off-white);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--accent);
+  color: var(--off-white);
+  border: none;
+  padding: 6px 14px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.copy-btn:hover { background: var(--accent-light); }
+.copy-btn.copied { background: #2a7a3a; }
+
+/* ── CTA ─────────────────────────────────────────────── */
+.cta-block {
+  border-top: 1px solid var(--line);
+  padding: 80px 48px;
+  text-align: center;
+  background: rgba(200,64,26,0.04);
+}
+
+.cta-block h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.cta-block h2 em {
+  font-style: italic;
+  color: var(--accent-light);
+}
+
+.cta-block p {
+  font-size: 16px;
+  color: var(--grey);
+  margin-bottom: 32px;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--accent);
+  color: var(--off-white);
+  border: none;
+  padding: 20px 48px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-decoration: none;
+}
+
+.cta-btn:hover { background: var(--accent-light); }
+
+/* ── FOOTER ──────────────────────────────────────────── */
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 28px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-id { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; }
+.footer-handle { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--grey); margin-top: 3px; letter-spacing: 0.06em; }
+.footer-handle a { transition: color 0.2s; }
+.footer-handle a:hover { color: var(--accent-light); }
+
+.footer-stamp {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--grey);
+  letter-spacing: 0.06em;
+  text-align: right;
+  line-height: 2;
+}
+
+/* ── ANIMATIONS ──────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.section-kicker { animation: fadeUp 0.6s 0.05s ease both; }
+
+/* ── RESPONSIVE ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  nav { padding: 18px 24px; }
+  .pg-hero { padding: 56px 24px 48px; }
+  .case-meta { grid-template-columns: 1fr; padding: 0 24px; }
+  .meta-item { padding: 24px; }
+  .result-section { padding: 56px 24px; }
+  .case-quote { padding: 56px 24px; }
+  .prompts-section { padding: 56px 24px; }
+  .prompt-head { padding: 20px; flex-wrap: wrap; gap: 12px; }
+  .prompt-body { padding: 0 20px 24px; }
+  .prompt-block { padding: 20px; font-size: 11.5px; }
+  .cta-block { padding: 56px 24px; }
+  .site-footer { padding: 24px; flex-direction: column; gap: 20px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-logo">Harri Aro</div>
+  <a href="index.html" class="nav-back">&larr; Etusivulle</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="pg-hero">
+  <p class="section-kicker">Case: Peltitaikurit</p>
+  <h1>Älä osta liikennettä,<em>jos sivustosi on seula.</em></h1>
+  <p class="pg-hero-body">
+    Etelä-Suomen laadukkaimmat peltikatot — ainakin jos Googlen asiakasarvosteluihin on uskominen. Kun strategiaa haluttiin kirkastaa ja digimarkkinoijat yrittivät myydä kallista ilmaa, <strong>toimin yrityksen ulkopuolisena Red Teamina</strong> — valjastin tekoälyn kaivamaan datan ja ammuin huonot ideat alas.
+  </p>
+</section>
+
+<!-- ── META ── -->
+<section class="case-meta">
+  <div class="meta-item">
+    <div class="meta-label">Asiakas</div>
+    <div class="meta-value">Peltitaikurit Oy <small>Elmeri Kukkonen, TJ</small></div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Kesto</div>
+    <div class="meta-value">2 kk <small>Sparrausjakso</small></div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Rooli</div>
+    <div class="meta-value">Red Team <small>Data, strategia, BS-filtteri</small></div>
+  </div>
+</section>
+
+<!-- ── RESULT 1 ── -->
+<section class="result-section">
+  <div class="result-num">01</div>
+  <h2>Torppasimme ylihintaisen SEO-miinan</h2>
+  <div class="result-body">
+    <p>Peltitaikureille yritettiin myydä tuhansien eurojen SEO-pakettia. Diili: tekoäly suoltaa sivuille kymmeniä artikkeleita kuukaudessa, koko vuoden lasku kerralla sisään.</p>
+    <p>Ammuin tarjouksen alas välittömästi. <strong>Massatuotettu SEO-höttö romuttaa ammattiylpeyden.</strong> Säästimme rahat ja tulimme yhteistuumin siihen tulokseen, että luottamusta rakennetaan aidoilla, käsikirjoittamattomilla videoilla suoraan työmailta.</p>
+    <div class="result-highlight">Aito sisältö voittaa robottitekstin aina, kun myydään premium-tason asiantuntijatyötä.</div>
+  </div>
+</section>
+
+<!-- ── RESULT 2 ── -->
+<section class="result-section">
+  <div class="result-num">02</div>
+  <h2>Vettä ei kannata kantaa seulaan</h2>
+  <div class="result-body">
+    <p>Perkasin analytiikan tekoälyllä. Fakta: <strong>sivuilla kävi satoja ihmisiä kuukaudessa, mutta he poistuivat keskimäärin alle minuutissa.</strong></p>
+    <p>Myynti olisi halunnut ostaa lisää liikennettä. Sanoin ei. On turha maksaa Googlelle tai digitoimistoille, jos nykyiset kävijät valuvat sormien läpi ennen kuin ehdit sanoa "konversio".</p>
+    <p>Rakensin tiimille demon WhatsApp-automaatiosta liidien kiinnisaamiseksi. Tiimi totesi fiksusti, ettei aika ole vielä kypsä järeälle automaatiolle. En puske väkisin teknologiaa, jos asiakkaan arki ei ole siihen valmis.</p>
+    <div class="result-highlight">Ensin tilkitään vuodot, vasta sitten avataan hanat.</div>
+  </div>
+</section>
+
+<!-- ── RESULT 3 ── -->
+<section class="result-section">
+  <div class="result-num">03</div>
+  <h2>Tekoäly paljasti kumppanin puutteet</h2>
+  <div class="result-body">
+    <p>Ajoin sivuston tekoälypohjaisen SEO-auditoinnin läpi. Se paljasti minuuteissa, että <strong>nykyinen digitoimisto oli jättänyt luvattuja asioita hoitamatta</strong> — esimerkiksi tärkeät lokaatiosivut puuttuivat hakutuloksista kokonaan.</p>
+    <p>Annoin Elmerille raakadatan kouraan. Nyt hänellä oli kättä pidempää vaatia kumppaniltaan sitä, mistä oikeasti maksettiin.</p>
+  </div>
+</section>
+
+<!-- ── RESULT 4 ── -->
+<section class="result-section">
+  <div class="result-num">04</div>
+  <h2>Strategia kalvoilta työmaalle</h2>
+  <div class="result-body">
+    <p>Elmerillä on kirkas visio ja kova tahtotila. Haasteena ei ollut strategian puute vaan se, <strong>miten toimitusjohtajan pään sisällä oleva tieto siirretään ymmärrettävässä muodossa asennustiimin arkeen.</strong></p>
+    <p>Annoin materiaaleista suoran palautteen: karsimme kaiken turhan ja terävöitimme viestin sellaiseksi, joka puhuttelee suoraan tekijöitä. <strong>Roolitukset uusiksi</strong> — kokenein tekijä johtamaan omaa tonttiaan, jotta toimitusjohtajan aika vapautuu firman oikeaan rakentamiseen.</p>
+  </div>
+</section>
+
+<!-- ── QUOTE ── -->
+<section class="case-quote">
+  <blockquote>Harrin suora puhe ja tekoälyllä pöytään kaivetut faktat estivät meitä polttamasta rahaa vääriin asioihin. Nyt tiedämme tarkalleen missä myyntiputkemme vuotaa, emmekä maksa tyhjästä.</blockquote>
+  <p class="quote-author">— Elmeri Kukkonen, Toimitusjohtaja, Peltitaikurit Oy</p>
+</section>
+
+<!-- ── PROMPTS ── -->
+<section class="prompts-section">
+  <p class="section-kicker">Konepellin alle</p>
+  <h2 style="font-family:'Playfair Display',serif; font-size:clamp(24px,4vw,36px); font-weight:700; line-height:1.15; margin-bottom:24px;">Näin tulokset kaivettiin</h2>
+  <p class="prompts-intro">
+    Minulta kysytään usein, miten oikeasti "käytän tekoälyä puolestasi". Se ei ole juttelua chatbotin kanssa — vaan <strong>tekoälyn pakottamista analyyttiseen raskaaseen työhön.</strong> En kysy neuvoja, vaan vaadin todisteita. Tässä kolme esimerkkiä todellisista prompteista, joilla purin Peltitaikureiden aineistoa. Kopioi, testaa, sovella.
+  </p>
+
+  <!-- Prompt 1 -->
+  <div class="prompt-card" onclick="togglePrompt(this)">
+    <div class="prompt-head">
+      <div class="prompt-head-left">
+        <span class="prompt-num">01</span>
+        <span class="prompt-title">SEO-tarjouksen purkaminen</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:16px;">
+        <span class="prompt-tag">BS-filtteri</span>
+        <span class="prompt-toggle">+</span>
+      </div>
+    </div>
+    <div class="prompt-body">
+      <p class="prompt-context">Kun asiakas saa viiden tonnin tarjouksen "tekoälypohjaisesta SEO-palvelusta", tarvitaan kylmää analyysia — ei jees-miestä.</p>
+      <div class="prompt-block" id="prompt1">Olet kyyninen yritysanalyytikko ja brändistrategi. Asiakkaani (premium-tason kattosaneeraaja, jonka ydinlupaus on "laatua hinnalla millä hyvänsä") sai oheisen SEO-tarjouksen. Tarjous lupaa kymmeniä AI-generoituja artikkeleita kuukaudessa ja vaatii koko vuoden ennakkomaksun.
+
+Tehtäväsi:
+1. Etsi piilotetut taloudelliset riskit ja sopimustekniset ansat.
+2. Todista loogisesti, miten massatuotettu robottiteksti tuhoaa käsityöläisbrändin arvon verkossa.
+3. Laadi 5 "murhaavaa" kysymystä, joilla asiakkaani voi grillata myyjää ja paljastaa palvelun todellisen laadun.
+
+Älä ole kohtelias, anna vain armotonta faktaa.<button class="copy-btn" onclick="event.stopPropagation(); copyPrompt('prompt1', this)">Kopioi</button></div>
+    </div>
+  </div>
+
+  <!-- Prompt 2 -->
+  <div class="prompt-card" onclick="togglePrompt(this)">
+    <div class="prompt-head">
+      <div class="prompt-head-left">
+        <span class="prompt-num">02</span>
+        <span class="prompt-title">Vuotavan myyntiputken todistaminen</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:16px;">
+        <span class="prompt-tag">Data-analyysi</span>
+        <span class="prompt-toggle">+</span>
+      </div>
+    </div>
+    <div class="prompt-body">
+      <p class="prompt-context">Kun johto haluaa ostaa lisää liikennettä mutta nykyiset kävijät eivät edes pysähdy — tarvitaan matemaattinen todiste miksi se on rahan polttamista.</p>
+      <div class="prompt-block" id="prompt2">Toimi konversio-optimoijana ja matemaatikkona. Ohessa on asiakkaan Google Analytics -data: satoja orgaanisia kävijöitä kuukaudessa, keskimääräinen viipymä alle minuutin, konversioprosentti lähellä nollaa. Yrityksen johto haluaa ostaa lisää SEO-liikennettä.
+
+Tehtäväsi:
+1. Todista matemaattisesti, miksi liikenteen ostaminen tähän vuotavaan suppiloon on pääoman tuhoamista.
+2. Laske vaihtoehtoiskustannus sille, jos parantaisimme nykyisten kävijöiden konversiota edes 2 prosenttiyksikköä.
+3. Ehdota 3 psykologista koukkua, joilla vierailija saadaan pysäytettyä kriittisen ensimmäisen minuutin aikana.
+
+Unohda pehmeät arvot, puhu vain euroista.<button class="copy-btn" onclick="event.stopPropagation(); copyPrompt('prompt2', this)">Kopioi</button></div>
+    </div>
+  </div>
+
+  <!-- Prompt 3 -->
+  <div class="prompt-card" onclick="togglePrompt(this)">
+    <div class="prompt-head">
+      <div class="prompt-head-left">
+        <span class="prompt-num">03</span>
+        <span class="prompt-title">Strategian Red Team -testaus</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:16px;">
+        <span class="prompt-tag">Strategia</span>
+        <span class="prompt-toggle">+</span>
+      </div>
+    </div>
+    <div class="prompt-body">
+      <p class="prompt-context">Strategia on hyvä vasta kun se kestää käytännön testin. Paras testi: anna se luettavaksi sille ihmiselle jota se eniten koskettaa.</p>
+      <div class="prompt-block" id="prompt3">Analysoi oheinen toimitusjohtajan strategiadekki. Unohda ylätason konsulttijargoni.
+
+Lue tämä dokumentti kuin olisit kyynisin ja kokenein asentaja tiimissä — 15 vuotta alalla, ja haluaa vain tehdä työnsä rauhassa.
+
+Tehtäväsi:
+1. Listaa 3 tavoitetta, jotka kuulostavat "johtoryhmän sanahelinältä" ja aiheuttavat työmaalla silmien pyörittelyä.
+2. Käännä nämä kolme kohtaa sellaiseen muotoon, että ne tarkoittavat mitattavaa, operatiivista muutosta ensi maanantaina klo 07:00, kun pakettiauton ovet aukeavat.
+
+Vaadi selkeyttä. Jos tavoite ei käänny yhdeksi lauseeksi, se ei ole tavoite — se on toive.<button class="copy-btn" onclick="event.stopPropagation(); copyPrompt('prompt3', this)">Kopioi</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-block">
+  <h2>Tarvitsetko oman <em>Red Teamin?</em></h2>
+  <p>Testaa 60 sekunnissa sopiiko yhteistyö. Ei myyntipuhetta, ei sitoumuksia.</p>
+  <a href="index.html" class="cta-btn">Testaa sopiiko palvelu sinulle &#8599;</a>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+  <div>
+    <div class="footer-id">Harri Aro</div>
+    <div class="footer-handle"><a href="https://www.linkedin.com/in/harri-aro-8b2112122/" target="_blank" rel="noopener">LinkedIn &#8599;</a></div>
+  </div>
+  <div class="footer-stamp">
+    Strateginen AI-kumppani<br>
+    <strong>Pk-yrittäjille</strong>
+  </div>
+</footer>
+
+<script>
+function togglePrompt(card) {
+  var wasOpen = card.classList.contains('open');
+  document.querySelectorAll('.prompt-card').forEach(function(c) { c.classList.remove('open'); });
+  if (!wasOpen) card.classList.add('open');
+}
+
+function copyPrompt(id, btn) {
+  var text = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(text).then(function() {
+    btn.textContent = 'Kopioitu ✓';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = 'Kopioi';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>
