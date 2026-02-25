@@ -10,7 +10,7 @@
 <meta property="og:description" content="Strateginen AI-kumppani pk-yrittäjille. Sinä keskityt liiketoimintaan, minä hoidan tekoälyn.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="fonts/fonts.css" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1681,6 +1681,10 @@ function goStep(target) {
   if (target === 3) {
     // Evaluate match
     var result = evaluateMatch();
+
+    // Send form data to Make.com webhook
+    sendFormData(result);
+
     if (result.match) {
       currentStep = 3;
       showStep('3a');
@@ -1733,6 +1737,37 @@ function toggleChip(el) {
 function getChipValue(groupName) {
   var sel = document.querySelector('[data-group="' + groupName + '"] .chip.selected');
   return sel ? sel.dataset.value : '';
+}
+
+function getMultiChipValues(groupName) {
+  var chips = document.querySelectorAll('[data-group="' + groupName + '"] .chip.selected');
+  var values = [];
+  chips.forEach(function(c) { values.push(c.dataset.value); });
+  return values;
+}
+
+function sendFormData(result) {
+  var data = {
+    name: document.getElementById('f-name').value.trim(),
+    email: document.getElementById('f-email').value.trim(),
+    company: document.getElementById('f-company').value.trim(),
+    role: getChipValue('role'),
+    team: getChipValue('team'),
+    timesinks: getMultiChipValues('timesinks'),
+    ai: getChipValue('ai'),
+    budget: getChipValue('budget'),
+    workstyle: getChipValue('workstyle'),
+    freetext: document.getElementById('f-freetext').value.trim(),
+    match: result.match,
+    reason: result.reason || '',
+    timestamp: new Date().toISOString()
+  };
+
+  fetch('https://hook.eu1.make.com/sb765j49s7nzlo7chcpsx36dag53lpac', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  }).catch(function() { /* silent fail — UX ei saa kärsiä */ });
 }
 
 function evaluateMatch() {
