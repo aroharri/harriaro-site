@@ -285,6 +285,42 @@ nav {
 
 .proof-block p { font-size: 13px; color: var(--grey); line-height: 1.7; }
 
+/* ── PAIN SECTION ──────────────────────────────────── */
+.pain-section {
+  padding: 80px 48px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.pain-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 48px;
+  margin-top: 40px;
+}
+
+.pain-item {
+  display: flex;
+  gap: 16px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: baseline;
+}
+
+.pain-icon {
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--accent);
+  font-size: 14px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.pain-item p {
+  font-size: 15px;
+  color: var(--grey);
+  line-height: 1.7;
+}
+
 /* ── THE PROMISE ────────────────────────────────────── */
 .promise-section {
   padding: 80px 48px;
@@ -429,6 +465,124 @@ nav {
 
 .quote-text::before { content: '\201D'; color: var(--accent); }
 .quote-text::after  { content: '\201D'; color: var(--accent); }
+
+/* ── CASE STUDY ────────────────────────────────────── */
+.case-section {
+  border-top: 1px solid var(--line);
+  padding: 80px 48px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.case-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 64px;
+  align-items: start;
+  margin-top: 40px;
+}
+
+.case-big-num {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(56px, 8vw, 80px);
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.case-big-label {
+  font-size: 15px;
+  color: var(--grey);
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.case-roi {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--accent-light);
+  border: 1px solid rgba(200,64,26,0.3);
+  padding: 8px 16px;
+}
+
+.case-results {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.case-result {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: baseline;
+}
+
+.case-result:last-child { border-bottom: none; }
+
+.case-value {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--accent-light);
+  white-space: nowrap;
+  min-width: 80px;
+}
+
+.case-desc {
+  font-size: 14px;
+  color: var(--grey);
+  line-height: 1.6;
+}
+
+.case-desc strong { color: var(--off-white); font-weight: 400; }
+
+.case-quote {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+
+.case-quote-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--off-white);
+  margin-bottom: 12px;
+}
+
+.case-quote-text::before { content: '\201C'; color: var(--accent); }
+.case-quote-text::after  { content: '\201D'; color: var(--accent); }
+
+.case-quote-name {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--grey);
+  letter-spacing: 0.08em;
+}
+
+.case-anchor {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: var(--off-white);
+  letter-spacing: 0.04em;
+  margin-top: 20px;
+}
+
+.risk-reversal {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--accent-light);
+  letter-spacing: 0.04em;
+  margin-top: 8px;
+}
 
 /* ── SCARCITY FULL ──────────────────────────────────── */
 .scarcity-section {
@@ -937,6 +1091,8 @@ nav {
   .hero { padding: 56px 24px 48px; }
   .proof-strip { grid-template-columns: 1fr; }
   .proof-block { padding: 32px 24px; }
+  .pain-section { padding: 56px 24px; }
+  .pain-grid { grid-template-columns: 1fr; }
   .promise-section { padding: 56px 24px; }
   .promise-grid { grid-template-columns: 1fr; }
   .promise-card { padding: 32px 24px; }
@@ -944,6 +1100,8 @@ nav {
   .price-block-right { text-align: left; }
   .quote-section { padding: 56px 24px; }
   .quote-inner { grid-template-columns: 1fr; gap: 32px; }
+  .case-section { padding: 56px 24px; }
+  .case-grid { grid-template-columns: 1fr; gap: 40px; }
   .scarcity-section { grid-template-columns: 1fr; gap: 48px; padding: 56px 24px; }
   .faq-section { padding: 56px 24px; }
   .faq-header { grid-template-columns: 1fr; gap: 24px; }
@@ -987,8 +1145,7 @@ nav {
   </h1>
   <div class="hero-divider"></div>
   <p class="hero-body">
-    Sinä keskityt liiketoimintaan. Minä rakennan <strong>AI-järjestelmät</strong> jotka säästävät aikaasi,
-    parantavat päätöksentekoasi ja antavat sinulle <strong>toisen parin silmiä</strong> strategisiin valintoihin.
+    Saat <strong>10 tuntia viikossa takaisin</strong>. Päätöksesi perustuvat dataan, eivät mutuun. Ja joku haastaa ajatteluasi <strong>ennen kuin virhe maksaa tuhansia</strong>.
   </p>
   <button class="hero-cta" onclick="openModal()">Varaa ilmainen kartoitus &#8599;</button>
   <p class="hero-sub-note">30 min puhelu — ei sitoumuksia, ei myyntipuhetta.</p>
@@ -999,7 +1156,7 @@ nav {
   <div class="proof-block">
     <div class="proof-num">12+</div>
     <h3>Vuotta talous- ja strategiatyötä</h3>
-    <p>Controller-tausta, BBA ja MBA Haaga-Heliasta. Strateginen skenaariotyöskentely ja Power BI -raportointi.</p>
+    <p>Näen luvuista sen mitä muut eivät huomaa. Talous- ja strategiatausta joka yhdistyy moderniin teknologiaan.</p>
   </div>
   <div class="proof-block">
     <div class="proof-num">50+</div>
@@ -1013,6 +1170,69 @@ nav {
   </div>
 </section>
 
+<!-- ── PAIN SECTION ── -->
+<section class="pain-section">
+  <p class="section-kicker">Tunnistaisitko itsesi?</p>
+  <div class="pain-grid">
+    <div class="pain-item">
+      <span class="pain-icon">&rarr;</span>
+      <p>Teet raportteja ja taulukoita käsin joka kuukausi — ja tiedät että se on ajanhukkaa.</p>
+    </div>
+    <div class="pain-item">
+      <span class="pain-icon">&rarr;</span>
+      <p>Olet kokeillut ChatGPT:tä mutta et tiedä mitä siltä oikeasti pitäisi kysyä.</p>
+    </div>
+    <div class="pain-item">
+      <span class="pain-icon">&rarr;</span>
+      <p>Teet päätöksiä tuntumalla koska aikaa dataan perehtymiseen ei ole.</p>
+    </div>
+    <div class="pain-item">
+      <span class="pain-icon">&rarr;</span>
+      <p>Kaipaat jotakuta joka haastaa ajatteluasi — mutta ei myy sinulle PowerPointia.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── CASE STUDY ── -->
+<section class="case-section">
+  <p class="section-kicker">Ensimmäinen pilotti — Peltitaikurit</p>
+
+  <div class="case-grid">
+    <div class="case-left">
+      <div class="case-big-num">16 000€+</div>
+      <p class="case-big-label">Laskennallinen arvo ensimmäisten viikkojen aikana. Pilotin hinta: 0 €.</p>
+      <div class="case-roi">ROI: 4.4x ensimmäisellä kvartaalilla</div>
+      <p class="case-anchor">Kuukausihinta: 2 000 €. Laske itse.</p>
+    </div>
+
+    <div class="case-right">
+      <div class="case-results">
+        <div class="case-result">
+          <span class="case-value">11 000 €/v</span>
+          <span class="case-desc"><strong>Ajoneuvojen vakiointi</strong> — 1 tunti päivässä vähemmän turhaa työtä. 220 työpäivää vuodessa.</span>
+        </div>
+        <div class="case-result">
+          <span class="case-value">5 000 €</span>
+          <span class="case-desc"><strong>Kannattamaton SEO-sopimus torpattu</strong> — haastaminen esti väärän investoinnin ennen allekirjoitusta.</span>
+        </div>
+        <div class="case-result">
+          <span class="case-value">Priceless</span>
+          <span class="case-desc"><strong>SEO-audit ja kilpailija-analyysi</strong> — kriittiset puutteet tunnistettu, suunta selvillä.</span>
+        </div>
+        <div class="case-result">
+          <span class="case-value">Priceless</span>
+          <span class="case-desc"><strong>Strategisen suunnittelun pohja</strong> — systemaattinen ajattelu käyntiin ensimmäistä kertaa.</span>
+        </div>
+      </div>
+
+      <div class="case-quote">
+        <p class="case-quote-text">Ensimmäinen konkreettinen hyöty tuli viikossa. Joku ulkopuolinen joka uskaltaa sanoa ääneen sen mitä muut eivät.</p>
+        <p class="case-quote-name">— Elmeri, Peltitaikurit</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ── THE PROMISE ── -->
 <section class="promise-section">
   <p class="section-kicker">Mitä saat</p>
@@ -1020,47 +1240,36 @@ nav {
   <div class="promise-grid">
     <div class="promise-card">
       <div class="num">01</div>
-      <h3>Strateginen sparraus</h3>
-      <p>Kokenut talousihminen joka ymmärtää liiketoimintaasi ja haastaa ajatteluasi. Ei yleispätevää konsultointia — konkreettisia päätöksiä.</p>
+      <h3>Kuukausisessio 90 min</h3>
+      <p>Valmisteltu strategiapalaveri kerran kuussa. Ei yleistä jutustelua — oikeat päätökset ja pullonkaulat pöytään. Molemmat tulevat valmiina.</p>
     </div>
     <div class="promise-card">
       <div class="num">02</div>
-      <h3>AI-järjestelmät käyttöösi</h3>
-      <p>Rakennan sinulle räätälöidyt automaatiot: raportointi, asiakasviestintä, tarjouslaskenta, data-analyysi. Sinun ei tarvitse osata promptata.</p>
+      <h3>Jatkuva sparraus</h3>
+      <p>Slack-kanava, 24h vastausaika arkisin. Nopea reaktio kun tilanne vaatii — kuin toinen perustaja ilman osakkeita.</p>
     </div>
     <div class="promise-card">
       <div class="num">03</div>
-      <h3>Toinen pari silmiä</h3>
-      <p>Näen liiketoimintasi ulkopuolelta. Tunnistan pullonkaulat joihin olet sokeutunut ja mahdollisuudet joita et ole huomannut.</p>
+      <h3>Kvartaalitoimitus</h3>
+      <p>Yksi konkreettinen toimitus per kvartaali: laskelma, kilpailija-audit, prosessikuvaus tai automaatio. Tarve määrittelee muodon.</p>
     </div>
     <div class="promise-card">
       <div class="num">04</div>
-      <h3>Jatkuva kumppanuus</h3>
-      <p>Ei kertaluontoista projektia vaan kuukausittainen yhteistyö. Opin tuntemaan yrityksesi ja pystyn reagoimaan nopeasti muutoksiin.</p>
+      <h3>Data-pohjainen näkemys</h3>
+      <p>Pääsy oikeaan dataasi — Search Console, talousdata, CRM. Päätökset perustuvat lukuihin, ei mutuiluun.</p>
     </div>
   </div>
 
   <div class="price-block">
     <div class="price-block-left">
       <h3>Investointi</h3>
-      <p>Kiinteä kuukausihinta sisältää kaiken: sparrauksen, AI-järjestelmien rakentamisen, jatkuvan tuen ja päivitykset.</p>
+      <p>Kiinteä kuukausihinta. Sparraus, data-analyysi, kvartaalitoimitus, jatkuva Slack-tuki. Ei tuntilaskutusta, ei yllätyksiä.</p>
+      <p class="risk-reversal">Kuukauden irtisanomisaika. Tulokset pitävät asiakkaan — ei lukko.</p>
     </div>
     <div class="price-block-right">
       <div class="price-big">2000€</div>
       <div class="price-small">/ kuukausi, alv 0%</div>
     </div>
-  </div>
-</section>
-
-<!-- ── QUOTE ── -->
-<section class="quote-section">
-  <div class="quote-inner">
-    <div class="quote-left">
-      Miksi tämä<br>toimii
-    </div>
-    <p class="quote-text">
-      Yrittäjä ei tarvitse lisää työkaluja. Hän tarvitsee jonkun joka käyttää niitä hänen puolestaan — ja samalla haastaa hänen ajatteluaan.
-    </p>
   </div>
 </section>
 

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 tuntia viikossa takaisin — Harri Aro</title>
+<meta name="description" content="Pk-yrittäjä, tuhlaat aikaa tehtäviin joita tekoäly hoitaisi puolestasi. Varaa ilmainen 30 min kartoitus.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #0a0a0a;
+  --off-white: #f0ebe3;
+  --grey: #6b6560;
+  --accent: #c8401a;
+  --accent-light: #e05535;
+  --line: rgba(240,235,227,0.1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--off-white);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 999;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ── HEADER ──────────────────────────────────────────── */
+.ad-header {
+  padding: 24px 48px;
+  border-bottom: 1px solid var(--line);
+}
+
+.ad-logo {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--grey);
+  text-transform: uppercase;
+}
+
+/* ── HERO ────────────────────────────────────────────── */
+.ad-hero {
+  padding: 80px 48px 64px;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.ad-kicker {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--grey);
+  margin-bottom: 28px;
+}
+
+.ad-promise {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 8vw, 88px);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  margin-bottom: 32px;
+}
+
+.ad-promise em {
+  font-style: italic;
+  color: var(--accent-light);
+}
+
+.ad-body {
+  font-size: 18px;
+  color: var(--grey);
+  max-width: 520px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+}
+
+.ad-body strong { color: var(--off-white); font-weight: 400; }
+
+.ad-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--accent);
+  color: var(--off-white);
+  border: none;
+  padding: 20px 48px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-decoration: none;
+}
+
+.ad-cta:hover { background: var(--accent-light); }
+
+.ad-sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--grey);
+  margin-top: 16px;
+  letter-spacing: 0.06em;
+}
+
+/* ── PROOF BAR ───────────────────────────────────────── */
+.proof-bar {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: var(--line);
+  gap: 1px;
+}
+
+.proof-bar-item {
+  background: var(--black);
+  padding: 32px 40px;
+  text-align: center;
+}
+
+.proof-bar-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.proof-bar-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--grey);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ── PAIN → SOLUTION ─────────────────────────────────── */
+.pain-solution {
+  padding: 80px 48px;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+}
+
+.ps-col h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 32px;
+}
+
+.ps-col h2 em {
+  font-style: italic;
+  color: var(--accent-light);
+}
+
+.ps-item {
+  display: flex;
+  gap: 14px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: baseline;
+}
+
+.ps-icon {
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--accent);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.ps-icon.check { color: var(--off-white); }
+
+.ps-item p {
+  font-size: 15px;
+  color: var(--grey);
+  line-height: 1.7;
+}
+
+.ps-item p strong { color: var(--off-white); font-weight: 400; }
+
+/* ── SOCIAL PROOF ────────────────────────────────────── */
+.social-proof {
+  border-top: 1px solid var(--line);
+  padding: 64px 48px;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sp-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(20px, 3vw, 28px);
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+.sp-quote::before { content: '\201C'; color: var(--accent); }
+.sp-quote::after  { content: '\201D'; color: var(--accent); }
+
+.sp-name {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--grey);
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+.sp-stat {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: var(--accent-light);
+  letter-spacing: 0.06em;
+  margin-top: 16px;
+}
+
+/* ── CTA BLOCK ───────────────────────────────────────── */
+.cta-block {
+  border-top: 1px solid var(--line);
+  padding: 80px 48px;
+  text-align: center;
+  background: rgba(200,64,26,0.04);
+}
+
+.cta-block h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.cta-block h2 em {
+  font-style: italic;
+  color: var(--accent-light);
+}
+
+.cta-block p {
+  font-size: 16px;
+  color: var(--grey);
+  margin-bottom: 32px;
+}
+
+/* ── FOOTER ──────────────────────────────────────────── */
+.ad-footer {
+  border-top: 1px solid var(--line);
+  padding: 24px 48px;
+  text-align: center;
+}
+
+.ad-footer p {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--grey);
+  letter-spacing: 0.06em;
+}
+
+/* ── ANIMATIONS ──────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.ad-kicker    { animation: fadeUp 0.6s 0.05s ease both; }
+.ad-promise   { animation: fadeUp 0.6s 0.2s  ease both; }
+.ad-body      { animation: fadeUp 0.6s 0.35s ease both; }
+.ad-cta, .ad-sub { animation: fadeUp 0.6s 0.45s ease both; }
+
+/* ── RESPONSIVE ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  .ad-header { padding: 18px 24px; }
+  .ad-hero { padding: 56px 24px 48px; }
+  .proof-bar { grid-template-columns: 1fr; }
+  .proof-bar-item { padding: 24px; }
+  .pain-solution { grid-template-columns: 1fr; gap: 48px; padding: 56px 24px; }
+  .social-proof { padding: 48px 24px; }
+  .cta-block { padding: 56px 24px; }
+  .ad-footer { padding: 20px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<div class="ad-header">
+  <div class="ad-logo">Harri Aro</div>
+</div>
+
+<!-- ── HERO ── -->
+<section class="ad-hero">
+  <p class="ad-kicker">Pk-yrittäjälle joka tekee kaiken itse</p>
+  <h1 class="ad-promise">10 tuntia viikossa <em>takaisin.</em></h1>
+  <p class="ad-body">
+    Tekoäly hoitaa sen mitä sinä teet käsin — kun joku <strong>tietää mitä siltä pyytää</strong> ja tekee sen puolestasi.
+  </p>
+  <a href="index.html" class="ad-cta" onclick="openModal()">Varaa ilmainen kartoitus &#8599;</a>
+  <p class="ad-sub">30 min puhelu. Ei sitoumuksia, ei myyntipuhetta.</p>
+</section>
+
+<!-- ── PROOF BAR ── -->
+<section class="proof-bar">
+  <div class="proof-bar-item">
+    <div class="proof-bar-num">16 000€+</div>
+    <div class="proof-bar-label">Arvo pilotissa</div>
+  </div>
+  <div class="proof-bar-item">
+    <div class="proof-bar-num">4.4x</div>
+    <div class="proof-bar-label">ROI</div>
+  </div>
+  <div class="proof-bar-item">
+    <div class="proof-bar-num">3</div>
+    <div class="proof-bar-label">Asiakasta kerrallaan</div>
+  </div>
+</section>
+
+<!-- ── PAIN → SOLUTION ── -->
+<section class="pain-solution">
+  <div class="ps-col">
+    <h2>Tunnistaisitko <em>itsesi?</em></h2>
+    <div class="ps-item">
+      <span class="ps-icon">&rarr;</span>
+      <p>Teet raportteja ja taulukoita käsin joka kuukausi.</p>
+    </div>
+    <div class="ps-item">
+      <span class="ps-icon">&rarr;</span>
+      <p>Olet kokeillut ChatGPT:tä mutta et tiedä mitä siltä oikeasti pitäisi kysyä.</p>
+    </div>
+    <div class="ps-item">
+      <span class="ps-icon">&rarr;</span>
+      <p>Teet päätöksiä tuntumalla koska aikaa dataan perehtymiseen ei ole.</p>
+    </div>
+    <div class="ps-item">
+      <span class="ps-icon">&rarr;</span>
+      <p>Kaipaat haastajaa — et konsulttia joka myy PowerPointia.</p>
+    </div>
+  </div>
+  <div class="ps-col">
+    <h2>Mitä jos joku tekisi sen <em>puolestasi?</em></h2>
+    <div class="ps-item">
+      <span class="ps-icon check">&#10003;</span>
+      <p><strong>Konkreettisia järjestelmiä</strong>, ei teoriaa. Rakennan AI-ratkaisut jotka tekevät työn.</p>
+    </div>
+    <div class="ps-item">
+      <span class="ps-icon check">&#10003;</span>
+      <p><strong>Talous- ja strategiatausta</strong> joka näkee lukujen taakse. En promptaa — analysoin.</p>
+    </div>
+    <div class="ps-item">
+      <span class="ps-icon check">&#10003;</span>
+      <p><strong>2 000 €/kk kiinteä.</strong> Ei tuntilaskutusta, ei yllätyksiä. Kuukauden irtisanomisaika.</p>
+    </div>
+    <div class="ps-item">
+      <span class="ps-icon check">&#10003;</span>
+      <p><strong>Jatkuva kumppanuus.</strong> Slack-tuki, kuukausisessiot, kvartaalitoimitukset.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── SOCIAL PROOF ── -->
+<section class="social-proof">
+  <p class="sp-quote">Ensimmäinen konkreettinen hyöty tuli viikossa. Joku ulkopuolinen joka uskaltaa sanoa ääneen sen mitä muut eivät.</p>
+  <p class="sp-name">— Elmeri, Peltitaikurit</p>
+  <p class="sp-stat">16 000 € arvoa ensimmäisten viikkojen aikana &middot; 4.4x ROI</p>
+</section>
+
+<!-- ── CTA BLOCK ── -->
+<section class="cta-block">
+  <h2>Yksi puhelu. <em>30 minuuttia.</em></h2>
+  <p>Sen jälkeen tiedät sopiiko yhteistyö — ilman painostusta.</p>
+  <a href="index.html" class="ad-cta">Varaa kartoitus &#8599;</a>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="ad-footer">
+  <p>Harri Aro &middot; Strateginen AI-kumppani pk-yrittäjille</p>
+</footer>
+
+</body>
+</html>

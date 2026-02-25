@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vertailu — Kaikki konsultit lupaa. Harva tekee. | Harri Aro</title>
+<meta name="description" content="Neljä tapaa hyödyntää tekoälyä pk-yrityksessä: itse, freelancer, konsulttitalo vai strateginen AI-kumppani. Vertaile ja valitse.">
+<meta name="theme-color" content="#0a0a0a">
+<meta property="og:title" content="Vertailu — Kaikki konsultit lupaa. Harva tekee.">
+<meta property="og:description" content="Neljä tapaa hyödyntää tekoälyä pk-yrityksessä. Yksi toimii paremmin kuin muut.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #0a0a0a;
+  --off-white: #f0ebe3;
+  --grey: #6b6560;
+  --accent: #c8401a;
+  --accent-light: #e05535;
+  --line: rgba(240,235,227,0.1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--off-white);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 999;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ── NAV ─────────────────────────────────────────────── */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 48px;
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-logo {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--grey);
+  text-transform: uppercase;
+}
+
+.nav-back {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--grey);
+  transition: color 0.2s;
+}
+
+.nav-back:hover { color: var(--off-white); }
+
+/* ── SHARED ──────────────────────────────────────────── */
+.section-kicker {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--grey);
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.section-kicker::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+}
+
+/* ── HERO ────────────────────────────────────────────── */
+.cmp-hero {
+  padding: 80px 48px 64px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.cmp-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 7vw, 72px);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+}
+
+.cmp-hero h1 em {
+  font-style: italic;
+  color: var(--accent-light);
+}
+
+.cmp-hero-body {
+  font-size: 18px;
+  color: var(--grey);
+  max-width: 520px;
+  line-height: 1.7;
+}
+
+/* ── COMPARISON TABLE ────────────────────────────────── */
+.table-section {
+  border-top: 1px solid var(--line);
+  padding: 80px 48px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin-top: 40px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cmp-table {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: collapse;
+}
+
+.cmp-table th,
+.cmp-table td {
+  padding: 18px 20px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+  vertical-align: top;
+}
+
+.cmp-table thead th {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grey);
+  padding-bottom: 20px;
+  font-weight: 500;
+}
+
+.cmp-table .row-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--grey);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.cmp-table td {
+  color: var(--grey);
+  line-height: 1.5;
+}
+
+/* Highlight Harri column */
+.cmp-table .col-harri {
+  background: rgba(200,64,26,0.06);
+  color: var(--off-white);
+  border-left: 1px solid rgba(200,64,26,0.2);
+  border-right: 1px solid rgba(200,64,26,0.2);
+}
+
+.cmp-table thead .col-harri {
+  color: var(--accent-light);
+  border-top: 1px solid rgba(200,64,26,0.2);
+}
+
+.cmp-table tbody tr:last-child .col-harri {
+  border-bottom: 1px solid rgba(200,64,26,0.2);
+}
+
+.cmp-table .cell-yes { color: var(--off-white); }
+.cmp-table .cell-no { color: var(--grey); opacity: 0.5; }
+.cmp-table .cell-accent { color: var(--accent-light); font-weight: 400; }
+
+/* ── BREAKDOWN CARDS ─────────────────────────────────── */
+.breakdown-section {
+  border-top: 1px solid var(--line);
+  padding: 80px 48px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.breakdown-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+  margin-top: 40px;
+}
+
+.bd-card {
+  background: var(--black);
+  padding: 40px;
+}
+
+.bd-card.highlight {
+  background: rgba(200,64,26,0.04);
+  border: 1px solid rgba(200,64,26,0.15);
+}
+
+.bd-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.bd-card .bd-when {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.bd-card p {
+  font-size: 14px;
+  color: var(--grey);
+  line-height: 1.75;
+  margin-bottom: 12px;
+}
+
+.bd-card p:last-child { margin-bottom: 0; }
+
+.bd-card p strong { color: var(--off-white); font-weight: 400; }
+
+.bd-card .bd-truth {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.bd-card .bd-truth strong { color: var(--accent-light); font-weight: 500; }
+
+/* ── CASE COMPACT ────────────────────────────────────── */
+.case-compact {
+  border-top: 1px solid var(--line);
+  padding: 64px 48px;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 48px;
+  align-items: center;
+}
+
+.cc-num {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.cc-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.cc-quote::before { content: '\201C'; color: var(--accent); }
+.cc-quote::after  { content: '\201D'; color: var(--accent); }
+
+.cc-name {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--grey);
+  margin-top: 8px;
+  letter-spacing: 0.06em;
+}
+
+.cc-roi {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: var(--accent-light);
+  letter-spacing: 0.06em;
+  border: 1px solid rgba(200,64,26,0.3);
+  padding: 8px 16px;
+  white-space: nowrap;
+}
+
+/* ── CTA BLOCK ───────────────────────────────────────── */
+.cta-block {
+  border-top: 1px solid var(--line);
+  padding: 80px 48px;
+  text-align: center;
+  background: rgba(200,64,26,0.04);
+}
+
+.cta-block h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.cta-block h2 em {
+  font-style: italic;
+  color: var(--accent-light);
+}
+
+.cta-block p {
+  font-size: 16px;
+  color: var(--grey);
+  margin-bottom: 32px;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--accent);
+  color: var(--off-white);
+  border: none;
+  padding: 20px 48px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-decoration: none;
+}
+
+.cta-btn:hover { background: var(--accent-light); }
+
+/* ── FOOTER ──────────────────────────────────────────── */
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 28px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-id { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; }
+.footer-handle { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--grey); margin-top: 3px; letter-spacing: 0.06em; }
+.footer-handle a { transition: color 0.2s; }
+.footer-handle a:hover { color: var(--accent-light); }
+
+.footer-stamp {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--grey);
+  letter-spacing: 0.06em;
+  text-align: right;
+  line-height: 2;
+}
+
+/* ── ANIMATIONS ──────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.section-kicker { animation: fadeUp 0.6s 0.05s ease both; }
+
+/* ── RESPONSIVE ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  nav { padding: 18px 24px; }
+  .cmp-hero { padding: 56px 24px 48px; }
+  .table-section { padding: 56px 24px; }
+  .breakdown-section { padding: 56px 24px; }
+  .breakdown-grid { grid-template-columns: 1fr; }
+  .bd-card { padding: 32px 24px; }
+  .case-compact { grid-template-columns: 1fr; gap: 24px; padding: 48px 24px; text-align: center; }
+  .cta-block { padding: 56px 24px; }
+  .site-footer { padding: 24px; flex-direction: column; gap: 20px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-logo">Harri Aro</div>
+  <a href="index.html" class="nav-back">&larr; Etusivulle</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="cmp-hero">
+  <p class="section-kicker">Vertailu</p>
+  <h1>Kaikki konsultit lupaa.<br><em>Harva tekee.</em></h1>
+  <p class="cmp-hero-body">
+    Neljä tapaa hyödyntää tekoälyä pk-yrityksessä. Yksi niistä toimii paremmin kuin muut.
+  </p>
+</section>
+
+<!-- ── COMPARISON TABLE ── -->
+<section class="table-section">
+  <p class="section-kicker">Vertailutaulukko</p>
+  <div class="table-wrap">
+    <table class="cmp-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Itse (ChatGPT)</th>
+          <th>Freelancer</th>
+          <th>Konsulttitalo</th>
+          <th class="col-harri">Harri Aro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="row-label">Hinta</td>
+          <td>0–20 €/kk</td>
+          <td>50–150 €/h</td>
+          <td>5 000–20 000 €/projekti</td>
+          <td class="col-harri cell-accent">2 000 €/kk kiinteä</td>
+        </tr>
+        <tr>
+          <td class="row-label">Strategia</td>
+          <td class="cell-no">&times;</td>
+          <td class="cell-no">&times;</td>
+          <td class="cell-yes">&#10003; (kallis)</td>
+          <td class="col-harri cell-yes">&#10003;</td>
+        </tr>
+        <tr>
+          <td class="row-label">Toteutus</td>
+          <td>Sinä itse</td>
+          <td>Rajattu scope</td>
+          <td>PowerPoint</td>
+          <td class="col-harri cell-accent">Konkreettinen</td>
+        </tr>
+        <tr>
+          <td class="row-label">Talousymmärrys</td>
+          <td class="cell-no">&times;</td>
+          <td class="cell-no">Harvoin</td>
+          <td>Joskus</td>
+          <td class="col-harri cell-yes">&#10003; Controller-tausta</td>
+        </tr>
+        <tr>
+          <td class="row-label">Jatkuvuus</td>
+          <td class="cell-no">&times;</td>
+          <td>Projektikohtainen</td>
+          <td>Projektikohtainen</td>
+          <td class="col-harri cell-accent">Kuukausittain</td>
+        </tr>
+        <tr>
+          <td class="row-label">Reaktioaika</td>
+          <td>—</td>
+          <td>Päiviä</td>
+          <td>Viikkoja</td>
+          <td class="col-harri cell-accent">24h (Slack)</td>
+        </tr>
+        <tr>
+          <td class="row-label">Tuntee yrityksesi</td>
+          <td class="cell-no">&times;</td>
+          <td>Pintapuolisesti</td>
+          <td>Workshopin verran</td>
+          <td class="col-harri cell-yes">Syvällisesti</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ── BREAKDOWN ── -->
+<section class="breakdown-section">
+  <p class="section-kicker">Vaihtoehdot avattuna</p>
+  <div class="breakdown-grid">
+
+    <div class="bd-card">
+      <h3>Tee itse (ChatGPT)</h3>
+      <div class="bd-when">Toimii kun: aikaa opetella ja testata</div>
+      <p>Kirjoitat prompteja, kokeilet eri malleja, rakennat itse. Hyviä tuloksia jos tiedät mitä pyydät.</p>
+      <p>Riski: promptaat väärin, saat väärän vastauksen, teet väärän päätöksen. Kukaan ei haasta.</p>
+      <div class="bd-truth"><strong>Totuus:</strong> ChatGPT ei tunne liiketoimintaasi. Se vastaa siihen mitä kysyt — ei siihen mitä sinun pitäisi kysyä.</div>
+    </div>
+
+    <div class="bd-card">
+      <h3>Freelancer</h3>
+      <div class="bd-when">Toimii kun: tarvitset rajatun projektin</div>
+      <p>Nettisivut, yksittäinen automaatio, raporttipohja. Selkeä brief, selkeä lopputulos.</p>
+      <p>Riski: ei strategista näkemystä, ei jatkuvuutta. Projekti loppuu, tieto lähtee.</p>
+      <div class="bd-truth"><strong>Totuus:</strong> Saat mitä tilaat — et sitä mitä tarvitset. Kukaan ei kysy miksi.</div>
+    </div>
+
+    <div class="bd-card">
+      <h3>Konsulttitalo</h3>
+      <div class="bd-when">Toimii kun: budjetti 50k+ ja organisaatio iso</div>
+      <p>Workshopeja, strategiapäiviä, esityksiä johdolle. Isot prosessit, isot tiimit, isot laskut.</p>
+      <p>Riski: saat suosituksia mutta toteutus jää sinulle. Tai ostat sen erikseen — uudella laskulla.</p>
+      <div class="bd-truth"><strong>Totuus:</strong> Maksat workshopista ja raportista — et tuloksista. PowerPoint ei tee työtä puolestasi.</div>
+    </div>
+
+    <div class="bd-card highlight">
+      <h3>Harri Aro</h3>
+      <div class="bd-when">Toimii kun: haluat kumppanin joka tekee ja haastaa</div>
+      <p>Strategia ja toteutus samasta paikasta. Tunnen liiketoimintasi, näen luvut, rakennan järjestelmät ja haastaan ajatteluasi.</p>
+      <p><strong>2 000 €/kk kiinteä.</strong> Kuukauden irtisanomisaika. Ei tuntilaskutusta, ei yllätyksiä.</p>
+      <div class="bd-truth"><strong>Totuus:</strong> "Ensimmäinen konkreettinen hyöty tuli viikossa." — Elmeri, Peltitaikurit</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── CASE COMPACT ── -->
+<section class="case-compact">
+  <div class="cc-num">16 000€+</div>
+  <div>
+    <p class="cc-quote">Ensimmäinen konkreettinen hyöty tuli viikossa. Joku ulkopuolinen joka uskaltaa sanoa ääneen sen mitä muut eivät.</p>
+    <p class="cc-name">— Elmeri, Peltitaikurit</p>
+  </div>
+  <div class="cc-roi">4.4x ROI</div>
+</section>
+
+<!-- ── CTA BLOCK ── -->
+<section class="cta-block">
+  <h2>Ei tarvitse uskoa <em>sanojani.</em></h2>
+  <p>Varaa 30 min ja näe itse. Ilmainen kartoituspuhelu, ei myyntipuhetta.</p>
+  <a href="index.html" class="cta-btn">Varaa kartoitus &#8599;</a>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+  <div>
+    <div class="footer-id">Harri Aro</div>
+    <div class="footer-handle"><a href="https://www.linkedin.com/in/harri-aro-8b2112122/" target="_blank" rel="noopener">LinkedIn &#8599;</a></div>
+  </div>
+  <div class="footer-stamp">
+    Strateginen AI-kumppani<br>
+    Pk-yrittäjille
+  </div>
+</footer>
+
+</body>
+</html>
