@@ -382,6 +382,47 @@ nav {
   line-height: 1.75;
 }
 
+/* Examples */
+.examples-section {
+  padding: 80px 48px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.examples-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+}
+
+.example-card {
+  background: var(--black);
+  padding: 40px;
+}
+
+.example-card .num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+}
+
+.example-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  line-height: 1.3;
+}
+
+.example-card p {
+  font-size: 14px;
+  color: var(--grey);
+  line-height: 1.75;
+}
+
 .price-block {
   grid-column: 1 / -1;
   background: rgba(200,64,26,0.07);
@@ -1169,6 +1210,9 @@ nav {
   .quote-inner { grid-template-columns: 1fr; gap: 32px; }
   .case-section { padding: 56px 24px; }
   .case-grid { grid-template-columns: 1fr; gap: 40px; }
+  .examples-section { padding: 56px 24px; }
+  .examples-grid { grid-template-columns: 1fr; }
+  .example-card { padding: 32px 24px; }
   .scarcity-section { grid-template-columns: 1fr; gap: 48px; padding: 56px 24px; }
   .faq-section { padding: 56px 24px; }
   .faq-header { grid-template-columns: 1fr; gap: 24px; }
@@ -1304,6 +1348,47 @@ nav {
   </div>
   <div class="section-link-wrap" style="text-align:right; padding-top:24px;">
     <a href="case-peltitaikurit.html" class="section-link">Lue koko case study &#8599;</a>
+  </div>
+</section>
+
+<!-- ── EXAMPLES ── -->
+<section class="examples-section">
+  <p class="section-kicker">Esimerkkejä — mitä rakennan puolestasi</p>
+
+  <div class="examples-grid">
+    <div class="example-card">
+      <div class="num">01</div>
+      <h3>Liidivahti</h3>
+      <p>Uusi yhteydenotto → vastaus 60 sekunnissa, 24/7. Kvalifiointi, tietojen keruu ja tapaamisen varaus automaattisesti.</p>
+    </div>
+    <div class="example-card">
+      <div class="num">02</div>
+      <h3>Raporttikone</h3>
+      <p>Viikko- tai kuukausiraportti valmiina maanantaiaamuna. Data haetaan, analysoidaan ja tiivistetään — sinä luet vain tuloksen.</p>
+    </div>
+    <div class="example-card">
+      <div class="num">03</div>
+      <h3>Tarjousgeneraattori</h3>
+      <p>Asiakastiedot sisään → valmis tarjous ulos minuuteissa. Ei copy-pastea, ei unohduksia.</p>
+    </div>
+    <div class="example-card">
+      <div class="num">04</div>
+      <h3>Kilpailija-radar</h3>
+      <p>Seuraa kilpailijoiden hintoja, sisältöjä ja muutoksia. Saat hälytyksen kun jotain tapahtuu.</p>
+    </div>
+    <div class="example-card">
+      <div class="num">05</div>
+      <h3>Asiakasviestintä</h3>
+      <p>Follow-up-ketjut, muistutukset ja kiitosviestit — ajallaan, joka kerta, ilman käsityötä.</p>
+    </div>
+    <div class="example-card">
+      <div class="num">06</div>
+      <h3>Data → Päätös</h3>
+      <p>CRM, kirjanpito tai Excel → selkeä dashboard. Näet heti missä vuotaa ja mihin kannattaa panostaa.</p>
+    </div>
+  </div>
+  <div class="section-link-wrap" style="text-align:right; padding-top:24px;">
+    <a href="toteutukset.html" class="section-link">Katso kaikki toteutukset &#8599;</a>
   </div>
 </section>
 
