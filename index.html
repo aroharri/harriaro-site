@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Käytän tekoälyä puolestasi — Harri Aro</title>
-<meta name="description" content="Strateginen AI-kumppani pk-yrittäjille. Käytän tekoälyä puolestasi — sinä keskityt liiketoimintaan. Vain 3 asiakaspaikkaa.">
+<title>AI-katsastus pk-yrittäjille — Harri Aro</title>
+<meta name="description" content="Löydän yrityksestäsi vähintään 3 kohtaa joissa aikaa kuluu turhaan — ja kerron miten ne korjataan. 490 € tai rahat takaisin.">
 <meta name="theme-color" content="#0a0a0a">
-<meta property="og:title" content="Käytän tekoälyä puolestasi — Harri Aro">
-<meta property="og:description" content="Strateginen AI-kumppani pk-yrittäjille. Sinä keskityt liiketoimintaan, minä hoidan tekoälyn.">
+<meta property="og:title" content="AI-katsastus pk-yrittäjille — Harri Aro">
+<meta property="og:description" content="Löydän yrityksestäsi vähintään 3 kohtaa joissa aikaa kuluu turhaan — ja kerron miten ne korjataan. 490 € tai rahat takaisin.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
 <link href="fonts/fonts.css" rel="stylesheet">
@@ -46,35 +46,6 @@ body::after {
 
 a { color: inherit; text-decoration: none; }
 
-/* ── SCARCITY BANNER ────────────────────────────────── */
-.banner {
-  background: var(--accent);
-  padding: 10px 24px;
-  text-align: center;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-}
-
-.banner-pulse {
-  width: 7px;
-  height: 7px;
-  background: var(--off-white);
-  border-radius: 50%;
-  animation: blink 1.5s ease-in-out infinite;
-  flex-shrink: 0;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.3; }
-}
-
 /* ── NAV ────────────────────────────────────────────── */
 nav {
   display: flex;
@@ -96,6 +67,23 @@ nav {
   text-transform: uppercase;
 }
 
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-link {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--grey);
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-link:hover { color: var(--off-white); }
+
 .nav-btn {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
@@ -107,59 +95,10 @@ nav {
   padding: 11px 22px;
   cursor: pointer;
   transition: background 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  text-decoration: none;
 }
 
 .nav-btn:hover { background: var(--accent); color: var(--off-white); }
-
-/* ── SLOTS COUNTER ──────────────────────────────────── */
-.slots-bar {
-  padding: 32px 48px;
-  border-bottom: 1px solid var(--line);
-  display: flex;
-  align-items: center;
-  gap: 32px;
-}
-
-.slots-label {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--grey);
-  flex-shrink: 0;
-}
-
-.slots-dots {
-  display: flex;
-  gap: 8px;
-}
-
-.slot-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 1px solid rgba(240,235,227,0.2);
-}
-
-.slot-dot.taken { background: var(--accent); border-color: var(--accent); }
-.slot-dot.yours { background: transparent; border-color: rgba(240,235,227,0.4); animation: ring 2s ease-in-out infinite; }
-
-@keyframes ring {
-  0%, 100% { border-color: rgba(240,235,227,0.3); }
-  50%       { border-color: var(--off-white); }
-}
-
-.slots-text {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
-  color: var(--grey);
-  letter-spacing: 0.05em;
-}
-
-.slots-text strong { color: var(--off-white); }
 
 /* ── HERO ───────────────────────────────────────────── */
 .hero {
@@ -179,9 +118,9 @@ nav {
 
 .hero-promise {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(48px, 9vw, 110px);
+  font-size: clamp(42px, 8vw, 88px);
   font-weight: 900;
-  line-height: 0.92;
+  line-height: 0.95;
   letter-spacing: -0.025em;
   margin-bottom: 0;
 }
@@ -202,7 +141,7 @@ nav {
 .hero-body {
   font-size: 19px;
   color: var(--grey);
-  max-width: 480px;
+  max-width: 540px;
   line-height: 1.7;
   margin-bottom: 48px;
 }
@@ -223,6 +162,7 @@ nav {
   text-transform: uppercase;
   cursor: pointer;
   transition: background 0.2s;
+  text-decoration: none;
 }
 
 .hero-cta:hover { background: var(--accent-light); }
@@ -233,17 +173,12 @@ nav {
   color: var(--grey);
   margin-top: 16px;
   letter-spacing: 0.06em;
+  line-height: 1.8;
 }
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-6px); }
-  75% { transform: translateX(6px); }
 }
 
 .hero-kicker   { animation: fadeUp 0.6s 0.05s ease both; }
@@ -252,38 +187,69 @@ nav {
 .hero-body     { animation: fadeUp 0.6s 0.45s ease both; }
 .hero-cta, .hero-sub-note { animation: fadeUp 0.6s 0.55s ease both; }
 
-/* ── PROOF STRIP ────────────────────────────────────── */
-.proof-strip {
+/* ── SECTION KICKER ────────────────────────────────── */
+.section-kicker {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--grey);
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.section-kicker::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+}
+
+/* ── STEPS ──────────────────────────────────────────── */
+.steps-section {
   border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  padding: 80px 48px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.steps-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  background: var(--line);
   gap: 1px;
+  background: var(--line);
+  margin-top: 40px;
 }
 
-.proof-block {
+.step-card {
   background: var(--black);
-  padding: 40px 40px;
+  padding: 40px;
 }
 
-.proof-num {
-  font-family: 'Playfair Display', serif;
-  font-size: 56px;
-  font-weight: 900;
+.step-card .num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
   color: var(--accent);
-  line-height: 1;
-  margin-bottom: 12px;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
 }
 
-.proof-block h3 {
+.step-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  line-height: 1.3;
+}
+
+.step-card p {
   font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 10px;
-  line-height: 1.4;
+  color: var(--grey);
+  line-height: 1.75;
 }
-
-.proof-block p { font-size: 13px; color: var(--grey); line-height: 1.7; }
 
 /* ── PAIN SECTION ──────────────────────────────────── */
 .pain-section {
@@ -321,418 +287,259 @@ nav {
   line-height: 1.7;
 }
 
-/* ── THE PROMISE ────────────────────────────────────── */
-.promise-section {
-  padding: 80px 48px;
-  max-width: 1000px;
-  margin: 0 auto;
-}
+.pain-item p strong { color: var(--off-white); font-weight: 400; }
 
-.section-kicker {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--grey);
-  margin-bottom: 40px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.section-kicker::before {
-  content: '';
-  display: block;
-  width: 24px;
-  height: 1px;
-  background: var(--accent);
-}
-
-.promise-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: var(--line);
-}
-
-.promise-card {
-  background: var(--black);
-  padding: 40px;
-}
-
-.promise-card .num {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  color: var(--accent);
-  letter-spacing: 0.1em;
-  margin-bottom: 20px;
-}
-
-.promise-card h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 14px;
-  line-height: 1.3;
-}
-
-.promise-card p {
-  font-size: 14px;
-  color: var(--grey);
-  line-height: 1.75;
-}
-
-/* Examples */
-.examples-section {
-  padding: 80px 48px;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.examples-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: var(--line);
-}
-
-.example-card {
-  background: var(--black);
-  padding: 40px;
-}
-
-.example-card .num {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  color: var(--accent);
-  letter-spacing: 0.1em;
-  margin-bottom: 20px;
-}
-
-.example-card h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 14px;
-  line-height: 1.3;
-}
-
-.example-card p {
-  font-size: 14px;
-  color: var(--grey);
-  line-height: 1.75;
-}
-
-.price-block {
-  grid-column: 1 / -1;
-  background: rgba(200,64,26,0.07);
-  border: 1px solid rgba(200,64,26,0.2);
-  padding: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 32px;
-  margin-top: 1px;
-}
-
-.price-block-left h3 {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--grey);
-  margin-bottom: 8px;
-}
-
-.price-block-left p {
-  font-size: 14px;
-  color: var(--grey);
-  line-height: 1.7;
-}
-
-.price-block-right {
-  text-align: right;
-  flex-shrink: 0;
-}
-
-.price-big {
-  font-family: 'Playfair Display', serif;
-  font-size: 48px;
-  font-weight: 900;
-  line-height: 1;
-}
-
-.price-small {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  color: var(--grey);
-  letter-spacing: 0.08em;
-  margin-top: 6px;
-}
-
-/* ── QUOTE ──────────────────────────────────────────── */
-.quote-section {
+/* ── ROI SECTION ───────────────────────────────────── */
+.roi-section {
   border-top: 1px solid var(--line);
   padding: 80px 48px;
-  background: rgba(240,235,227,0.02);
-}
-
-.quote-inner {
   max-width: 1000px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 80px;
-  align-items: center;
 }
 
-.quote-left {
+.roi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+  margin-top: 40px;
+}
+
+.roi-card {
+  background: var(--black);
+  padding: 40px;
+}
+
+.roi-card h3 {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--grey);
-  line-height: 2;
-}
-
-.quote-text {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(22px, 3vw, 34px);
-  font-style: italic;
-  font-weight: 700;
-  line-height: 1.35;
-  color: var(--off-white);
-}
-
-.quote-text::before { content: '\201D'; color: var(--accent); }
-.quote-text::after  { content: '\201D'; color: var(--accent); }
-
-/* ── CASE STUDY ────────────────────────────────────── */
-.case-section {
-  border-top: 1px solid var(--line);
-  padding: 80px 48px;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.case-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 64px;
-  align-items: start;
-  margin-top: 40px;
-}
-
-.case-big-num {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(56px, 8vw, 80px);
-  font-weight: 900;
   color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.roi-card p {
+  font-size: 15px;
+  color: var(--grey);
+  line-height: 1.75;
+}
+
+.roi-card p strong { color: var(--off-white); font-weight: 400; }
+
+.roi-card .roi-big {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--off-white);
   line-height: 1;
   margin-bottom: 12px;
 }
 
-.case-big-label {
-  font-size: 15px;
-  color: var(--grey);
-  line-height: 1.6;
-  margin-bottom: 32px;
-}
-
-.case-roi {
-  display: inline-block;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  color: var(--accent-light);
-  border: 1px solid rgba(200,64,26,0.3);
-  padding: 8px 16px;
-}
-
-.case-results {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.case-result {
+/* ── PROOF ──────────────────────────────────────────── */
+.proof-section {
+  border-top: 1px solid var(--line);
+  padding: 64px 48px;
+  max-width: 1000px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 16px;
-  padding: 20px 0;
-  border-bottom: 1px solid var(--line);
-  align-items: baseline;
+  gap: 48px;
+  align-items: center;
 }
 
-.case-result:last-child { border-bottom: none; }
-
-.case-value {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--accent-light);
-  white-space: nowrap;
-  min-width: 80px;
+.proof-num {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
 }
 
-.case-desc {
-  font-size: 14px;
-  color: var(--grey);
-  line-height: 1.6;
-}
-
-.case-desc strong { color: var(--off-white); font-weight: 400; }
-
-.case-quote {
-  margin-top: 40px;
-  padding-top: 32px;
-  border-top: 1px solid var(--line);
-}
-
-.case-quote-text {
+.proof-quote {
   font-family: 'Playfair Display', serif;
   font-size: 18px;
   font-style: italic;
   font-weight: 700;
   line-height: 1.5;
-  color: var(--off-white);
-  margin-bottom: 12px;
 }
 
-.case-quote-text::before { content: '\201C'; color: var(--accent); }
-.case-quote-text::after  { content: '\201D'; color: var(--accent); }
+.proof-quote::before { content: '\201C'; color: var(--accent); }
+.proof-quote::after  { content: '\201D'; color: var(--accent); }
 
-.case-quote-name {
+.proof-name {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
   color: var(--grey);
-  letter-spacing: 0.08em;
-}
-
-.case-anchor {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 13px;
-  color: var(--off-white);
-  letter-spacing: 0.04em;
-  margin-top: 20px;
-}
-
-.risk-reversal {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
-  color: var(--accent-light);
-  letter-spacing: 0.04em;
   margin-top: 8px;
+  letter-spacing: 0.06em;
 }
 
-/* ── SCARCITY FULL ──────────────────────────────────── */
-.scarcity-section {
+.proof-link {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--grey);
+  letter-spacing: 0.06em;
+  margin-top: 4px;
+  transition: color 0.2s;
+}
+
+.proof-link:hover { color: var(--off-white); }
+
+/* ── ABOUT ──────────────────────────────────────────── */
+.about-section {
   border-top: 1px solid var(--line);
-  padding: 80px 48px;
-  max-width: 1000px;
-  margin: 0 auto;
+  border-bottom: 1px solid var(--line);
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  background: var(--line);
+  gap: 1px;
 }
 
-.scarcity-left h2 {
+.about-block {
+  background: var(--black);
+  padding: 40px;
+}
+
+.about-num {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(32px, 5vw, 52px);
+  font-size: 48px;
   font-weight: 900;
-  line-height: 1.05;
-  margin-bottom: 24px;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 12px;
 }
 
-.scarcity-left h2 em {
+.about-block h3 {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.about-block p { font-size: 13px; color: var(--grey); line-height: 1.7; }
+
+/* ── CTA SECTION ───────────────────────────────────── */
+.cta-section {
+  padding: 80px 48px;
+  text-align: center;
+  background: rgba(200,64,26,0.04);
+  border-top: 1px solid var(--line);
+}
+
+.cta-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.cta-section h2 em {
   font-style: italic;
   color: var(--accent-light);
 }
 
-.scarcity-left p {
+.cta-section .cta-body {
   font-size: 16px;
   color: var(--grey);
-  line-height: 1.75;
-  margin-bottom: 16px;
+  max-width: 480px;
+  margin: 0 auto 32px;
+  line-height: 1.7;
 }
 
-.capacity-visual {
-  margin-bottom: 32px;
-}
-
-.cap-row {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--line);
-}
-
-.cap-row:last-child { border-bottom: none; }
-
-.cap-num {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  color: var(--grey);
-  letter-spacing: 0.08em;
-  width: 20px;
-  flex-shrink: 0;
-}
-
-.cap-bar { flex: 1; }
-
-.cap-fill {
-  height: 2px;
-  background: var(--accent);
-  transition: width 0.3s;
-}
-
-.cap-status {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  flex-shrink: 0;
-}
-
-.cap-status.full  { color: var(--accent); }
-.cap-status.open  { color: rgba(240,235,227,0.35); }
-
-.scarcity-cta {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
-}
-
-.scarcity-btn {
+.cta-btn {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   background: var(--accent);
   color: var(--off-white);
   border: none;
-  padding: 18px 36px;
+  padding: 20px 48px;
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   cursor: pointer;
   transition: background 0.2s;
+  text-decoration: none;
 }
 
-.scarcity-btn:hover { background: var(--accent-light); }
+.cta-btn:hover { background: var(--accent-light); }
 
-.scarcity-fine {
+.cta-sub {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   color: var(--grey);
+  margin-top: 16px;
   letter-spacing: 0.06em;
-  line-height: 1.8;
 }
 
-/* ── FAQ ─────────────────────────────────────────────── */
+/* ── DIY PROMPT ────────────────────────────────────── */
+.diy-section {
+  padding: 64px 48px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.diy-section details {
+  border: 1px solid var(--line);
+}
+
+.diy-section summary {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--grey);
+  padding: 20px 24px;
+  cursor: pointer;
+  transition: color 0.2s;
+  list-style: none;
+}
+
+.diy-section summary::-webkit-details-marker { display: none; }
+
+.diy-section summary::before {
+  content: '▶ ';
+  font-size: 10px;
+  color: var(--accent);
+}
+
+.diy-section details[open] summary::before {
+  content: '▼ ';
+}
+
+.diy-section summary:hover { color: var(--off-white); }
+
+.diy-content {
+  padding: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.diy-content p {
+  font-size: 13px;
+  color: var(--grey);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.diy-content p:last-child { margin-bottom: 0; }
+
+.diy-content pre {
+  background: rgba(240,235,227,0.03);
+  border: 1px solid var(--line);
+  padding: 24px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--grey);
+  line-height: 1.8;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+
+/* ── FAQ ────────────────────────────────────────────── */
 .faq-section {
   border-top: 1px solid var(--line);
   padding: 80px 48px;
@@ -741,81 +548,120 @@ nav {
 }
 
 .faq-header {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
   margin-bottom: 48px;
-  padding-bottom: 40px;
-  border-bottom: 1px solid var(--line);
 }
 
 .faq-header h2 {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(28px, 4vw, 42px);
+  font-size: 32px;
   font-weight: 700;
-  line-height: 1.15;
 }
 
 .faq-header-right p {
-  font-size: 16px;
+  font-size: 14px;
   color: var(--grey);
-  line-height: 1.75;
 }
 
-.faq-list {
-  display: flex;
-  flex-direction: column;
-}
-
-.faq-item {
-  border-bottom: 1px solid var(--line);
-}
+.faq-item { border-bottom: 1px solid var(--line); }
 
 .faq-q {
   width: 100%;
-  background: transparent;
+  background: none;
   border: none;
   color: var(--off-white);
-  text-align: left;
-  padding: 28px 0;
   font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 400;
+  text-align: left;
+  padding: 24px 0;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 24px;
-  transition: color 0.2s;
-  line-height: 1.4;
+  gap: 16px;
 }
-
-.faq-q:hover { color: var(--accent-light); }
-
-.faq-q.open { color: var(--off-white); }
 
 .faq-arrow {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 16px;
+  font-size: 18px;
   color: var(--accent);
   flex-shrink: 0;
-  transition: transform 0.3s ease;
-  display: inline-block;
+  transition: transform 0.3s;
 }
-
-.faq-q.open .faq-arrow { transform: rotate(45deg); }
 
 .faq-a {
-  display: none;
-  padding: 0 0 28px 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
   font-size: 15px;
   color: var(--grey);
-  line-height: 1.85;
-  max-width: 680px;
+  line-height: 1.7;
 }
 
-.faq-a.open { display: block; animation: fadeUp 0.25s ease both; }
 .faq-a strong { color: var(--off-white); font-weight: 400; }
+
+.faq-item.open .faq-a {
+  max-height: 500px;
+  padding-bottom: 24px;
+}
+
+.faq-item.open .faq-arrow {
+  transform: rotate(45deg);
+}
+
+/* ── RETAINER TEASER ───────────────────────────────── */
+.retainer-teaser {
+  border-top: 1px solid var(--line);
+  padding: 64px 48px;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.retainer-teaser h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.retainer-teaser h2 em {
+  font-style: italic;
+  color: var(--accent-light);
+}
+
+.retainer-teaser p {
+  font-size: 15px;
+  color: var(--grey);
+  line-height: 1.7;
+}
+
+.retainer-teaser-right {
+  text-align: right;
+}
+
+.retainer-link {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--grey);
+  border: 1px solid var(--line);
+  padding: 16px 24px;
+  display: inline-block;
+  transition: all 0.2s;
+}
+
+.retainer-link:hover {
+  color: var(--off-white);
+  border-color: rgba(240,235,227,0.3);
+}
 
 /* ── FOOTER ─────────────────────────────────────────── */
 .site-footer {
@@ -838,637 +684,233 @@ nav {
   letter-spacing: 0.06em;
   text-align: right;
   line-height: 2;
-  border: 1px solid var(--line);
-  padding: 10px 16px;
 }
 
-.footer-stamp strong { color: var(--off-white); font-weight: 400; }
+/* ── SECTION LINK ──────────────────────────────────── */
+.section-link-wrap { padding-top: 24px; }
 
-/* ══════════════════════════════════════════════════════
-   MODAL
-══════════════════════════════════════════════════════ */
-.backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(10,10,10,0.97);
-  z-index: 200;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-.backdrop.open {
-  opacity: 1;
-  pointer-events: all;
-}
-
-.modal {
-  width: 100%;
-  max-width: 620px;
-  max-height: 90vh;
-  overflow-y: auto;
-  scrollbar-width: none;
-}
-
-.modal::-webkit-scrollbar { display: none; }
-
-.modal-head {
+.section-link {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
   color: var(--grey);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
-}
-
-.modal-close {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 14px;
-  color: var(--grey);
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  transition: color 0.2s;
-}
-
-.modal-close:hover { color: var(--off-white); }
-
-/* Step indicator */
-.step-indicator {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 32px;
-}
-
-.step-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--line);
-  transition: background 0.3s;
-}
-
-.step-dot.active { background: var(--accent); }
-.step-dot.done { background: var(--off-white); }
-
-.step-line {
-  flex: 1;
-  height: 1px;
-  background: var(--line);
-  max-width: 32px;
-}
-
-/* Step content */
-.form-step {
-  display: none;
-  animation: fadeUp 0.3s ease both;
-}
-
-.form-step.active { display: block; }
-
-.step-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(24px, 4vw, 36px);
-  font-weight: 900;
-  line-height: 1.1;
-  margin-bottom: 8px;
-}
-
-.step-sub {
-  font-size: 14px;
-  color: var(--grey);
-  line-height: 1.7;
-  margin-bottom: 32px;
-}
-
-.form-group {
-  margin-bottom: 22px;
-}
-
-.form-group label {
-  display: block;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--grey);
-  margin-bottom: 10px;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select {
-  width: 100%;
-  background: transparent;
-  border: 1px solid var(--line);
-  color: var(--off-white);
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 15px;
-  padding: 14px 16px;
-  transition: border-color 0.2s;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-.form-group select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6560' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 16px center;
-  padding-right: 40px;
-  cursor: pointer;
-}
-
-.form-group select option {
-  background: var(--black);
-  color: var(--off-white);
-}
-
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
-  outline: none;
-  border-color: var(--accent);
-}
-
-.form-group textarea {
-  min-height: 80px;
-  resize: vertical;
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-/* Chip selectors */
-.chip-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 8px;
-}
-
-.chip {
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 14px;
-  color: var(--grey);
-  background: transparent;
-  border: 1px solid var(--line);
-  padding: 12px 20px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.chip:hover {
-  border-color: var(--off-white);
-  color: var(--off-white);
-}
-
-.chip.selected {
-  border-color: var(--accent);
-  color: var(--off-white);
-  background: rgba(200,64,26,0.12);
-}
-
-.chip-hint {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  color: var(--grey);
-  letter-spacing: 0.06em;
-  margin-top: 4px;
-  margin-bottom: 4px;
-}
-
-/* Buttons */
-.form-nav {
-  display: flex;
-  gap: 12px;
-  margin-top: 8px;
-}
-
-.form-btn-next {
-  flex: 1;
-  background: var(--accent);
-  color: var(--off-white);
-  border: none;
-  padding: 16px 32px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.form-btn-next:hover { background: var(--accent-light); }
-
-.form-btn-back {
-  background: transparent;
-  color: var(--grey);
-  border: 1px solid var(--line);
-  padding: 16px 24px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.form-btn-back:hover { color: var(--off-white); border-color: var(--off-white); }
-
-.form-note {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  color: var(--grey);
-  letter-spacing: 0.06em;
-  margin-top: 16px;
-  text-align: center;
-}
-
-/* Result screens */
-.result-screen {
-  text-align: center;
-  padding: 20px 0;
-}
-
-.result-icon {
-  font-size: 48px;
-  margin-bottom: 24px;
-}
-
-.result-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(22px, 4vw, 32px);
-  font-weight: 900;
-  line-height: 1.15;
-  margin-bottom: 16px;
-}
-
-.result-text {
-  font-size: 15px;
-  color: var(--grey);
-  line-height: 1.75;
-  margin-bottom: 24px;
-  max-width: 460px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.result-links {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 20px;
-  align-items: center;
-}
-
-.result-link {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  color: var(--accent-light);
-  transition: color 0.2s;
-  text-decoration: none;
-}
-
-.result-link:hover { color: var(--off-white); }
-
-/* Calendly embed */
-.calendly-wrap {
-  margin-top: 16px;
-  border: 1px solid var(--line);
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.calendly-inline-widget {
-  min-width: 280px;
-  height: 660px;
-}
-
-/* ── SECTION LINKS ──────────────────────────────────── */
-.section-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
   letter-spacing: 0.08em;
-  color: var(--accent-light);
-  text-decoration: none;
-  padding: 12px 0;
-  margin-top: 8px;
   transition: color 0.2s;
 }
 
 .section-link:hover { color: var(--off-white); }
 
-.section-link-wrap {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 48px 24px;
-  text-align: right;
-}
-
-@media (max-width: 768px) {
-  .section-link-wrap { padding: 0 24px 16px; }
-}
-
-/* ══════════════════════════════════════════════════════
-   RESPONSIVE
-══════════════════════════════════════════════════════ */
+/* ── RESPONSIVE ─────────────────────────────────────── */
 @media (max-width: 768px) {
   nav { padding: 18px 24px; }
-  .slots-bar { padding: 24px; gap: 20px; flex-wrap: wrap; }
+  .nav-links { gap: 16px; }
+  .nav-link { display: none; }
   .hero { padding: 56px 24px 48px; }
-  .proof-strip { grid-template-columns: 1fr; }
-  .proof-block { padding: 32px 24px; }
+  .steps-section { padding: 56px 24px; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .step-card { padding: 32px 24px; }
   .pain-section { padding: 56px 24px; }
   .pain-grid { grid-template-columns: 1fr; }
-  .promise-section { padding: 56px 24px; }
-  .promise-grid { grid-template-columns: 1fr; }
-  .promise-card { padding: 32px 24px; }
-  .price-block { flex-direction: column; align-items: flex-start; padding: 32px 24px; }
-  .price-block-right { text-align: left; }
-  .quote-section { padding: 56px 24px; }
-  .quote-inner { grid-template-columns: 1fr; gap: 32px; }
-  .case-section { padding: 56px 24px; }
-  .case-grid { grid-template-columns: 1fr; gap: 40px; }
-  .examples-section { padding: 56px 24px; }
-  .examples-grid { grid-template-columns: 1fr; }
-  .example-card { padding: 32px 24px; }
-  .scarcity-section { grid-template-columns: 1fr; gap: 48px; padding: 56px 24px; }
+  .roi-section { padding: 56px 24px; }
+  .roi-grid { grid-template-columns: 1fr; }
+  .roi-card { padding: 32px 24px; }
+  .proof-section { grid-template-columns: 1fr; gap: 24px; padding: 48px 24px; text-align: center; }
+  .about-section { grid-template-columns: 1fr; }
+  .about-block { padding: 32px 24px; }
+  .cta-section { padding: 56px 24px; }
+  .diy-section { padding: 48px 24px; }
   .faq-section { padding: 56px 24px; }
-  .faq-header { grid-template-columns: 1fr; gap: 24px; }
+  .faq-header { flex-direction: column; gap: 8px; }
+  .retainer-teaser { grid-template-columns: 1fr; gap: 24px; padding: 56px 24px; }
+  .retainer-teaser-right { text-align: left; }
   .site-footer { padding: 24px; flex-direction: column; gap: 20px; text-align: center; }
-  .footer-stamp { text-align: center; }
-  .form-row { grid-template-columns: 1fr; }
-  .chip { padding: 10px 16px; font-size: 13px; }
 }
 </style>
 </head>
 <body>
 
-<!-- ── SCARCITY BANNER ── -->
-<div class="banner">
-  <span class="banner-pulse"></span>
-  Asiakkaita: 1 / 3
-</div>
-
 <!-- ── NAV ── -->
 <nav>
   <div class="nav-logo">Harri Aro</div>
-  <button class="nav-btn" onclick="openModal()">Testaa sopiiko palvelu sinulle &#8599;</button>
-</nav>
-
-<!-- ── SLOTS COUNTER ── -->
-<div class="slots-bar">
-  <span class="slots-label">Kapasiteetti</span>
-  <div class="slots-dots">
-    <div class="slot-dot taken"></div>
-    <div class="slot-dot yours"></div>
-    <div class="slot-dot yours"></div>
+  <div class="nav-links">
+    <a href="palvelu.html" class="nav-link">Retainer</a>
+    <a href="case-peltitaikurit.html" class="nav-link">Case</a>
+    <a href="#varaa" class="nav-btn">Varaa AI-katsastus &#8599;</a>
   </div>
-  <span class="slots-text"><strong>2</strong> paikkaa vapaana</span>
-</div>
+</nav>
 
 <!-- ── HERO ── -->
 <section class="hero">
-  <p class="hero-kicker">Strateginen AI-kumppani pk-yrittäjille</p>
+  <p class="hero-kicker">AI-katsastus pk-yrittäjille — 490 €</p>
   <h1 class="hero-promise">
-    Käytän tekoälyä
-    <span class="line2">puolestasi.</span>
+    Vie bisneksesi
+    <span class="line2">tekoälykatsastukseen.</span>
   </h1>
   <div class="hero-divider"></div>
   <p class="hero-body">
-    Tiedät että tekoälystä olisi hyötyä. Et vain tiedä mistä aloittaa — tai <strong>keneen luottaa</strong>. Minä hoidan sen puolestasi.
+    Löydän yrityksestäsi vähintään 3 kohtaa joissa aikaa kuluu turhaan — ja kerron tarkasti <strong>miten jokainen niistä korjataan</strong>. Jos en löydä, et maksa mitään.
   </p>
-  <button class="hero-cta" onclick="openModal()">Testaa sopiiko palvelu sinulle &#8599;</button>
-  <p class="hero-sub-note">Vastaa muutamaan kysymykseen — näet heti sopiiko tämä sinulle.</p>
+  <a href="#varaa" class="hero-cta">Varaa aika — 490 € &#8599;</a>
+  <p class="hero-sub-note">45 min haastattelu + raportti + 30 min läpikäynti.<br>Lasku vasta raportin jälkeen.</p>
 </section>
 
-<!-- ── PROOF STRIP ── -->
-<section class="proof-strip">
-  <div class="proof-block">
-    <div class="proof-num">12+</div>
-    <h3>Vuotta talous- ja strategiatyötä</h3>
-    <p>Näen luvuista sen mitä muut eivät huomaa. Talous- ja strategiatausta joka yhdistyy moderniin teknologiaan.</p>
-  </div>
-  <div class="proof-block">
-    <div class="proof-num">50+</div>
-    <h3>AI-automaatiota rakennettu</h3>
-    <p>Raportoinnista asiakasviestintään, tarjousprosesseista datan analysointiin. Käytännön tekoja, ei teoriaa.</p>
-  </div>
-  <div class="proof-block">
-    <div class="proof-num">3</div>
-    <h3>Asiakaspaikkaa kerrallaan</h3>
-    <p>Rajaan kapasiteetin kolmeen, koska jokainen asiakas ansaitsee täyden huomion. Ei massapalvelua.</p>
+<!-- ── MITEN TOIMII ── -->
+<section class="steps-section">
+  <p class="section-kicker">Näin se toimii</p>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="num">01</div>
+      <h3>Varaat ajan</h3>
+      <p>Valitset sopivan ajan kalenterista. Ei lomakkeita, ei odottelua. 30 sekuntia ja olet varannut.</p>
+    </div>
+    <div class="step-card">
+      <div class="num">02</div>
+      <h3>Kerrot arjestasi</h3>
+      <p>45 minuutin haastattelu jossa käydään läpi mihin aikasi oikeasti menee. Ei teknistä osaamista tarvita — kerrot vain miten bisnes pyörii.</p>
+    </div>
+    <div class="step-card">
+      <div class="num">03</div>
+      <h3>Saat selkeän raportin</h3>
+      <p>3 arkipäivässä. Löydökset priorisoituna, jokaiseen konkreettinen ratkaisu ja aikasäästöarvio. Plus 30 min läpikäynti.</p>
+    </div>
   </div>
 </section>
 
-<!-- ── PAIN SECTION ── -->
+<!-- ── KIPUPISTEET ── -->
 <section class="pain-section">
-  <p class="section-kicker">Tunnistaisitko itsesi?</p>
+  <p class="section-kicker">Kuulostaako tutulta?</p>
   <div class="pain-grid">
     <div class="pain-item">
       <span class="pain-icon">&rarr;</span>
-      <p>Raportti joka sinulta vie illan — tekoäly tekisi sen minuuteissa. Jos joku tietäisi mitä siltä pyytää.</p>
+      <p>Tarjousten tekeminen vie tunnin per tarjous. <strong>Sama pohja, samat tiedot, käsin joka kerta.</strong></p>
     </div>
     <div class="pain-item">
       <span class="pain-icon">&rarr;</span>
-      <p>Kokeilit ChatGPT:tä. Se ei tunne lukujasi, asiakkaitasi eikä toimialaasi. Tulos: yleispätevää höttöä.</p>
+      <p>Perjantai-illat menevät laskutukseen tai raportointiin. <strong>Työ joka ei vaadi aivojasi — mutta vie aikasi.</strong></p>
     </div>
     <div class="pain-item">
       <span class="pain-icon">&rarr;</span>
-      <p>Data on olemassa — CRM:ssä, kirjanpidossa, Excelissä. Kukaan ei ehdi muuttaa sitä päätöksiksi.</p>
+      <p>Tiedät että pitäisi hyödyntää tekoälyä. <strong>Mutta kuka ehtii selvittää miten, kun perusbisnes vie kaiken ajan?</strong></p>
     </div>
     <div class="pain-item">
       <span class="pain-icon">&rarr;</span>
-      <p>Tiedät että pitäisi pysyä perässä. Mutta kuka ehtii opetella, kun perusbisnes vie kaiken ajan?</p>
-    </div>
-  </div>
-  <div class="section-link-wrap" style="padding-top:0;">
-    <a href="vertailu.html" class="section-link">Vertaa vaihtoehtoja &#8599;</a>
-  </div>
-</section>
-
-<!-- ── CASE STUDY ── -->
-<section class="case-section">
-  <p class="section-kicker">Ensimmäinen pilotti — Peltitaikurit</p>
-
-  <div class="case-grid">
-    <div class="case-left">
-      <div class="case-big-num">16 000€+</div>
-      <p class="case-big-label">Laskennallinen arvo ensimmäisten viikkojen aikana.</p>
-      <div class="case-roi">ROI: 4.0x ensimmäisellä kvartaalilla</div>
-      <p class="case-anchor">Kuukausihinta: 2 000 €. Laske itse.</p>
-    </div>
-
-    <div class="case-right">
-      <div class="case-results">
-        <div class="case-result">
-          <span class="case-value">11 000 €/v</span>
-          <span class="case-desc"><strong>Ajoneuvojen vakiointi</strong> — 1 tunti päivässä vähemmän turhaa työtä. 220 työpäivää vuodessa.</span>
-        </div>
-        <div class="case-result">
-          <span class="case-value">5 000 €</span>
-          <span class="case-desc"><strong>Kannattamaton SEO-sopimus torpattu</strong> — haastaminen esti väärän investoinnin ennen allekirjoitusta.</span>
-        </div>
-        <div class="case-result">
-          <span class="case-value">Priceless</span>
-          <span class="case-desc"><strong>SEO-audit ja kilpailija-analyysi</strong> — kriittiset puutteet tunnistettu, suunta selvillä.</span>
-        </div>
-        <div class="case-result">
-          <span class="case-value">Priceless</span>
-          <span class="case-desc"><strong>Strategisen suunnittelun pohja</strong> — systemaattinen ajattelu käyntiin ensimmäistä kertaa.</span>
-        </div>
-      </div>
-
-      <div class="case-quote">
-        <p class="case-quote-text">Ensimmäinen konkreettinen hyöty tuli viikossa. Joku ulkopuolinen joka uskaltaa sanoa ääneen sen mitä muut eivät.</p>
-        <p class="case-quote-name">— Elmeri, Peltitaikurit</p>
-      </div>
-    </div>
-  </div>
-  <div class="section-link-wrap" style="text-align:right; padding-top:24px;">
-    <a href="case-peltitaikurit.html" class="section-link">Lue koko case study &#8599;</a>
-  </div>
-</section>
-
-<!-- ── EXAMPLES ── -->
-<section class="examples-section">
-  <p class="section-kicker">Esimerkkejä — mitä rakennan puolestasi</p>
-
-  <div class="examples-grid">
-    <div class="example-card">
-      <div class="num">01</div>
-      <h3>Liidivahti</h3>
-      <p>Uusi yhteydenotto → vastaus 60 sekunnissa, 24/7. Kvalifiointi, tietojen keruu ja tapaamisen varaus automaattisesti.</p>
-    </div>
-    <div class="example-card">
-      <div class="num">02</div>
-      <h3>Raporttikone</h3>
-      <p>Viikko- tai kuukausiraportti valmiina maanantaiaamuna. Data haetaan, analysoidaan ja tiivistetään — sinä luet vain tuloksen.</p>
-    </div>
-    <div class="example-card">
-      <div class="num">03</div>
-      <h3>Tarjousgeneraattori</h3>
-      <p>Asiakastiedot sisään → valmis tarjous ulos minuuteissa. Ei copy-pastea, ei unohduksia.</p>
-    </div>
-    <div class="example-card">
-      <div class="num">04</div>
-      <h3>Kilpailija-radar</h3>
-      <p>Seuraa kilpailijoiden hintoja, sisältöjä ja muutoksia. Saat hälytyksen kun jotain tapahtuu.</p>
-    </div>
-    <div class="example-card">
-      <div class="num">05</div>
-      <h3>Asiakasviestintä</h3>
-      <p>Follow-up-ketjut, muistutukset ja kiitosviestit — ajallaan, joka kerta, ilman käsityötä.</p>
-    </div>
-    <div class="example-card">
-      <div class="num">06</div>
-      <h3>Data → Päätös</h3>
-      <p>CRM, kirjanpito tai Excel → selkeä dashboard. Näet heti missä vuotaa ja mihin kannattaa panostaa.</p>
-    </div>
-  </div>
-  <div class="section-link-wrap" style="text-align:right; padding-top:24px;">
-    <a href="toteutukset.html" class="section-link">Katso kaikki toteutukset &#8599;</a>
-  </div>
-</section>
-
-<!-- ── THE PROMISE ── -->
-<section class="promise-section">
-  <p class="section-kicker">Miten yhteistyö toimii</p>
-
-  <div class="promise-grid">
-    <div class="promise-card">
-      <div class="num">01</div>
-      <h3>Kuukausisessio 90 min</h3>
-      <p>Valmisteltu strategiapalaveri kerran kuussa. Ei yleistä jutustelua — oikeat päätökset ja pullonkaulat pöytään. Molemmat tulevat valmiina.</p>
-    </div>
-    <div class="promise-card">
-      <div class="num">02</div>
-      <h3>Strateginen sparraus</h3>
-      <p>Haastaja joka kyseenalaistaa, ei yes-man. Slack-kanava, nopea reaktio kun tilanne vaatii — kuin toinen perustaja ilman osakkeita.</p>
-    </div>
-    <div class="promise-card">
-      <div class="num">03</div>
-      <h3>Jatkuva toteutus</h3>
-      <p>Automaatiot, analyysit ja työkalut syntyvät osana yhteistyötä. Ei erillisiä projekteja, ei lisälaskuja — toteutukset tulevat sitä mukaa kun tarve syntyy.</p>
-    </div>
-    <div class="promise-card">
-      <div class="num">04</div>
-      <h3>Data-pohjainen näkemys</h3>
-      <p>Pääsy oikeaan dataasi — Search Console, talousdata, CRM. Päätökset perustuvat lukuihin, ei mutuiluun.</p>
-    </div>
-  </div>
-
-  <div class="price-block">
-    <div class="price-block-left">
-      <h3>Investointi</h3>
-      <p>Kiinteä kuukausihinta. Strategista sparrausta, jatkuvia toteutuksia ja data-analyysiä. Ei tuntilaskutusta, ei yllätyksiä.</p>
-      <p class="risk-reversal">Kuukauden irtisanomisaika. Tulokset pitävät asiakkaan — ei lukko.</p>
-      <p class="risk-reversal">Teen tätä päivätöiden ohella — toimitukset ilta- ja viikonloppupainotteisesti.</p>
-    </div>
-    <div class="price-block-right">
-      <div class="price-big">2000€</div>
-      <div class="price-small">/ kuukausi, alv 0%</div>
-    </div>
-  </div>
-  <div class="section-link-wrap" style="text-align:right; padding-top:24px;">
-    <a href="palvelu.html" class="section-link">Katso koko palvelukuvaus &#8599;</a>
-  </div>
-</section>
-
-<!-- ── SCARCITY SECTION ── -->
-<section class="scarcity-section">
-  <div class="scarcity-left">
-    <h2>Kaksi paikkaa <em>jäljellä.</em></h2>
-    <p>Työskentelen kerrallaan vain kolmen asiakkaan kanssa. Näin varmistan, että jokainen saa täyden huomioni ja konkreettisia tuloksia.</p>
-    <p>Kun paikat ovat täynnä, seuraava aukeaa vasta kun nykyinen asiakkuus päättyy.</p>
-  </div>
-  <div class="scarcity-right">
-    <div class="capacity-visual">
-      <div class="cap-row">
-        <span class="cap-num">01</span>
-        <div class="cap-bar"><div class="cap-fill" style="width:100%"></div></div>
-        <span class="cap-status full">Varattu</span>
-      </div>
-      <div class="cap-row">
-        <span class="cap-num">02</span>
-        <div class="cap-bar"><div class="cap-fill" style="width:0%"></div></div>
-        <span class="cap-status open">Vapaa</span>
-      </div>
-      <div class="cap-row">
-        <span class="cap-num">03</span>
-        <div class="cap-bar"><div class="cap-fill" style="width:0%"></div></div>
-        <span class="cap-status open">Vapaa</span>
-      </div>
-    </div>
-    <div class="scarcity-cta">
-      <button class="scarcity-btn" onclick="openModal()">Testaa sopiiko palvelu sinulle &#8599;</button>
-      <p class="scarcity-fine">Vastaa muutamaan kysymykseen — näet heti sopiiko tämä sinulle.</p>
+      <p>Asiakaspuhelut, aikataulutus, seuranta — <strong>kaikki pyörii sinun kauttasi</strong>. Ja joka päivä samat asiat uudelleen.</p>
     </div>
   </div>
 </section>
 
-<!-- ── FAQ ── -->
+<!-- ── HINTAKEHYS ── -->
+<section class="roi-section">
+  <p class="section-kicker">Mitä 490 € ostaa</p>
+  <div class="roi-grid">
+    <div class="roi-card">
+      <h3>Tiedät mistä aloittaa</h3>
+      <p>Priorisoitu lista — <strong>ei kaikkea kerralla</strong>, vaan se mikä tuottaa eniten ensimmäisenä. Ei arvailua, ei kokeiluja pimeässä.</p>
+    </div>
+    <div class="roi-card">
+      <h3>Näet mitä se tarkoittaa rahana</h3>
+      <p>Jokaisen löydöksen kohdalla <strong>aikasäästö laskettuna euroiksi</strong>. Päätät itse onko se sen arvoista.</p>
+    </div>
+    <div class="roi-card">
+      <h3>Voit toimia heti</h3>
+      <p>Raportti kertoo mitä, millä työkalulla ja miten. <strong>Et ole riippuvainen minusta</strong> — toteutat omaan tahtiin tai pyydät apua.</p>
+    </div>
+  </div>
+  <div style="background: rgba(200,64,26,0.07); border: 1px solid rgba(200,64,26,0.2); padding: 32px 40px; margin-top: 1px;">
+    <p style="font-size: 15px; color: var(--grey); line-height: 1.7;">
+      <strong style="color: var(--off-white); font-weight: 400;">Konteksti:</strong> Yrittäjän tunti maksaa 80–150 €. Jos katsastus löytää 5 tuntia viikossa jotka menevät rutiineihin — se on 400–750 € kuukaudessa. Joka kuukausi. Katsastus maksaa 490 € kerran.
+    </p>
+  </div>
+</section>
+
+<!-- ── TODISTE ── -->
+<section class="proof-section">
+  <div class="proof-num">16 000€+</div>
+  <div>
+    <p class="proof-quote">Ensimmäinen konkreettinen hyöty tuli viikossa. Joku ulkopuolinen joka uskaltaa sanoa ääneen sen mitä muut eivät.</p>
+    <p class="proof-name">— Elmeri, Peltitaikurit</p>
+    <a href="case-peltitaikurit.html" class="proof-link">Lue koko tarina &#8599;</a>
+  </div>
+</section>
+
+<!-- ── KUKA TEKEE ── -->
+<section class="about-section">
+  <div class="about-block">
+    <div class="about-num">12+</div>
+    <h3>Vuotta talous- ja strategiatyötä</h3>
+    <p>Näen luvuista sen mitä muut eivät huomaa. Ymmärrän bisnestä — en vain teknologiaa.</p>
+  </div>
+  <div class="about-block">
+    <div class="about-num">50+</div>
+    <h3>AI-automaatiota rakennettu</h3>
+    <p>Raportoinnista laskutukseen, tarjousprosesseista asiakasviestintään. Käytännön tekoja.</p>
+  </div>
+  <div class="about-block">
+    <div class="about-num">490€</div>
+    <h3>Tai rahat takaisin</h3>
+    <p>Löydän 3 konkreettista säästökohtaa tai et maksa. Ei poikkeuksia. Laitan oman nahkani peliin.</p>
+  </div>
+</section>
+
+<!-- ── VARAA AIKA ── -->
+<section class="cta-section" id="varaa">
+  <h2>Varaa <em>AI-katsastus.</em></h2>
+  <p class="cta-body">
+    75 minuuttia aikaasi. Selkeä raportti 3 arkipäivässä. Tiedät tarkalleen mistä aloittaa.
+  </p>
+  <a href="https://cal.com" class="cta-btn" target="_blank">Varaa aika — 490 € &#8599;</a>
+  <p class="cta-sub">Maksu vasta raportin jälkeen. 3 löydöstä tai rahat takaisin.</p>
+</section>
+
+<!-- ── TEE ITSE ── -->
+<section class="diy-section">
+  <details>
+    <summary>Haluatko kokeilla itse ensin? Tässä prompt jolla pääset alkuun.</summary>
+    <div class="diy-content">
+      <p>Syötä tämä prompt Claudeen tai ChatGPT:hen. Vastaa kysymyksiin rehellisesti. Saat ensimmäisen kuvan siitä missä aikasi menee. Jos se riittää — hienoa, säästit 490 €. Jos haluat syvemmälle — tiedät mistä minut löydät.</p>
+      <pre>Toimi bisnesanalyytikkona joka on erikoistunut pk-yritysten prosessien tehostamiseen tekoälyn ja automaation avulla. Sinulla on 12 vuoden kokemus talous- ja strategiatyöstä sekä yli 50 toteutetun AI-automaation tausta.
+
+TEHTÄVÄSI: Haastattele minua ja tunnista yrityksestäni kohdat joissa aikaa kuluu turhaan ja jotka voitaisiin automatisoida tai tehostaa tekoälyllä.
+
+VAIHE 1 — KARTOITUS
+Kysy minulta seuraavat kysymykset yksi kerrallaan. Odota vastausta ennen seuraavaa kysymystä.
+
+1. Mikä on yrityksesi toimiala ja montako henkeä työskentelee?
+2. Käy läpi eilinen työpäiväsi. Mihin aika oikeasti meni tunti tunnilta?
+3. Mitkä tehtävät toistuvat joka viikko mutta eivät vaadi luovaa ajattelua?
+4. Missä työ kasautuu odottamaan sinua henkilökohtaisesti?
+5. Mitkä tehtävät ahdistaa mutta niitä ei voi delegoida nykyisellään?
+6. Mitä olet yrittänyt automatisoida tai ulkoistaa mutta se ei onnistunut?
+7. Mihin käytät Exceliä, sähköpostia tai paperia tavalla joka tuntuu vanhanaikaiselta?
+
+VAIHE 2 — ANALYYSI
+Kun olet saanut vastaukset, tee seuraava analyysi:
+
+A) Tunnista 10-15 kohtaa joissa aikaa kuluu turhaan
+B) Priorisoi ne 2x2-matriisilla:
+   - Y-akseli: Aikasäästö (korkea/matala)
+   - X-akseli: Toteutuksen helppous (helppo/vaikea)
+C) Aloita "korkea säästö + helppo toteutus" -ruudusta
+
+VAIHE 3 — RAPORTTI
+Jokaiselle löydökselle anna:
+- Ongelman kuvaus (1 lause)
+- Ehdotettu ratkaisu (konkreettinen työkalu tai menetelmä)
+- Arvioitu aikasäästö viikossa (tunteina)
+- Toteutuksen vaativuus (helppo / keskitaso / vaativa)
+
+VAIHE 4 — YHTEENVETO
+Laske yhteen:
+- Kokonaisaikasäästö viikossa ja vuodessa
+- Muunna euroiksi käyttäen tuntihintaa 100 €
+- Listaa top 3 joista aloittaa
+
+Ole suora. Älä kehu. Älä myy. Kerro rehellisesti mitä löydät.</pre>
+      <p style="font-size: 12px; color: var(--grey); font-family: 'IBM Plex Mono', monospace;">Huom: Prompt antaa hyvän yleiskuvan. Katsastuksessa käyn syvemmälle — tunnen työkalut, tiedän mikä oikeasti toimii käytännössä ja osaan priorisoida toimialakohtaisesti.</p>
+    </div>
+  </details>
+</section>
+
+<!-- ── UKK ── -->
 <section class="faq-section">
   <div class="faq-header">
     <h2>Usein kysytyt</h2>
@@ -1480,11 +922,21 @@ nav {
   <div class="faq-list">
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
-        Mitä konkreettisesti saan 2000 eurolla kuussa?
+        Mitä jos en saa mitään hyödyllistä?
         <span class="faq-arrow">+</span>
       </button>
       <div class="faq-a">
-        Saat <strong>strategisen sparrauskumppanin</strong> ja <strong>AI-rakentajan</strong> samassa paketissa. Käytännössä tämä tarkoittaa säännöllisiä sparraussessioita, räätälöityjä AI-automaatioita liiketoimintaasi, jatkuvaa tukea ja järjestelmien ylläpitoa. Kiinteä kuukausihinta kattaa kaiken — ei yllätyksiä, ei tuntilaskutusta.
+        Jos en löydä vähintään 3 konkreettista kohtaa joissa aikaa kuluu turhaan, <strong>et maksa mitään</strong>. Ei poikkeuksia. Jokainen löydös sisältää konkreettisen ratkaisun — ei ympäripyöreää "tehostakaa prosesseja" -höttöä.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Täytyykö minun sitoutua johonkin?
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-a">
+        Ei. Raportti on sinun — teet sillä mitä haluat. Voit toteuttaa löydökset itse tai pyytää apua. <strong>Ei painostusta, ei piiloehtoja.</strong>
       </div>
     </div>
 
@@ -1494,59 +946,60 @@ nav {
         <span class="faq-arrow">+</span>
       </button>
       <div class="faq-a">
-        Et tarvitse. Se on koko pointti — <strong>minä hoidan teknisen puolen</strong>. Sinun tehtäväsi on kertoa mitä liiketoimintasi tarvitsee, minä rakennan ratkaisun. Et joudu opettelemaan promptaamista, koodaamista tai uusia ohjelmistoja.
+        Et. Haastattelussa <strong>kerrot vain miten bisneksesi pyörii</strong> — mihin aika menee, mitkä tehtävät toistuvat, missä työ kasautuu. Minä hoidan analyysin ja työkalusuositukset.
       </div>
     </div>
 
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
-        Miten tämä eroaa tavallisesta konsultoinnista?
+        Milloin saan raportin?
         <span class="faq-arrow">+</span>
       </button>
       <div class="faq-a">
-        Tavallinen konsultti antaa suosituksia ja lähtee. Minä <strong>rakennan ja toteutan</strong>. Sparraan strategiaa, mutta myös konkreettisesti rakennan AI-järjestelmät jotka tekevät työn. Et saa PowerPoint-esitystä — saat toimivan koneiston.
+        <strong>3 arkipäivässä</strong> haastattelusta. Sen jälkeen sovitaan 30 minuutin läpikäynti jossa käydään löydökset yhdessä läpi.
       </div>
     </div>
 
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
-        Miksi vain kolme asiakasta?
+        Sopiiko tämä meidän alallemme?
         <span class="faq-arrow">+</span>
       </button>
       <div class="faq-a">
-        Koska laatu vaatii aikaa. Jokaisen asiakkaan liiketoiminta on erilainen ja ansaitsee <strong>yksilöllistä huomiota</strong>. Kolmella asiakkaalla pystyn tuntemaan jokaisen yrityksen syvällisesti ja reagoimaan nopeasti. Massapalveluita saa muualtakin.
+        Sopii jos teet <strong>manuaalista työtä jota voisi automatisoida</strong>. Rakentaminen, LVI, tilitoimistot, terveydenhoito, logistiikka — toimialat joissa AI ei vielä ole arkipäivää. Ei sovi jos etsit teknistä koodaajaa tai olet jo rakentanut omia AI-järjestelmiä.
       </div>
     </div>
 
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
-        Onko pitkä sitoutumisaika?
+        Miksi vain 3 katsastusta kuukaudessa?
         <span class="faq-arrow">+</span>
       </button>
       <div class="faq-a">
-        Ei. Yhteistyö jatkuu niin kauan kuin se tuottaa sinulle arvoa. <strong>Kuukauden irtisanomisaika</strong>, ei pitkiä sopimuksia. Uskon että tulokset pitävät asiakkaan — ei lukko.
+        Jotta pystyn <strong>paneutumaan jokaiseen kunnolla</strong>. Katsastus ei ole liukuhihnatyötä — se vaatii yrityskohtaista perehtymistä. Seuraavat vapaat ajat näet kalenterista.
       </div>
     </div>
 
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
-        Miten aloitetaan?
+        Entä jos tiedän jo missä ongelmat ovat?
         <span class="faq-arrow">+</span>
       </button>
       <div class="faq-a">
-        Varaa <strong>ilmainen 30 minuutin kartoituspuhelu</strong>. Käydään läpi liiketoimintasi tilanne, tunnistetaan missä AI tuottaisi eniten hyötyä ja sovitaan jatkosta. Ei myyntipuhetta, ei painostusta — selvitetään sopiiko yhteistyö molemmille.
+        Tietäminen ja tekeminen ovat eri asioita. Katsastuksen arvo ei ole kertoa mitä et tiedä — vaan kertoa <strong>miten se korjataan, millä työkalulla ja missä järjestyksessä</strong>. Ja jos kolmea uutta löydöstä ei tule — et maksa.
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        Minkälaisille yrityksille tämä sopii?
-        <span class="faq-arrow">+</span>
-      </button>
-      <div class="faq-a">
-        Pk-yrittäjille joilla on <strong>toimiva liiketoiminta mutta liian vähän aikaa</strong>. Tyypillisesti 5–50 hengen yrityksiä perinteisillä toimialoilla, joissa yrittäjä tekee liikaa manuaalista työtä ja kaipaa sekä strategista sparrausta että konkreettista apua tekoälyn hyödyntämiseen.
-      </div>
-    </div>
+<!-- ── RETAINER TEASER ── -->
+<section class="retainer-teaser">
+  <div>
+    <h2>Entä jos haluat apua <em>toteutukseen?</em></h2>
+    <p>Katsastus kertoo mitä kannattaa tehdä. Jos haluat että joku myös tekee sen puolestasi — jatkuva yhteistyö on mahdollinen. Strategista sparrausta, konkreettisia toteutuksia ja AI-rakentamista. 2 000 €/kk.</p>
+  </div>
+  <div class="retainer-teaser-right">
+    <a href="palvelu.html" class="retainer-link">Lue lisää retainerista &#8599;</a>
   </div>
 </section>
 
@@ -1557,367 +1010,18 @@ nav {
     <div class="footer-handle"><a href="https://www.linkedin.com/in/harri-aro-8b2112122/" target="_blank" rel="noopener">LinkedIn &#8599;</a></div>
   </div>
   <div class="footer-stamp">
-    Strateginen AI-kumppani<br>
-    <strong>Pk-yrittäjille</strong>
+    AI-katsastus pk-yrittäjille<br>
+    <strong>harriaro.fi</strong>
   </div>
 </footer>
 
-<!-- ── MODAL ── -->
-<div class="backdrop" id="backdrop" onclick="closeModalOutside(event)">
-  <div class="modal">
-    <div class="modal-head">
-      <span>Kartoitus</span>
-      <button class="modal-close" onclick="closeModal()">&times;</button>
-    </div>
-
-    <!-- Step indicator -->
-    <div class="step-indicator" id="stepIndicator">
-      <div class="step-dot active" data-step="1"></div>
-      <div class="step-line"></div>
-      <div class="step-dot" data-step="2"></div>
-      <div class="step-line"></div>
-      <div class="step-dot" data-step="3"></div>
-    </div>
-
-    <!-- STEP 1: Perustiedot -->
-    <div class="form-step active" id="step1">
-      <h2 class="step-title">Kerro itsestäsi.</h2>
-      <p class="step-sub">Perustiedot auttavat ymmärtämään lähtötilanteesi.</p>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="f-name">Nimi</label>
-          <input type="text" id="f-name" required placeholder="Etunimi Sukunimi">
-        </div>
-        <div class="form-group">
-          <label for="f-email">Sähköposti</label>
-          <input type="email" id="f-email" required placeholder="nimi@yritys.fi">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="f-company">Yritys</label>
-        <input type="text" id="f-company" placeholder="Yrityksen nimi">
-      </div>
-
-      <div class="form-group">
-        <label>Roolisi</label>
-        <div class="chip-group" data-group="role">
-          <button type="button" class="chip" data-value="owner" onclick="toggleChip(this)">Yrittäjä / omistaja</button>
-          <button type="button" class="chip" data-value="ceo" onclick="toggleChip(this)">Toimitusjohtaja</button>
-          <button type="button" class="chip" data-value="exec" onclick="toggleChip(this)">Johtoryhmä</button>
-          <button type="button" class="chip" data-value="other" onclick="toggleChip(this)">Muu</button>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Tiimin koko</label>
-        <div class="chip-group" data-group="team">
-          <button type="button" class="chip" data-value="1-5" onclick="toggleChip(this)">1–5 hlö</button>
-          <button type="button" class="chip" data-value="6-15" onclick="toggleChip(this)">6–15 hlö</button>
-          <button type="button" class="chip" data-value="16-50" onclick="toggleChip(this)">16–50 hlö</button>
-          <button type="button" class="chip" data-value="50+" onclick="toggleChip(this)">50+ hlö</button>
-        </div>
-      </div>
-
-      <div class="form-nav">
-        <button type="button" class="form-btn-next" onclick="goStep(2)">Seuraava &#8594;</button>
-      </div>
-      <p class="form-note">Tietosi ovat luottamuksellisia. Ei spämmiä.</p>
-    </div>
-
-    <!-- STEP 2: Tilannekuva -->
-    <div class="form-step" id="step2">
-      <h2 class="step-title">Tilannekuvasi.</h2>
-      <p class="step-sub">Nämä kysymykset auttavat molempia arvioimaan sopiiko yhteistyö.</p>
-
-      <div class="form-group">
-        <label>Mihin aikasi uppoaa?</label>
-        <p class="chip-hint">Valitse kaikki jotka sopivat.</p>
-        <div class="chip-group" data-group="timesinks" data-multi="true">
-          <button type="button" class="chip" data-value="raportointi" onclick="toggleChip(this)">Raportointi</button>
-          <button type="button" class="chip" data-value="tiedonhaku" onclick="toggleChip(this)">Tiedonhaku</button>
-          <button type="button" class="chip" data-value="tarjoukset" onclick="toggleChip(this)">Tarjoukset</button>
-          <button type="button" class="chip" data-value="manuaalinen" onclick="toggleChip(this)">Manuaalinen data-työ</button>
-          <button type="button" class="chip" data-value="hallinto" onclick="toggleChip(this)">Hallinto &amp; byrokratia</button>
-          <button type="button" class="chip" data-value="muu" onclick="toggleChip(this)">Muu</button>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Miten hyödynnät tekoälyä?</label>
-        <div class="chip-group" data-group="ai">
-          <button type="button" class="chip" data-value="none" onclick="toggleChip(this)">Ei lainkaan</button>
-          <button type="button" class="chip" data-value="tried" onclick="toggleChip(this)">Kokeiltu muttei jäänyt</button>
-          <button type="button" class="chip" data-value="occasional" onclick="toggleChip(this)">Satunnaisesti</button>
-          <button type="button" class="chip" data-value="active" onclick="toggleChip(this)">Aktiivisesti</button>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Budjetti kehittämiseen vuodessa?</label>
-        <div class="chip-group" data-group="budget">
-          <button type="button" class="chip" data-value="under10k" onclick="toggleChip(this)">Alle 10 000 €</button>
-          <button type="button" class="chip" data-value="10-30k" onclick="toggleChip(this)">10–30 000 €</button>
-          <button type="button" class="chip" data-value="30-100k" onclick="toggleChip(this)">30–100 000 €</button>
-          <button type="button" class="chip" data-value="over100k" onclick="toggleChip(this)">Yli 100 000 €</button>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Miten toimit kumppanien kanssa?</label>
-        <div class="chip-group" data-group="workstyle">
-          <button type="button" class="chip" data-value="freehand" onclick="toggleChip(this)">Vapaat kädet</button>
-          <button type="button" class="chip" data-value="spar" onclick="toggleChip(this)">Sparraus + luottamus</button>
-          <button type="button" class="chip" data-value="control" onclick="toggleChip(this)">Mukana joka vaiheessa</button>
-          <button type="button" class="chip" data-value="noexp" onclick="toggleChip(this)">Ei kokemusta</button>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="f-freetext">Haluatko kertoa jotain lisää?</label>
-        <textarea id="f-freetext" rows="2" placeholder="Valinnainen — kerro vapaasti jos haluat."></textarea>
-      </div>
-
-      <div class="form-nav">
-        <button type="button" class="form-btn-back" onclick="goStep(1)">&#8592; Takaisin</button>
-        <button type="button" class="form-btn-next" onclick="goStep(3)">Seuraava &#8594;</button>
-      </div>
-    </div>
-
-    <!-- STEP 3A: Good match — Calendly -->
-    <div class="form-step" id="step3a">
-      <div class="result-screen">
-        <h2 class="result-title">Hyvältä näyttää.</h2>
-        <p class="result-text">Varataan 30 minuuttia. Käydään tilanteesi läpi, tunnistetaan missä tekoäly tuottaisi sinulle eniten hyötyä ja katsotaan sopiiko yhteistyö.</p>
-      </div>
-      <div class="calendly-wrap">
-        <div class="calendly-inline-widget" id="calendlyEmbed"
-             data-url="https://calendly.com/aro-harri/30min?hide_gdpr_banner=1&background_color=0a0a0a&text_color=f0ebe3&primary_color=c8401a"
-             style="min-width:280px;height:660px;">
-        </div>
-      </div>
-      <p class="form-note">30 min puhelu. Ei myyntipuhetta, ei sitoumuksia.</p>
-    </div>
-
-    <!-- STEP 3B: Not a match — Friendly redirect -->
-    <div class="form-step" id="step3b">
-      <div class="result-screen">
-        <h2 class="result-title">Kiitos ajastasi.</h2>
-        <p class="result-text" id="mismatchText"></p>
-        <p class="result-text" style="font-size:13px; margin-top:8px;">Tämä ei tarkoita ettei yrityksesi voisi hyötyä tekoälystä — se tarkoittaa vain että juuri tämä yhteistyömalli ei ehkä ole paras vaihtoehto sinulle juuri nyt.</p>
-        <div class="result-links" id="mismatchLinks"></div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-
 <script>
-var currentStep = 1;
-
-function openModal() {
-  resetForm();
-  document.getElementById('backdrop').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-  document.getElementById('backdrop').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function closeModalOutside(e) {
-  if (e.target === e.currentTarget) closeModal();
-}
-
-function resetForm() {
-  currentStep = 1;
-  showStep(1);
-  var inputs = document.querySelectorAll('.modal input, .modal textarea');
-  inputs.forEach(function(el) { el.value = ''; });
-  document.querySelectorAll('.modal .chip').forEach(function(c) { c.classList.remove('selected'); });
-}
-
-function showStep(n) {
-  document.querySelectorAll('.form-step').forEach(function(s) { s.classList.remove('active'); });
-  var stepEl = document.getElementById('step' + n);
-  if (stepEl) stepEl.classList.add('active');
-
-  // Update dots
-  document.querySelectorAll('.step-dot').forEach(function(dot, i) {
-    var stepNum = i + 1;
-    dot.classList.remove('active', 'done');
-    if (stepNum < n || (n >= 3 && stepNum < 3)) dot.classList.add('done');
-    else if (stepNum === Math.min(n, 3)) dot.classList.add('active');
-  });
-
-  // Scroll modal to top
-  var modal = document.querySelector('.modal');
-  if (modal) modal.scrollTop = 0;
-}
-
-function goStep(target) {
-  // Validate before moving forward
-  if (target > currentStep) {
-    if (currentStep === 1 && !validateStep1()) return;
-    if (currentStep === 2 && !validateStep2()) return;
-  }
-
-  if (target === 3) {
-    // Evaluate match
-    var result = evaluateMatch();
-
-    // Send form data to Make.com webhook
-    sendFormData(result);
-
-    if (result.match) {
-      currentStep = 3;
-      showStep('3a');
-    } else {
-      currentStep = 3;
-      showMismatch(result.reason);
-      showStep('3b');
-    }
-    return;
-  }
-
-  currentStep = target;
-  showStep(target);
-}
-
-function validateStep1() {
-  var name = document.getElementById('f-name').value.trim();
-  var email = document.getElementById('f-email').value.trim();
-  if (!name) { shakeField('f-name'); return false; }
-  if (!email || !email.includes('@')) { shakeField('f-email'); return false; }
-  return true;
-}
-
-function validateStep2() {
-  // Step 2 is soft — no hard validation, but selects should have values
-  return true;
-}
-
-function shakeField(id) {
-  var el = document.getElementById(id);
-  el.style.borderColor = 'var(--accent)';
-  el.focus();
-  el.style.animation = 'none';
-  el.offsetHeight; // reflow
-  el.style.animation = 'shake 0.4s ease';
-  setTimeout(function() { el.style.animation = ''; }, 400);
-}
-
-function toggleChip(el) {
-  var group = el.parentElement;
-  var isMulti = group.dataset.multi === 'true';
-  if (isMulti) {
-    el.classList.toggle('selected');
-  } else {
-    group.querySelectorAll('.chip').forEach(function(c) { c.classList.remove('selected'); });
-    el.classList.add('selected');
-  }
-}
-
-function getChipValue(groupName) {
-  var sel = document.querySelector('[data-group="' + groupName + '"] .chip.selected');
-  return sel ? sel.dataset.value : '';
-}
-
-function getMultiChipValues(groupName) {
-  var chips = document.querySelectorAll('[data-group="' + groupName + '"] .chip.selected');
-  var values = [];
-  chips.forEach(function(c) { values.push(c.dataset.value); });
-  return values;
-}
-
-function sendFormData(result) {
-  var data = {
-    name: document.getElementById('f-name').value.trim(),
-    email: document.getElementById('f-email').value.trim(),
-    company: document.getElementById('f-company').value.trim(),
-    role: getChipValue('role'),
-    team: getChipValue('team'),
-    timesinks: getMultiChipValues('timesinks'),
-    ai: getChipValue('ai'),
-    budget: getChipValue('budget'),
-    workstyle: getChipValue('workstyle'),
-    freetext: document.getElementById('f-freetext').value.trim(),
-    match: result.match,
-    reason: result.reason || '',
-    timestamp: new Date().toISOString()
-  };
-
-  fetch('https://hook.eu1.make.com/sb765j49s7nzlo7chcpsx36dag53lpac', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
-  }).catch(function() { /* silent fail — UX ei saa kärsiä */ });
-}
-
-function evaluateMatch() {
-  var role = getChipValue('role');
-  var team = getChipValue('team');
-  var budget = getChipValue('budget');
-  var workstyle = getChipValue('workstyle');
-
-  // Disqualifiers — prioritized
-  if (budget === 'under10k') return { match: false, reason: 'budget' };
-  if (team === '50+') return { match: false, reason: 'team_size' };
-  if (workstyle === 'control') return { match: false, reason: 'workstyle' };
-  if (role === 'other') return { match: false, reason: 'role' };
-
-  return { match: true };
-}
-
-function showMismatch(reason) {
-  var text = '';
-  var links = '';
-
-  switch (reason) {
-    case 'budget':
-      text = 'Palveluni on suunniteltu yrityksille jotka investoivat kehittämiseen jatkuvasti. Hyvä uutinen: alkuun pääsee hyvin myös omatoimisesti.';
-      links = '<a class="result-link" href="https://grow.google/intl/fi/courses-and-tools/" target="_blank" rel="noopener">Google — ilmaiset digitaidot ja AI-kurssit &#8599;</a>' +
-              '<a class="result-link" href="https://www.elementsofai.com/fi/" target="_blank" rel="noopener">Elements of AI — Helsingin yliopiston tekoälykurssi &#8599;</a>' +
-              '<a class="result-link" href="https://learn.microsoft.com/fi-fi/training/topics/artificial-intelligence" target="_blank" rel="noopener">Microsoft Learn — ilmaiset AI-opintopolut &#8599;</a>';
-      break;
-    case 'team_size':
-      text = 'Yli 50 hengen organisaatioille suosittelen laajempia konsulttitaloja jotka pystyvät vastaamaan skaalaasi. Oma mallini toimii parhaiten pk-yritysten ketteryydellä.';
-      links = '<a class="result-link" href="https://www.accenture.com/fi-en" target="_blank" rel="noopener">Accenture — enterprise-tason AI-transformaatio &#8599;</a>' +
-              '<a class="result-link" href="https://www.siili.com/fi" target="_blank" rel="noopener">Siili Solutions — teknologiakonsultointi &#8599;</a>' +
-              '<a class="result-link" href="https://www.reaktor.com" target="_blank" rel="noopener">Reaktor — teknologia ja strategia &#8599;</a>';
-      break;
-    case 'workstyle':
-      text = 'Työtapani perustuu luottamukseen ja vapauteen toimia. Tuotan parhaat tulokset kun saan sparrata ja toteuttaa itsenäisesti. Jos kaipaat tiivistä kontrollia joka vaiheessa, perinteisempi projektikonsultointi palvelee sinua paremmin.';
-      links = '<a class="result-link" href="https://www.barona.fi/yrityksille/asiantuntijapalvelut" target="_blank" rel="noopener">Barona — asiantuntijapalvelut projektimuotoisesti &#8599;</a>' +
-              '<a class="result-link" href="https://www.siili.com/fi" target="_blank" rel="noopener">Siili Solutions — projektikonsultointi &#8599;</a>';
-      break;
-    case 'role':
-      text = 'Palveluni edellyttää suoraa yhteistyötä päätöksentekijän kanssa. Vinkkaa tästä yrityksenne yrittäjälle tai toimitusjohtajalle — hän voi varata ajan suoraan.';
-      links = '';
-      break;
-  }
-
-  document.getElementById('mismatchText').innerHTML = text;
-  document.getElementById('mismatchLinks').innerHTML = links;
-}
-
 function toggleFaq(btn) {
-  var wasOpen = btn.classList.contains('open');
-  document.querySelectorAll('.faq-q').forEach(function(q) { q.classList.remove('open'); });
-  document.querySelectorAll('.faq-a').forEach(function(a) { a.classList.remove('open'); });
-  if (!wasOpen) {
-    btn.classList.add('open');
-    btn.nextElementSibling.classList.add('open');
-  }
+  const item = btn.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
 }
-
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeModal();
-});
 </script>
 
 <script defer src="/_vercel/insights/script.js"></script>
