@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Esimerkkiraportti — AI-katsastus | Harri Aro</title>
-<meta name="description" content="Näin AI-katsastusraportti näyttää käytännössä. Kuvitteelliset esimerkit neljältä eri toimialalta.">
+<meta name="description" content="Näin AI-katsastusraportti näyttää käytännössä. Kuvitteelliset esimerkit kahdeksalta eri toimialalta.">
 <meta name="theme-color" content="#0a0a0a">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
 <link href="fonts/fonts.css" rel="stylesheet">
@@ -64,12 +64,12 @@ nav {
   margin-bottom: 16px;
 }
 .tabs {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 1px;
   background: var(--line);
 }
 .tab-btn {
-  flex: 1;
   background: var(--black);
   border: none;
   color: var(--grey);
@@ -166,6 +166,68 @@ nav {
 .finding-detail-value { font-size: 13px; line-height: 1.6; }
 .finding-detail-value.highlight { color: var(--accent-light); font-weight: 400; }
 
+/* ── PRIORITY MATRIX ── */
+.matrix-section { border-top: 1px solid var(--line); padding: 48px 48px; max-width: 860px; margin: 0 auto; }
+.matrix-wrap { position: relative; margin-top: 16px; }
+.matrix-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+}
+.matrix-cell {
+  background: var(--black);
+  padding: 20px;
+  min-height: 100px;
+}
+.matrix-cell-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--grey);
+  margin-bottom: 10px;
+  opacity: 0.6;
+}
+.matrix-item {
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+.matrix-item .mi-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--accent-light);
+  margin-right: 6px;
+}
+.matrix-axes {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+.matrix-axis-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grey);
+  opacity: 0.5;
+}
+.matrix-y-label {
+  position: absolute;
+  left: -28px;
+  top: 50%;
+  transform: rotate(-90deg) translateX(-50%);
+  transform-origin: left center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grey);
+  opacity: 0.5;
+  white-space: nowrap;
+}
+
 /* ── ROADMAP ── */
 .roadmap-section { border-top: 1px solid var(--line); padding: 48px 48px; max-width: 860px; margin: 0 auto; }
 .roadmap-phase { display: grid; grid-template-columns: 80px 1fr; gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--line); }
@@ -208,14 +270,17 @@ nav {
 @media (max-width: 768px) {
   nav { padding: 18px 24px; }
   .tab-bar { padding: 24px 24px 0; }
-  .tabs { flex-wrap: wrap; }
-  .tab-btn { flex: 1 1 45%; font-size: 11px; padding: 12px 8px; }
+  .tabs { grid-template-columns: repeat(2, 1fr); }
+  .tab-btn { font-size: 11px; padding: 12px 8px; }
   .report-header { padding: 32px 24px; }
   .report-meta { gap: 12px; }
   .summary-section { padding: 32px 24px; }
   .summary-grid { grid-template-columns: 1fr; }
   .findings-section { padding: 32px 24px; }
   .finding-detail-grid { grid-template-columns: 1fr; }
+  .matrix-section { padding: 32px 24px; }
+  .matrix-cell { padding: 14px; min-height: 80px; }
+  .matrix-y-label { display: none; }
   .roadmap-section { padding: 32px 24px; }
   .roadmap-phase { grid-template-columns: 1fr; gap: 6px; }
   .bottomline-section { padding: 32px 24px; }
@@ -235,10 +300,14 @@ nav {
 <div class="tab-bar">
   <p class="tab-intro">Valitse toimiala</p>
   <div class="tabs">
-    <button class="tab-btn active" onclick="switchReport('lvi')">LVI-yritys</button>
-    <button class="tab-btn" onclick="switchReport('hammas')">Hammasasema</button>
-    <button class="tab-btn" onclick="switchReport('fysio')">Fysioterapia</button>
-    <button class="tab-btn" onclick="switchReport('tili')">Tilitoimisto</button>
+    <button class="tab-btn active" onclick="switchReport('lvi', event)">LVI-yritys</button>
+    <button class="tab-btn" onclick="switchReport('hammas', event)">Hammasasema</button>
+    <button class="tab-btn" onclick="switchReport('fysio', event)">Fysioterapia</button>
+    <button class="tab-btn" onclick="switchReport('tili', event)">Tilitoimisto</button>
+    <button class="tab-btn" onclick="switchReport('hautaus', event)">Hautaustoimisto</button>
+    <button class="tab-btn" onclick="switchReport('isannointi', event)">Isännöinti</button>
+    <button class="tab-btn" onclick="switchReport('elain', event)">Eläinklinikka</button>
+    <button class="tab-btn" onclick="switchReport('autokoulu', event)">Autokoulu</button>
   </div>
 </div>
 
@@ -333,6 +402,36 @@ nav {
       <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Automaattinen viesti asiakkaalle: "Asentaja saapuu huomenna klo 9–11." Kukaan ei soita, kaikki tietävät.</div></div>
       <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Kalenteritieto → automaattinen SMS/WhatsApp asiakkaalle</div></div>
       <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~40h ≈ 2 000€ + vähemmän keskeytyksiä</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="matrix-section">
+  <p class="section-kicker">Prioriteettimatriisi</p>
+  <div class="matrix-wrap">
+    <div class="matrix-y-label">Vaikutus €</div>
+    <div class="matrix-grid">
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Suuri vaikutus + helppo = tee heti</div>
+        <div class="matrix-item"><span class="mi-num">#1</span> Tarjouslaskenta (13 000€)</div>
+        <div class="matrix-item"><span class="mi-num">#2</span> Laskutusviive (7 000€ + kassavirta)</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Suuri vaikutus + vaatii työtä = suunnittele</div>
+        <div class="matrix-item"><span class="mi-num">#3</span> Työmaaraportointi (7 000€)</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Pienempi vaikutus + helppo = tee samalla</div>
+        <div class="matrix-item"><span class="mi-num">#5</span> Asiakasviestintä (2 000€)</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Pienempi vaikutus + vaatii työtä = myöhemmin</div>
+        <div class="matrix-item"><span class="mi-num">#4</span> Materiaalitilaukset (3 000€)</div>
+      </div>
+    </div>
+    <div class="matrix-axes">
+      <span class="matrix-axis-label">← Helppo</span>
+      <span class="matrix-axis-label">Vaatii työtä →</span>
     </div>
   </div>
 </section>
@@ -448,6 +547,36 @@ nav {
   </div>
 </section>
 
+<section class="matrix-section">
+  <p class="section-kicker">Prioriteettimatriisi</p>
+  <div class="matrix-wrap">
+    <div class="matrix-y-label">Vaikutus €</div>
+    <div class="matrix-grid">
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Suuri vaikutus + helppo = tee heti</div>
+        <div class="matrix-item"><span class="mi-num">#1</span> Peruutuspaikat (30 000€)</div>
+        <div class="matrix-item"><span class="mi-num">#3</span> Hoitosuunnitelmat (5 000€)</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Suuri vaikutus + vaatii työtä = suunnittele</div>
+        <div class="matrix-item"><span class="mi-num">#2</span> Puhelinvaraukset (10 000€)</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Pienempi vaikutus + helppo = tee samalla</div>
+        <div class="matrix-item"><span class="mi-num">#4</span> Google-arvostelut (2 000€/kk)</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Pienempi vaikutus + vaatii työtä = myöhemmin</div>
+        <div class="matrix-item"><span class="mi-num">#5</span> Materiaalitilaukset (3–5 000€)</div>
+      </div>
+    </div>
+    <div class="matrix-axes">
+      <span class="matrix-axis-label">← Helppo</span>
+      <span class="matrix-axis-label">Vaatii työtä →</span>
+    </div>
+  </div>
+</section>
+
 <section class="roadmap-section">
   <p class="section-kicker">Ehdotettu toteutusjärjestys</p>
   <div class="roadmap-phase"><div class="roadmap-week">Vko 1–2</div><div class="roadmap-content"><h3>Heti käyntiin</h3><p><strong>Peruutuspaikka-automaatio</strong> (suurin yksittäinen tuotto) + <strong>Google-arvostelumuistutus</strong>. Molemmat käyntiin parissa tunnissa.</p></div></div>
@@ -555,6 +684,36 @@ nav {
       <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Käyntikohtainen automaattilaskutus. Asiakas käy → lasku lähtee samana päivänä. Ei erillistä laskutuskierrosta.</div></div>
       <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Automaattilaskutus käyntikohtaisesti</div></div>
       <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~60h ≈ 5 000€ + kassavirta paranee</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="matrix-section">
+  <p class="section-kicker">Prioriteettimatriisi</p>
+  <div class="matrix-wrap">
+    <div class="matrix-y-label">Vaikutus €</div>
+    <div class="matrix-grid">
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Suuri vaikutus + helppo = tee heti</div>
+        <div class="matrix-item"><span class="mi-num">#1</span> No-show-muistutus (33 000€)</div>
+        <div class="matrix-item"><span class="mi-num">#3</span> Ohjelmakirjasto (10 000€)</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Suuri vaikutus + vaatii työtä = suunnittele</div>
+        <div class="matrix-item"><span class="mi-num">#2</span> Kela-raportointi (15 000€)</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Pienempi vaikutus + helppo = tee samalla</div>
+        <div class="matrix-item"><span class="mi-num">#4</span> Kotiharjoittelu (4 500€)</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Pienempi vaikutus + vaatii työtä = myöhemmin</div>
+        <div class="matrix-item"><span class="mi-num">#5</span> Laskutus (5 000€)</div>
+      </div>
+    </div>
+    <div class="matrix-axes">
+      <span class="matrix-axis-label">← Helppo</span>
+      <span class="matrix-axis-label">Vaatii työtä →</span>
     </div>
   </div>
 </section>
@@ -670,6 +829,36 @@ nav {
   </div>
 </section>
 
+<section class="matrix-section">
+  <p class="section-kicker">Prioriteettimatriisi</p>
+  <div class="matrix-wrap">
+    <div class="matrix-y-label">Vaikutus €</div>
+    <div class="matrix-grid">
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Suuri vaikutus + helppo = tee heti</div>
+        <div class="matrix-item"><span class="mi-num">#1</span> Tiliöintiautomatiikka (17 500€)</div>
+        <div class="matrix-item"><span class="mi-num">#2</span> Asiakas-FAQ (8 400€)</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Suuri vaikutus + vaatii työtä = suunnittele</div>
+        <div class="matrix-item"><span class="mi-num">#3</span> Kuukausiraportit (5 600€)</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Pienempi vaikutus + helppo = tee samalla</div>
+        <div class="matrix-item"><span class="mi-num">#4</span> Tositekanavat (2 800€)</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Pienempi vaikutus + vaatii työtä = myöhemmin</div>
+        <div class="matrix-item"><span class="mi-num">#5</span> Näkyvyys (15 000€ potentiaali)</div>
+      </div>
+    </div>
+    <div class="matrix-axes">
+      <span class="matrix-axis-label">← Helppo</span>
+      <span class="matrix-axis-label">Vaatii työtä →</span>
+    </div>
+  </div>
+</section>
+
 <section class="roadmap-section">
   <p class="section-kicker">Ehdotettu toteutusjärjestys</p>
   <div class="roadmap-phase"><div class="roadmap-week">Vko 1–2</div><div class="roadmap-content"><h3>Heti käyntiin</h3><p><strong>Tiliöintisääntöjen päivitys</strong> (suurin yksittäinen säästö, ei vaadi uusia työkaluja) + <strong>asiakas-FAQ</strong> 10 yleisimpään kysymykseen.</p></div></div>
@@ -685,6 +874,570 @@ nav {
 </section>
 
 </div><!-- /report-tili -->
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  RAPORTTI 5: HAUTAUSTOIMISTO                           -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="report-panel" id="report-hautaus">
+
+<section class="report-header">
+  <div class="report-badge">Esimerkkiraportti</div>
+  <h2>AI-katsastus:<br><em>Ikämuisto Hautauspalvelu Oy</em></h2>
+  <div class="report-meta">
+    <div class="report-meta-item"><strong>Toimiala:</strong> Hautauspalvelut</div>
+    <div class="report-meta-item"><strong>Henkilöstö:</strong> 6</div>
+    <div class="report-meta-item"><strong>Liikevaihto:</strong> ~800 k€</div>
+  </div>
+  <div class="report-disclaimer">Kuvitteellinen esimerkki. Oikeassa raportissa luvut perustuvat sinun dataasi, prosesseihisi ja tilanteeseen.</div>
+</section>
+
+<section class="summary-section">
+  <p class="section-kicker">Yhteenveto</p>
+  <p class="summary-text">Suurimmat aikasyöpöt: manuaalinen asiakirjojen täyttö, soittojen koordinointi ja seurakuntien kanssa viestintä. <strong>5 löydöstä, joista 2 voi korjata heti.</strong></p>
+  <div class="summary-grid">
+    <div class="summary-card"><div class="summary-num">5</div><div class="summary-label">Löydöstä</div></div>
+    <div class="summary-card"><div class="summary-num">~38 000€</div><div class="summary-label">Arvioitu vuosivaikutus</div></div>
+    <div class="summary-card"><div class="summary-num">2</div><div class="summary-label">Nopeimmat voitot</div></div>
+  </div>
+</section>
+
+<section class="findings-section">
+  <p class="section-kicker">Löydökset priorisoituna</p>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-high">Korkea</span>
+      <h3 class="finding-title">Jokainen hautajaisjärjestely vaatii 15+ asiakirjaa — käsin täytettyinä</h3>
+    </div>
+    <div class="finding-body">Kuolintodistus, hautauslupa, kuulutukset, seurakunnan lomakkeet, vakuutusyhtiön paperit. Samat tiedot kirjoitetaan 5–8 eri lomakkeeseen. <strong>~350 toimeksiantoa/vuosi × 2h paperityötä = 700 tuntia.</strong> Automaatiolla riittää yksi kerta.</div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Asiakkaan tiedot syötetään kerran → kaikki lomakkeet täyttyvät automaattisesti. 2 tuntia → 20 minuuttia.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Lomaketäyttö-automaatio (yksi syöttö → kaikki asiakirjat)</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~580h ≈ 17 500€/vuosi</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-high">Korkea</span>
+      <h3 class="finding-title">Yhteydenottoihin vastataan vasta seuraavana arkipäivänä</h3>
+    </div>
+    <div class="finding-body">Kuolema ei odota toimistoaikoja. Omaiset soittavat tai lähettävät viestin illalla tai viikonloppuna. <strong>Jos et vastaa tunnin sisään, he soittavat seuraavalle.</strong> Jokainen menetetty toimeksianto = ~2 300€.</div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Automaattinen vastaus 60 sekunnissa — empaattinen viesti, ensitiedot ja yhteydenottolupaus. Omainen tietää, että asia on hoidossa.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Automaattinen ensivastaaja (viesti + sähköposti)</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">Jo 5 pelastettua toimeksiantoa/vuosi = ~11 500€</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-med">Keskitaso</span>
+      <h3 class="finding-title">Seurakuntien, krematorioiden ja kukkakauppojen koordinointi syö päiviä</h3>
+    </div>
+    <div class="finding-body">Joka toimeksiannossa 5–8 puhelua ja sähköpostia: seurakunnan ajanvaraus, krematorio, kukkajärjestelyt, lehti-ilmoitus. <strong>Sama koordinointikierros joka kerta, manuaalisesti.</strong></div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Koordinointilista joka lähettää tiedot automaattisesti oikeille tahoille — seurakunta saa varauspyynnön, kukkakauppa tilauksen.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Koordinointiautomaatio (yhteistyökumppaneille tiedot kerralla)</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~150h ≈ 5 000€/vuosi</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-med">Keskitaso</span>
+      <h3 class="finding-title">Omainen ei tiedä missä vaiheessa järjestelyt ovat</h3>
+    </div>
+    <div class="finding-body">Omainen soittaa ja kysyy "onko seurakunta varannut?", "koska lehti-ilmoitus julkaistaan?". <strong>3–5 statuskyselyä per toimeksianto × 350 = yli 1 000 turhaa puhelua vuodessa.</strong></div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Omainen saa automaattiset päivitykset: "Seurakunnan aika vahvistettu", "Kukat tilattu". Ei tarvitse soittaa ja kysyä.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Automaattiset statuspäivitykset omaisille (viesti/sähköposti)</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~90h ≈ 3 000€ + parempi asiakaskokemus</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-low">Matala</span>
+      <h3 class="finding-title">Lehti-ilmoitukset ja muistokirjoitukset tehdään joka kerta alusta</h3>
+    </div>
+    <div class="finding-body">Omainen haluaa kauniin muistokirjoituksen, mutta ei osaa muotoilla. Hautaustoimiston työntekijä auttaa — <strong>30–45 min per teksti. 350 kertaa vuodessa.</strong></div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Muutama kysymys omaiselta → valmis luonnos muistokirjoituksesta ja lehti-ilmoituksesta. Omainen vain hyväksyy tai muokkaa.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Muistokirjoitusgeneraattori (kysymykset → valmis teksti)</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~120h ≈ 1 500€ + omaiset tyytyväisempiä</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="matrix-section">
+  <p class="section-kicker">Prioriteettimatriisi</p>
+  <div class="matrix-wrap">
+    <div class="matrix-y-label">Vaikutus €</div>
+    <div class="matrix-grid">
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Suuri vaikutus + helppo = tee heti</div>
+        <div class="matrix-item"><span class="mi-num">#1</span> Lomaketäyttö (17 500€)</div>
+        <div class="matrix-item"><span class="mi-num">#2</span> Ensivastaaja (11 500€)</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Suuri vaikutus + vaatii työtä = suunnittele</div>
+        <div class="matrix-item"><span class="mi-num">#3</span> Koordinointi (5 000€)</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Pienempi vaikutus + helppo = tee samalla</div>
+        <div class="matrix-item"><span class="mi-num">#4</span> Statuspäivitykset (3 000€)</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Pienempi vaikutus + vaatii työtä = myöhemmin</div>
+        <div class="matrix-item"><span class="mi-num">#5</span> Muistokirjoitukset (1 500€)</div>
+      </div>
+    </div>
+    <div class="matrix-axes">
+      <span class="matrix-axis-label">← Helppo</span>
+      <span class="matrix-axis-label">Vaatii työtä →</span>
+    </div>
+  </div>
+</section>
+
+<section class="roadmap-section">
+  <p class="section-kicker">Ehdotettu toteutusjärjestys</p>
+  <div class="roadmap-phase"><div class="roadmap-week">Vko 1–2</div><div class="roadmap-content"><h3>Heti käyntiin</h3><p><strong>Lomaketäyttö-automaatio</strong> (suurin aikasyöppö, 580h/vuosi) + <strong>automaattinen ensivastaaja</strong> yhteydenottoihin 24/7.</p></div></div>
+  <div class="roadmap-phase"><div class="roadmap-week">Vko 3–4</div><div class="roadmap-content"><h3>Koordinointi</h3><p>Yhteistyökumppaneille automaattiset tiedot. <strong>Ei enää 5–8 soittoa per toimeksianto</strong> — tiedot lähtevät yhdellä klikkauksella.</p></div></div>
+  <div class="roadmap-phase"><div class="roadmap-week">Kk 2</div><div class="roadmap-content"><h3>Statuspäivitykset</h3><p>Omaiset saavat automaattiset viestit järjestelyjen etenemisestä. <strong>Yli 1 000 turhaa statuspuhelua/vuosi pois.</strong></p></div></div>
+  <div class="roadmap-phase"><div class="roadmap-week">Kk 3+</div><div class="roadmap-content"><h3>Muistokirjoitukset</h3><p>Generaattori joka tuottaa luonnoksen muutamasta kysymyksestä. <strong>Omainen saa kauniin tekstin — 5 minuutissa, ei 45:ssä.</strong></p></div></div>
+</section>
+
+<section class="bottomline-section">
+  <p class="section-kicker" style="justify-content:center;">Johtopäätös</p>
+  <h2>~38 000€ vuodessa <em>tehokkuutta ja pelastettuja toimeksiantoja.</em></h2>
+  <p class="bottomline-text">Lomaketäyttö yksinään vapauttaa 580 tuntia vuodessa — ja samalla omaiset saavat parempaa palvelua. <strong>Katsastuksen hinta 490€. Takaisinmaksuaika: päiviä.</strong></p>
+</section>
+
+</div><!-- /report-hautaus -->
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  RAPORTTI 6: ISÄNNÖINTITOIMISTO                        -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="report-panel" id="report-isannointi">
+
+<section class="report-header">
+  <div class="report-badge">Esimerkkiraportti</div>
+  <h2>AI-katsastus:<br><em>Taloyhtiöpro Isännöinti Oy</em></h2>
+  <div class="report-meta">
+    <div class="report-meta-item"><strong>Toimiala:</strong> Isännöinti</div>
+    <div class="report-meta-item"><strong>Henkilöstö:</strong> 8</div>
+    <div class="report-meta-item"><strong>Liikevaihto:</strong> ~700 k€</div>
+  </div>
+  <div class="report-disclaimer">Kuvitteellinen esimerkki. Oikeassa raportissa luvut perustuvat sinun dataasi, prosesseihisi ja tilanteeseen.</div>
+</section>
+
+<section class="summary-section">
+  <p class="section-kicker">Yhteenveto</p>
+  <p class="summary-text">Suurimmat pullonkaulat: asukaskyselyihin vastaaminen, yhtiökokousten valmistelu ja vikailmoitusten käsittely. <strong>5 löydöstä, joista 2 voi korjata heti.</strong></p>
+  <div class="summary-grid">
+    <div class="summary-card"><div class="summary-num">5</div><div class="summary-label">Löydöstä</div></div>
+    <div class="summary-card"><div class="summary-num">~41 000€</div><div class="summary-label">Arvioitu vuosivaikutus</div></div>
+    <div class="summary-card"><div class="summary-num">2</div><div class="summary-label">Nopeimmat voitot</div></div>
+  </div>
+</section>
+
+<section class="findings-section">
+  <p class="section-kicker">Löydökset priorisoituna</p>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-high">Korkea</span>
+      <h3 class="finding-title">Asukkaat kyselevät samoja asioita — satoja kertoja vuodessa</h3>
+    </div>
+    <div class="finding-body">"Koska saunavuoroni on?", "Miten vaihdan autopaikkaani?", "Milloin remontti alkaa?" Isännöitsijä vastaa samoihin kysymyksiin päivästä toiseen. <strong>~25 kyselyä/päivä × 8 min = 3,3h/päivä pelkästään vastailua.</strong></div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Asukas-FAQ joka vastaa yleisimpiin kysymyksiin automaattisesti. Isännöitsijä vastaa vain poikkeustilanteisiin.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Automaattinen asukaspalvelu (FAQ + automaattivastaukset)</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~500h ≈ 17 500€/vuosi</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-high">Korkea</span>
+      <h3 class="finding-title">Yhtiökokouksen valmistelu vie 4–6 tuntia per taloyhtiö</h3>
+    </div>
+    <div class="finding-body">Esityslista, tilinpäätöksen läpikäynti, päätösehdotukset, kutsu. 60 taloyhtiötä × 1 kokous/vuosi + ylimääräiset. <strong>~70 kokousta × 5h = 350h vuodessa.</strong> Iso osa on toistuvaa pohjien täyttöä.</div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Kokouspohja joka vetää tiedot automaattisesti: tilinpäätös, vastikelaskelma, päätöshistoria. 5h → 1,5h per kokous.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Kokouspohja + automaattinen esityslistan generointi</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~245h ≈ 12 000€/vuosi</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-med">Keskitaso</span>
+      <h3 class="finding-title">Vikailmoitukset hukkuvat sähköpostiin — ja asukas soittaa uudelleen</h3>
+    </div>
+    <div class="finding-body">Asukas ilmoittaa vesivuodosta sähköpostilla. Viesti hukkuu muiden joukkoon. Asukas soittaa 3 päivää myöhemmin. <strong>Joka viides vikailmoitus vaatii muistutuksen</strong> — turhaa työtä molemmille.</div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Vikailmoitus → automaattinen kuittaus asukkaalle + tehtävä huoltoyhtiölle. Asukas näkee statuksen, eikä tarvitse soittaa.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Vikailmoitusjärjestelmä (ilmoitus → kuittaus → seuranta)</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~130h ≈ 6 500€/vuosi</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-med">Keskitaso</span>
+      <h3 class="finding-title">Vastikkeiden ja kulutusten raportointi tehdään käsin 60 yhtiölle</h3>
+    </div>
+    <div class="finding-body">Joka kuukausi koostetaan vesi-, sähkö- ja hoitokuluraportit eri taloyhtiöille. <strong>Luvut haetaan 3–4 eri järjestelmästä ja kopioidaan raporttiin.</strong> 15 min/yhtiö × 60 = 15h/kk.</div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Automaattinen kulutusraportti joka vetää datan suoraan järjestelmistä. 15 min → 2 min per yhtiö.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Automaattinen kulutusraportti (data suoraan järjestelmistä)</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~130h ≈ 3 500€/vuosi</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-low">Matala</span>
+      <h3 class="finding-title">Uusia taloyhtiöitä tulee vain kun vanha isännöitsijä eläköityy</h3>
+    </div>
+    <div class="finding-body">Kasvu on satunnaista. Ei aktiivista myyntiä, ei näkyvyyttä. <strong>Hallituksen puheenjohtajat eivät tiedä, että vaihtoehto on olemassa.</strong> Kilpailija jolla on nettisivu voittaa.</div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Yksinkertainen sivu + Google-näkyvyys "isännöitsijä + paikkakunta". Hallituksen puheenjohtajat löytävät sinut.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Nettisivu + Google-näkyvyys (rakennan viikossa)</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">Jo 2 uutta taloyhtiötä/vuosi = ~1 500€/kk lisää</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="matrix-section">
+  <p class="section-kicker">Prioriteettimatriisi</p>
+  <div class="matrix-wrap">
+    <div class="matrix-y-label">Vaikutus €</div>
+    <div class="matrix-grid">
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Suuri vaikutus + helppo = tee heti</div>
+        <div class="matrix-item"><span class="mi-num">#1</span> Asukaspalvelu-FAQ (17 500€)</div>
+        <div class="matrix-item"><span class="mi-num">#3</span> Vikailmoitukset (6 500€)</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Suuri vaikutus + vaatii työtä = suunnittele</div>
+        <div class="matrix-item"><span class="mi-num">#2</span> Yhtiökokoukset (12 000€)</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Pienempi vaikutus + helppo = tee samalla</div>
+        <div class="matrix-item"><span class="mi-num">#4</span> Kulutusraportointi (3 500€)</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Pienempi vaikutus + vaatii työtä = myöhemmin</div>
+        <div class="matrix-item"><span class="mi-num">#5</span> Näkyvyys (1 500€/kk pot.)</div>
+      </div>
+    </div>
+    <div class="matrix-axes">
+      <span class="matrix-axis-label">← Helppo</span>
+      <span class="matrix-axis-label">Vaatii työtä →</span>
+    </div>
+  </div>
+</section>
+
+<section class="roadmap-section">
+  <p class="section-kicker">Ehdotettu toteutusjärjestys</p>
+  <div class="roadmap-phase"><div class="roadmap-week">Vko 1–2</div><div class="roadmap-content"><h3>Heti käyntiin</h3><p><strong>Asukas-FAQ automaattivastauksineen</strong> (suurin yksittäinen säästö, 500h/vuosi) + <strong>vikailmoitusten automaattikuittaus</strong> asukkaille.</p></div></div>
+  <div class="roadmap-phase"><div class="roadmap-week">Vko 3–4</div><div class="roadmap-content"><h3>Kokouspohja</h3><p>Yhtiökokousten valmistelu 5h → 1,5h. <strong>70 kokousta × 3,5h säästö = 245h vapautuu oikeaan isännöintityöhön.</strong></p></div></div>
+  <div class="roadmap-phase"><div class="roadmap-week">Kk 2</div><div class="roadmap-content"><h3>Kulutusraportointi</h3><p>Automaattinen raportti 60 yhtiölle. <strong>15 tuntia kuussa manuaalista kopiointia pois.</strong></p></div></div>
+  <div class="roadmap-phase"><div class="roadmap-week">Kk 3+</div><div class="roadmap-content"><h3>Näkyvyys</h3><p>Nettisivu + Google. <strong>Hallituksen puheenjohtajat löytävät sinut ennen kilpailijaa.</strong></p></div></div>
+</section>
+
+<section class="bottomline-section">
+  <p class="section-kicker" style="justify-content:center;">Johtopäätös</p>
+  <h2>~41 000€ vuodessa <em>manuaalityötä ja turhia puheluita pois.</em></h2>
+  <p class="bottomline-text">Asukaskyselyjen automaattivastaus yksinään vapauttaa 500 tuntia vuodessa — se on 3 kuukautta isännöitsijän työaikaa. <strong>Katsastuksen hinta 490€. Takaisinmaksuaika: päiviä.</strong></p>
+</section>
+
+</div><!-- /report-isannointi -->
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  RAPORTTI 7: ELÄINKLINIKKA                             -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="report-panel" id="report-elain">
+
+<section class="report-header">
+  <div class="report-badge">Esimerkkiraportti</div>
+  <h2>AI-katsastus:<br><em>TassuTerveys Eläinklinikka Oy</em></h2>
+  <div class="report-meta">
+    <div class="report-meta-item"><strong>Toimiala:</strong> Eläinklinikka</div>
+    <div class="report-meta-item"><strong>Henkilöstö:</strong> 9</div>
+    <div class="report-meta-item"><strong>Liikevaihto:</strong> ~900 k€</div>
+  </div>
+  <div class="report-disclaimer">Kuvitteellinen esimerkki. Oikeassa raportissa luvut perustuvat sinun dataasi, prosesseihisi ja tilanteeseen.</div>
+</section>
+
+<section class="summary-section">
+  <p class="section-kicker">Yhteenveto</p>
+  <p class="summary-text">Suurimmat aikasyöpöt: potilaskertomusten kirjoittaminen, ajanvarausten hallinta ja peruutusten aiheuttama tyhjäkäynti. <strong>5 löydöstä, joista 2 voi korjata heti.</strong></p>
+  <div class="summary-grid">
+    <div class="summary-card"><div class="summary-num">5</div><div class="summary-label">Löydöstä</div></div>
+    <div class="summary-card"><div class="summary-num">~52 000€</div><div class="summary-label">Arvioitu vuosivaikutus</div></div>
+    <div class="summary-card"><div class="summary-num">2</div><div class="summary-label">Nopeimmat voitot</div></div>
+  </div>
+</section>
+
+<section class="findings-section">
+  <p class="section-kicker">Löydökset priorisoituna</p>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-high">Korkea</span>
+      <h3 class="finding-title">Eläinlääkäri kirjoittaa potilaskertomuksia illalla kotona</h3>
+    </div>
+    <div class="finding-body">Vastaanoton jälkeen pitäisi kirjoittaa tarkat muistiinpanot joka potilaasta. Päivän aikana ei ehdi. <strong>~25 potilasta/päivä × 8 min = 3,3h/päivä — usein illalla, palkatta.</strong> Se on 750h vuodessa.</div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Eläinlääkäri sanelee vastaanoton aikana → potilaskertomus syntyy automaattisesti oikeaan muotoon. 8 min → 1 min.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Sanelu → automaattinen potilaskertomus</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~650h ≈ 26 000€/vuosi</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-high">Korkea</span>
+      <h3 class="finding-title">Peruutukset jättävät 8–12 tyhjää slottia viikossa</h3>
+    </div>
+    <div class="finding-body">Lemmikin omistaja peruu aamulla, mutta slottia ei ehditä täyttää. <strong>~10 tyhjää × 80€/käynti × 50 viikkoa = ~40 000€ menetettyä kapasiteettia.</strong> Osa olisi täytettävissä, jos tieto kulkisi nopeammin.</div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Peruutus → automaattinen viesti odotuslistalla oleville: "Aika vapautui tänään klo 14, haluatko sen?" Täyttöaste nousee.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Automaattinen peruutuspaikkailmoitus odotuslistalle</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">Jo 30% täyttöasteella = ~12 000€/vuosi</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-med">Keskitaso</span>
+      <h3 class="finding-title">Rokotus- ja tarkastusmuistutukset unohtuvat — asiakas ei palaa</h3>
+    </div>
+    <div class="finding-body">Koiran vuosirokotus, kissan hammastarkastus, pennun seurantakäynti. <strong>Ilman muistutusta 30–40% jättää tulematta.</strong> Jokainen unohtunut käynti = menetettyä liikevaihtoa ja huonompaa hoitoa.</div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Automaattinen muistutus 2 viikkoa ennen: "Ruskun vuosirokotus on ajankohtainen — varaa aika tästä." Helppo klikata.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Automaattiset hoitomuistutukset (viesti + ajanvarauslinkki)</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~80 lisäkäyntiä × 80€ = ~6 400€/vuosi</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-med">Keskitaso</span>
+      <h3 class="finding-title">Puhelinliikenne ruuhkauttaa vastaanoton — ajanvaraus jumittaa</h3>
+    </div>
+    <div class="finding-body">Vastaanottohenkilö vastaa puhelimeen 40–60 kertaa päivässä. Puolet soitoista on ajanvarauksia tai -peruutuksia. <strong>Jokainen puhelu = 3–5 min työtä + asiakkaat jonotuksessa.</strong></div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Nettiajanvaraus + automaattinen peruutus. Puolet puheluista poistuu kokonaan. Vastaanottohenkilö keskittyy klinikalla oleviin.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Nettiajanvaraus + automaattinen vahvistus/peruutus</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~250h ≈ 6 000€/vuosi</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-low">Matala</span>
+      <h3 class="finding-title">Jälkihoito-ohjeet annetaan suullisesti — omistaja unohtaa puolet</h3>
+    </div>
+    <div class="finding-body">Leikkauksen jälkeen eläinlääkäri selittää hoito-ohjeet suullisesti. Omistaja on huolissaan lemmikistään eikä muista kaikkea. <strong>Soittaa seuraavana päivänä ja kysyy uudelleen.</strong></div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Automaattinen jälkihoito-ohje omistajalle tekstiviestillä/sähköpostilla käynnin jälkeen. Selkeät ohjeet, ei soittotarvetta.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Automaattiset jälkihoito-ohjeet (käynti → viesti omistajalle)</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~60h ≈ 1 500€ + vähemmän komplikaatioita</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="matrix-section">
+  <p class="section-kicker">Prioriteettimatriisi</p>
+  <div class="matrix-wrap">
+    <div class="matrix-y-label">Vaikutus €</div>
+    <div class="matrix-grid">
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Suuri vaikutus + helppo = tee heti</div>
+        <div class="matrix-item"><span class="mi-num">#1</span> Potilaskertomukset (26 000€)</div>
+        <div class="matrix-item"><span class="mi-num">#2</span> Peruutuspaikat (12 000€)</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Suuri vaikutus + vaatii työtä = suunnittele</div>
+        <div class="matrix-item"><span class="mi-num">#4</span> Nettiajanvaraus (6 000€)</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Pienempi vaikutus + helppo = tee samalla</div>
+        <div class="matrix-item"><span class="mi-num">#3</span> Rokotusmuistutukset (6 400€)</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Pienempi vaikutus + vaatii työtä = myöhemmin</div>
+        <div class="matrix-item"><span class="mi-num">#5</span> Jälkihoito-ohjeet (1 500€)</div>
+      </div>
+    </div>
+    <div class="matrix-axes">
+      <span class="matrix-axis-label">← Helppo</span>
+      <span class="matrix-axis-label">Vaatii työtä →</span>
+    </div>
+  </div>
+</section>
+
+<section class="roadmap-section">
+  <p class="section-kicker">Ehdotettu toteutusjärjestys</p>
+  <div class="roadmap-phase"><div class="roadmap-week">Vko 1–2</div><div class="roadmap-content"><h3>Heti käyntiin</h3><p><strong>Sanelu → potilaskertomus</strong> (suurin säästö, 650h/vuosi) + <strong>peruutuspaikkailmoitus</strong> odotuslistalle. Kaksi suurinta ongelmaa kerralla.</p></div></div>
+  <div class="roadmap-phase"><div class="roadmap-week">Vko 3–4</div><div class="roadmap-content"><h3>Muistutukset</h3><p>Automaattiset rokotus- ja tarkastusmuistutukset. <strong>30–40% palaavista asiakkaista ei tule ilman muistutusta</strong> — nyt ne tulevat.</p></div></div>
+  <div class="roadmap-phase"><div class="roadmap-week">Kk 2</div><div class="roadmap-content"><h3>Nettiajanvaraus</h3><p>Puolet puheluista pois. <strong>Vastaanottohenkilö palvelee klinikalla olevia, ei vastaa puhelimeen.</strong></p></div></div>
+  <div class="roadmap-phase"><div class="roadmap-week">Kk 3+</div><div class="roadmap-content"><h3>Jälkihoito-ohjeet</h3><p>Automaattinen viesti käynnin jälkeen. <strong>Omistaja muistaa ohjeet — ja soittaa vähemmän.</strong></p></div></div>
+</section>
+
+<section class="bottomline-section">
+  <p class="section-kicker" style="justify-content:center;">Johtopäätös</p>
+  <h2>~52 000€ vuodessa <em>vapaata aikaa ja palautettua kapasiteettia.</em></h2>
+  <p class="bottomline-text">Sanelusta potilaskertomukseksi -automaatio yksinään palauttaa eläinlääkärille 650 tuntia vuodessa — se on 3 kuukautta iltoja. <strong>Katsastuksen hinta 490€. Takaisinmaksuaika: päiviä.</strong></p>
+</section>
+
+</div><!-- /report-elain -->
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  RAPORTTI 8: AUTOKOULU                                 -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="report-panel" id="report-autokoulu">
+
+<section class="report-header">
+  <div class="report-badge">Esimerkkiraportti</div>
+  <h2>AI-katsastus:<br><em>Liikenneopisto Kaarre Oy</em></h2>
+  <div class="report-meta">
+    <div class="report-meta-item"><strong>Toimiala:</strong> Autokoulu</div>
+    <div class="report-meta-item"><strong>Henkilöstö:</strong> 5</div>
+    <div class="report-meta-item"><strong>Liikevaihto:</strong> ~450 k€</div>
+  </div>
+  <div class="report-disclaimer">Kuvitteellinen esimerkki. Oikeassa raportissa luvut perustuvat sinun dataasi, prosesseihisi ja tilanteeseen.</div>
+</section>
+
+<section class="summary-section">
+  <p class="section-kicker">Yhteenveto</p>
+  <p class="summary-text">Suurimmat pullonkaulat: oppilashallinnon manuaalisuus, ajoharjoittelun aikataulutus ja liidien katoaminen. <strong>5 löydöstä, joista 2 voi korjata heti.</strong></p>
+  <div class="summary-grid">
+    <div class="summary-card"><div class="summary-num">5</div><div class="summary-label">Löydöstä</div></div>
+    <div class="summary-card"><div class="summary-num">~35 000€</div><div class="summary-label">Arvioitu vuosivaikutus</div></div>
+    <div class="summary-card"><div class="summary-num">2</div><div class="summary-label">Nopeimmat voitot</div></div>
+  </div>
+</section>
+
+<section class="findings-section">
+  <p class="section-kicker">Löydökset priorisoituna</p>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-high">Korkea</span>
+      <h3 class="finding-title">Nettisivulle tulee 200 kävijää/kk — mutta vain 15 ilmoittautuu</h3>
+    </div>
+    <div class="finding-body">Google-mainontaan menee rahaa, mutta sivulla on pelkkä numero ja sähköposti. Nuori ei soita — hän vertailee. <strong>Jos konversio nousisi 7,5% → 15%, se on 15 oppilasta lisää/kk × 2 500€ = merkittävä kasvu.</strong></div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Ilmoittautumislomake joka vastaa heti: hinta, aikataulu, seuraava vapaa aloituspäivä. Nuori ilmoittautuu samalla kun on innostunut.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Ilmoittautumislomake + automaattivastaus (heti tiedot ja vahvistus)</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">Jo 5 lisäoppilasta/kk = ~12 500€/kk lisää</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-high">Korkea</span>
+      <h3 class="finding-title">Ajotuntien aikataulutus on Excel-kaaos</h3>
+    </div>
+    <div class="finding-body">3 opettajaa, 80 oppilasta, ajotunnit sovitaan puhelimella ja WhatsAppilla. <strong>Peruutukset, päällekkäisyydet ja "kuka ajaakin huomenna?" -soitot vievät 10h/viikko.</strong> Opettajat eivät opeta — ne koordinoivat.</div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Oppilas varaa ajotunnin itse netistä. Peruutus → automaattinen viesti jonossa oleville. Opettaja näkee päivän aikataulun yhdestä paikasta.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Nettiajanvaraus + automaattinen peruutuspaikkailmoitus</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~450h ≈ 11 000€/vuosi</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-med">Keskitaso</span>
+      <h3 class="finding-title">Oppilaat "katoavat" kesken koulutuksen — ei seurantaa</h3>
+    </div>
+    <div class="finding-body">Oppilas suorittaa teorian mutta ei varaa ajotunteja kuukausiin. Kukaan ei huomaa ennen kuin oppilas on jo mennyt toiseen kouluun. <strong>~15% oppilaista vaihtaa koulua kesken — 30 oppilasta × 1 500€ = ~45 000€.</strong></div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Automaattinen muistutus kun oppilas ei ole varannut ajotuntia 2 viikkoon: "Hei! Seuraava vapaa ajotunti on torstaina — varaa tästä."</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Automaattinen edistymisseuranta + muistutusviestit</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">Jo puolet takaisin = ~5 000€/vuosi</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-med">Keskitaso</span>
+      <h3 class="finding-title">Teoriatuntien materiaali on 2018-tasolla — ei kilpailuetua</h3>
+    </div>
+    <div class="finding-body">Sama PowerPoint pyörii vuodesta toiseen. Nuoret vertailevat kouluja ja valitsevat "modernimman". <strong>Verkkoteoriakoulu kilpailee eri tasolla</strong> — ja he vievät oppilaat ennen kuin sinä ehdit.</div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Teoriamateriaali päivitettyyn muotoon + interaktiivisia harjoituksia. Oppilaat oppivat paremmin ja suosittelevat kavereille.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Päivitetty teoriamateriaali + harjoituspankki</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">Kilpailuetu = oppilaat valitsevat sinut (vaikea laskea, mutta kriittinen)</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-low">Matala</span>
+      <h3 class="finding-title">Palautetta ei kerätä systemaattisesti — et tiedä mitä parantaa</h3>
+    </div>
+    <div class="finding-body">Oppilas suorittaa kortin ja lähtee. <strong>Ei palautekyselyä, ei Google-arvostelupyyntöä.</strong> Hyvät kokemukset jäävät jakamatta, huonot korjaamatta.</div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Automaattinen viesti kortin suorittamisen jälkeen: "Miten meni?" + pyyntö jättää Google-arvostelu. 5 tähteä erottaa kilpailijoista.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Automaattinen palautekysely + arvostelupyyntö</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~20 uutta Google-arvostelua/vuosi = parempi näkyvyys</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="matrix-section">
+  <p class="section-kicker">Prioriteettimatriisi</p>
+  <div class="matrix-wrap">
+    <div class="matrix-y-label">Vaikutus €</div>
+    <div class="matrix-grid">
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Suuri vaikutus + helppo = tee heti</div>
+        <div class="matrix-item"><span class="mi-num">#1</span> Ilmoittautuminen (12 500€/kk)</div>
+        <div class="matrix-item"><span class="mi-num">#2</span> Ajotuntien varaus (11 000€)</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Suuri vaikutus + vaatii työtä = suunnittele</div>
+        <div class="matrix-item"><span class="mi-num">#4</span> Teoriamateriaali (kilpailuetu)</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Pienempi vaikutus + helppo = tee samalla</div>
+        <div class="matrix-item"><span class="mi-num">#3</span> Edistymisseuranta (5 000€)</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Pienempi vaikutus + vaatii työtä = myöhemmin</div>
+        <div class="matrix-item"><span class="mi-num">#5</span> Palaute + arvostelut</div>
+      </div>
+    </div>
+    <div class="matrix-axes">
+      <span class="matrix-axis-label">← Helppo</span>
+      <span class="matrix-axis-label">Vaatii työtä →</span>
+    </div>
+  </div>
+</section>
+
+<section class="roadmap-section">
+  <p class="section-kicker">Ehdotettu toteutusjärjestys</p>
+  <div class="roadmap-phase"><div class="roadmap-week">Vko 1–2</div><div class="roadmap-content"><h3>Heti käyntiin</h3><p><strong>Ilmoittautumislomake + automaattivastaus</strong> (suurin vaikutus liikevaihtoon) + <strong>nettiajanvaraus ajotunneille</strong> (suurin aikasyöppö). Kaksi isoa muutosta kerralla.</p></div></div>
+  <div class="roadmap-phase"><div class="roadmap-week">Vko 3–4</div><div class="roadmap-content"><h3>Edistymisseuranta</h3><p>Automaattinen muistutus passiivisille oppilaille. <strong>Ei enää "kadonneita" oppilaita</strong> — saat heidät takaisin ennen kuin siirtyvät kilpailijalle.</p></div></div>
+  <div class="roadmap-phase"><div class="roadmap-week">Kk 2</div><div class="roadmap-content"><h3>Teoriamateriaali</h3><p>Modernimpi oppimismateriaali. <strong>Nuoret suosittelevat kavereille</strong> kun kokemus on parempi kuin kilpailijoilla.</p></div></div>
+  <div class="roadmap-phase"><div class="roadmap-week">Kk 3+</div><div class="roadmap-content"><h3>Palaute + arvostelut</h3><p>Automaattinen palautekysely + Google-arvostelupyyntö. <strong>5 tähteä Googlessa = lisää oppilaita ilman mainontaa.</strong></p></div></div>
+</section>
+
+<section class="bottomline-section">
+  <p class="section-kicker" style="justify-content:center;">Johtopäätös</p>
+  <h2>~35 000€ vuodessa <em>lisää oppilaita ja vähemmän kaaosta.</em></h2>
+  <p class="bottomline-text">Ilmoittautumislomake ja nettiajanvaraus yhdessä tuovat lisää oppilaita ja vapauttavat opettajat opettamaan — eivät koordinoimaan. <strong>Katsastuksen hinta 490€. Takaisinmaksuaika: viikkoja.</strong></p>
+</section>
+
+</div><!-- /report-autokoulu -->
 
 <!-- ── CTA (shared) ── -->
 <section class="cta-block">
@@ -705,11 +1458,11 @@ nav {
 </footer>
 
 <script>
-function switchReport(id) {
+function switchReport(id, e) {
   document.querySelectorAll('.report-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('report-' + id).classList.add('active');
-  event.currentTarget.classList.add('active');
+  e.currentTarget.classList.add('active');
   window.scrollTo({top: document.querySelector('.tab-bar').offsetTop - 20, behavior: 'smooth'});
 }
 </script>
