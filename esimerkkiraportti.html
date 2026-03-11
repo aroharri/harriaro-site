@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Esimerkkiraportti — AI-katsastus | Harri Aro</title>
+<meta name="description" content="Näin AI-katsastusraportti näyttää käytännössä. Kuvitteelliset esimerkit neljältä eri toimialalta.">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+<link href="fonts/fonts.css" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black: #0a0a0a;
+  --off-white: #f0ebe3;
+  --grey: #6b6560;
+  --accent: #c8401a;
+  --accent-light: #e05535;
+  --line: rgba(240,235,227,0.1);
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black);
+  color: var(--off-white);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 999;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ── NAV ── */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 48px;
+  border-bottom: 1px solid var(--line);
+}
+.nav-logo { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: var(--grey); text-transform: uppercase; }
+.nav-back { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--grey); transition: color 0.2s; }
+.nav-back:hover { color: var(--off-white); }
+
+/* ── TAB SELECTOR ── */
+.tab-bar {
+  padding: 32px 48px 0;
+  max-width: 860px;
+  margin: 0 auto;
+}
+.tab-intro {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--grey);
+  margin-bottom: 16px;
+}
+.tabs {
+  display: flex;
+  gap: 1px;
+  background: var(--line);
+}
+.tab-btn {
+  flex: 1;
+  background: var(--black);
+  border: none;
+  color: var(--grey);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  padding: 16px 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+.tab-btn:hover { color: var(--off-white); }
+.tab-btn.active {
+  color: var(--off-white);
+  background: rgba(200,64,26,0.08);
+  border-bottom: 2px solid var(--accent);
+}
+
+/* ── SHARED ── */
+.section-kicker {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--grey);
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.section-kicker::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); }
+.report-panel { display: none; }
+.report-panel.active { display: block; }
+
+/* ── REPORT HEADER ── */
+.report-header { padding: 48px 48px 48px; max-width: 860px; margin: 0 auto; }
+.report-badge {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  border: 1px solid rgba(200,64,26,0.3);
+  padding: 6px 14px;
+  margin-bottom: 24px;
+}
+.report-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.report-header h2 em { font-style: italic; color: var(--accent-light); }
+.report-meta { display: flex; gap: 32px; flex-wrap: wrap; margin-bottom: 12px; }
+.report-meta-item { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--grey); letter-spacing: 0.04em; }
+.report-meta-item strong { color: var(--off-white); font-weight: 400; }
+.report-disclaimer {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--grey);
+  letter-spacing: 0.04em;
+  border-left: 2px solid var(--accent);
+  padding-left: 16px;
+  margin-top: 24px;
+  line-height: 1.8;
+}
+
+/* ── SUMMARY ── */
+.summary-section { border-top: 1px solid var(--line); padding: 48px 48px; max-width: 860px; margin: 0 auto; }
+.summary-text { font-size: 15px; color: var(--grey); line-height: 1.75; max-width: 640px; }
+.summary-text strong { color: var(--off-white); font-weight: 400; }
+.summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); margin-top: 24px; }
+.summary-card { background: var(--black); padding: 28px; text-align: center; }
+.summary-num { font-family: 'Playfair Display', serif; font-size: clamp(24px, 4vw, 36px); font-weight: 900; color: var(--accent-light); margin-bottom: 6px; }
+.summary-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--grey); letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* ── FINDINGS ── */
+.findings-section { border-top: 1px solid var(--line); padding: 48px 48px; max-width: 860px; margin: 0 auto; }
+.finding { border-bottom: 1px solid var(--line); padding: 32px 0; }
+.finding:last-child { border-bottom: none; }
+.finding-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 16px; }
+.finding-priority { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; padding: 4px 10px; flex-shrink: 0; }
+.priority-high { color: var(--accent-light); border: 1px solid rgba(200,64,26,0.4); }
+.priority-med { color: #d4a843; border: 1px solid rgba(212,168,67,0.3); }
+.priority-low { color: var(--grey); border: 1px solid var(--line); }
+.finding-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; line-height: 1.3; }
+.finding-body { font-size: 14px; color: var(--grey); line-height: 1.75; margin-bottom: 16px; }
+.finding-body strong { color: var(--off-white); font-weight: 400; }
+.finding-detail-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); }
+.finding-detail { background: var(--black); padding: 16px; }
+.finding-detail-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); margin-bottom: 6px; }
+.finding-detail-value { font-size: 13px; line-height: 1.6; }
+.finding-detail-value.highlight { color: var(--accent-light); font-weight: 400; }
+
+/* ── ROADMAP ── */
+.roadmap-section { border-top: 1px solid var(--line); padding: 48px 48px; max-width: 860px; margin: 0 auto; }
+.roadmap-phase { display: grid; grid-template-columns: 80px 1fr; gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--line); }
+.roadmap-phase:last-child { border-bottom: none; }
+.roadmap-week { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--accent); letter-spacing: 0.06em; padding-top: 4px; }
+.roadmap-content h3 { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+.roadmap-content p { font-size: 13px; color: var(--grey); line-height: 1.75; }
+.roadmap-content p strong { color: var(--off-white); font-weight: 400; }
+
+/* ── BOTTOM LINE ── */
+.bottomline-section { border-top: 1px solid var(--line); padding: 48px 48px; max-width: 860px; margin: 0 auto; text-align: center; }
+.bottomline-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(22px, 4vw, 32px); font-weight: 900; line-height: 1.2; margin-bottom: 16px; }
+.bottomline-section h2 em { font-style: italic; color: var(--accent-light); }
+.bottomline-text { font-size: 15px; color: var(--grey); line-height: 1.75; max-width: 560px; margin: 0 auto; }
+.bottomline-text strong { color: var(--off-white); font-weight: 400; }
+
+/* ── CTA ── */
+.cta-block { border-top: 1px solid var(--line); padding: 64px 48px; text-align: center; background: rgba(200,64,26,0.04); }
+.cta-block h2 { font-family: 'Playfair Display', serif; font-size: clamp(24px, 4vw, 36px); font-weight: 900; line-height: 1.1; margin-bottom: 12px; }
+.cta-block h2 em { font-style: italic; color: var(--accent-light); }
+.cta-block p { font-size: 15px; color: var(--grey); margin-bottom: 32px; }
+.cta-btn {
+  display: inline-flex; align-items: center; gap: 14px;
+  background: var(--accent); color: var(--off-white); border: none;
+  padding: 20px 48px; font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase;
+  cursor: pointer; transition: background 0.2s; text-decoration: none;
+}
+.cta-btn:hover { background: var(--accent-light); }
+
+/* ── FOOTER ── */
+.site-footer { border-top: 1px solid var(--line); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; }
+.footer-id { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; }
+.footer-handle { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--grey); margin-top: 3px; letter-spacing: 0.06em; }
+.footer-handle a { transition: color 0.2s; }
+.footer-handle a:hover { color: var(--accent-light); }
+.footer-stamp { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--grey); letter-spacing: 0.06em; text-align: right; line-height: 2; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  nav { padding: 18px 24px; }
+  .tab-bar { padding: 24px 24px 0; }
+  .tabs { flex-wrap: wrap; }
+  .tab-btn { flex: 1 1 45%; font-size: 11px; padding: 12px 8px; }
+  .report-header { padding: 32px 24px; }
+  .report-meta { gap: 12px; }
+  .summary-section { padding: 32px 24px; }
+  .summary-grid { grid-template-columns: 1fr; }
+  .findings-section { padding: 32px 24px; }
+  .finding-detail-grid { grid-template-columns: 1fr; }
+  .roadmap-section { padding: 32px 24px; }
+  .roadmap-phase { grid-template-columns: 1fr; gap: 6px; }
+  .bottomline-section { padding: 32px 24px; }
+  .cta-block { padding: 48px 24px; }
+  .site-footer { padding: 24px; flex-direction: column; gap: 20px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Harri Aro</div>
+  <a href="index.html" class="nav-back">&larr; Etusivulle</a>
+</nav>
+
+<!-- ── TAB SELECTOR ── -->
+<div class="tab-bar">
+  <p class="tab-intro">Valitse toimiala</p>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchReport('lvi')">LVI-yritys</button>
+    <button class="tab-btn" onclick="switchReport('hammas')">Hammasasema</button>
+    <button class="tab-btn" onclick="switchReport('fysio')">Fysioterapia</button>
+    <button class="tab-btn" onclick="switchReport('tili')">Tilitoimisto</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  RAPORTTI 1: LVI                                       -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="report-panel active" id="report-lvi">
+
+<section class="report-header">
+  <div class="report-badge">Esimerkkiraportti</div>
+  <h2>AI-katsastus:<br><em>Keski-Suomen LVI-Palvelu Oy</em></h2>
+  <div class="report-meta">
+    <div class="report-meta-item"><strong>Toimiala:</strong> LVI-urakointi</div>
+    <div class="report-meta-item"><strong>Henkilöstö:</strong> 12</div>
+    <div class="report-meta-item"><strong>Liikevaihto:</strong> ~1,2 M€</div>
+  </div>
+  <div class="report-disclaimer">Kuvitteellinen esimerkki. Oikeassa raportissa luvut perustuvat sinun dataasi, prosesseihisi ja tilanteeseen.</div>
+</section>
+
+<section class="summary-section">
+  <p class="section-kicker">Yhteenveto</p>
+  <p class="summary-text">Suurimmat aikasyöpöt: tarjouslaskenta, laskutusviive ja työmaaraportointi. <strong>5 löydöstä, joista 2 voi korjata heti.</strong></p>
+  <div class="summary-grid">
+    <div class="summary-card"><div class="summary-num">5</div><div class="summary-label">Löydöstä</div></div>
+    <div class="summary-card"><div class="summary-num">~32 000€</div><div class="summary-label">Arvioitu vuosivaikutus</div></div>
+    <div class="summary-card"><div class="summary-num">2</div><div class="summary-label">Nopeimmat voitot</div></div>
+  </div>
+</section>
+
+<section class="findings-section">
+  <p class="section-kicker">Löydökset priorisoituna</p>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-high">Korkea</span>
+      <h3 class="finding-title">Tarjouslaskenta vie 3–4 tuntia per tarjous</h3>
+    </div>
+    <div class="finding-body">Jokainen tarjous rakennetaan tyhjästä Excelissä. Samoja laskelmia tehdään uudelleen. <strong>~120 tarjousta/vuosi × 3h = 360 tuntia.</strong> Automaatiolla aika tippuu kolmasosaan.</div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Tarjouspohja joka hakee aiemmat hinnat ja materiaalit automaattisesti. Uusi tarjous 30–60 minuutissa.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Tarjouspohja + hinnastoautomaatio (rakennan valmiiksi)</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~240h / vuosi ≈ 13 000€</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-high">Korkea</span>
+      <h3 class="finding-title">Laskut lähtevät 2–3 viikkoa työmaan jälkeen</h3>
+    </div>
+    <div class="finding-body">Tunnit paperilla → käsin järjestelmään → lasku viikkojen päästä. <strong>Kassavirta kärsii: 40–60 k€ roikkuu jatkuvasti.</strong> Se on rahaa joka on sinun — mutta et pääse siihen käsiksi.</div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Asentaja kirjaa tunnit puhelimella → lasku syntyy automaattisesti työmaan valmistuttua. Samana päivänä.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Tuntikirjaussovellus + automaattinen laskupohja</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~120h ≈ 7 000€ + kassavirta paranee 40–60 k€</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-high">Korkea</span>
+      <h3 class="finding-title">Työmaaraportit syntyvät muistinvaraisesti</h3>
+    </div>
+    <div class="finding-body">Puutteelliset raportit aiheuttavat riitoja ja <strong>vaikeuttavat lisätöiden laskuttamista</strong>. Kun sanaa ei ole paperilla, sitä ei tapahtunut.</div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Asentaja puhuu puhelimeen työmaalla → raportti syntyy automaattisesti. Ei kirjoittamista, ei unohduksia.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Puhelimen äänitys → automaattinen raportti</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~130h ≈ 7 000€ + lisätöiden laskutus helpottuu</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-med">Keskitaso</span>
+      <h3 class="finding-title">Materiaalitilauksissa tuplatyötä ja hintaeroja</h3>
+    </div>
+    <div class="finding-body">Sama materiaali eri paikoista eri hinnoilla. <strong>Kukaan ei vertaile systemaattisesti.</strong> Pienetkin hintaerot kertautuvat sadoissa tilauksissa.</div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Yksi tilauslista joka vertailee hintoja toimittajittain automaattisesti. Halvin vaihtoehto näkyy heti.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Keskitetty tilauslista + automaattinen hintavertailu</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~60h ≈ 3 000€ + materiaalit ↓ arviolta 5–10%</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-med">Keskitaso</span>
+      <h3 class="finding-title">Asiakkaat soittavat "koska tulette" — jatkuvasti</h3>
+    </div>
+    <div class="finding-body">Asiakas soittaa toimistoon, toimisto soittaa asentajalle, asentaja keskeyttää työn. <strong>Kolme ihmistä häiriintyy yhdestä kysymyksestä.</strong></div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Automaattinen viesti asiakkaalle: "Asentaja saapuu huomenna klo 9–11." Kukaan ei soita, kaikki tietävät.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Kalenteritieto → automaattinen SMS/WhatsApp asiakkaalle</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~40h ≈ 2 000€ + vähemmän keskeytyksiä</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="roadmap-section">
+  <p class="section-kicker">Ehdotettu toteutusjärjestys</p>
+  <div class="roadmap-phase"><div class="roadmap-week">Vko 1–2</div><div class="roadmap-content"><h3>Heti käyntiin</h3><p><strong>Äänimuistiinpanot työmaalta</strong> (käyttöön tunnissa) + <strong>mobiilituntikirjaus pilottina</strong> yhdelle tiimille. Tuloksia heti.</p></div></div>
+  <div class="roadmap-phase"><div class="roadmap-week">Vko 3–4</div><div class="roadmap-content"><h3>Tarjouslaskenta</h3><p><strong>Tarjouspohja + hinnasto.</strong> Suurin yksittäinen säästö. 4 tunnin tarjous → 1 tunti. Maksaa itsensä takaisin viikossa.</p></div></div>
+  <div class="roadmap-phase"><div class="roadmap-week">Kk 2</div><div class="roadmap-content"><h3>Laskutusautomaatio</h3><p>Kun tuntikirjaus toimii → <strong>silta laskutusjärjestelmään</strong>. Lasku lähtee samana päivänä kun työmaa valmistuu.</p></div></div>
+  <div class="roadmap-phase"><div class="roadmap-week">Kk 3+</div><div class="roadmap-content"><h3>Viestintä + materiaalit</h3><p>Automaattiset päivitykset asiakkaille + hintavertailu. <strong>Rakennetaan kun perusasiat toimivat.</strong></p></div></div>
+</section>
+
+<section class="bottomline-section">
+  <p class="section-kicker" style="justify-content:center;">Johtopäätös</p>
+  <h2>~32 000€ vuodessa <em>odottaa.</em></h2>
+  <p class="bottomline-text">Suurimmat säästöt tarjouslaskennasta ja laskutuksesta. Ensimmäiset muutokset voi tehdä viikossa. <strong>Katsastuksen hinta 490€ — takaisinmaksuaika viikkoja, ei kuukausia.</strong></p>
+</section>
+
+</div><!-- /report-lvi -->
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  RAPORTTI 2: HAMMASASEMA                               -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="report-panel" id="report-hammas">
+
+<section class="report-header">
+  <div class="report-badge">Esimerkkiraportti</div>
+  <h2>AI-katsastus:<br><em>Hymyhammas Oy</em></h2>
+  <div class="report-meta">
+    <div class="report-meta-item"><strong>Toimiala:</strong> Hammaslääkäriasema</div>
+    <div class="report-meta-item"><strong>Henkilöstö:</strong> 8</div>
+    <div class="report-meta-item"><strong>Liikevaihto:</strong> ~800 k€</div>
+  </div>
+  <div class="report-disclaimer">Kuvitteellinen esimerkki. Oikeassa raportissa luvut perustuvat sinun dataasi, prosesseihisi ja tilanteeseen.</div>
+</section>
+
+<section class="summary-section">
+  <p class="section-kicker">Yhteenveto</p>
+  <p class="summary-text">Suurimmat pullonkaulat: peruutukset jättävät tuoleja tyhjiksi, puhelinvaraukset syövät vastaanoton aikaa ja potilaat katoavat hoitosuunnitelmista. <strong>5 löydöstä, joista 2 voi korjata heti.</strong></p>
+  <div class="summary-grid">
+    <div class="summary-card"><div class="summary-num">5</div><div class="summary-label">Löydöstä</div></div>
+    <div class="summary-card"><div class="summary-num">~45 000€</div><div class="summary-label">Arvioitu vuosivaikutus</div></div>
+    <div class="summary-card"><div class="summary-num">2</div><div class="summary-label">Nopeimmat voitot</div></div>
+  </div>
+</section>
+
+<section class="findings-section">
+  <p class="section-kicker">Löydökset priorisoituna</p>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-high">Korkea</span>
+      <h3 class="finding-title">Peruutukset jättävät tuoleja tyhjiksi — 12% kapasiteetista hukkaan</h3>
+    </div>
+    <div class="finding-body">8–12 peruutusta viikossa. Tyhjiä aikoja ei täytetä koska varajonoa ei ole tai sitä ylläpidetään paperilla. <strong>~10 tyhjää tuntia/viikko × 60€/tunti × 50 viikkoa = ~30 000€ menetettyä liikevaihtoa vuodessa.</strong></div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Automaattinen peruutuspaikkailmoitus varajonossa oleville. Paikka täyttyy ilman puhelinsoittoja.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">SMS-automaatio + digitaalinen varajonolista</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~30 000€ lisäliikevaihtoa/vuosi</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-high">Korkea</span>
+      <h3 class="finding-title">Vastaanottovirkailija käyttää 2h/päivä puhelinvarauksiin</h3>
+    </div>
+    <div class="finding-body">Suurin osa soittajista haluaa varata, siirtää tai perua ajan. Nämä ovat rutiineja jotka eivät vaadi ihmistä. <strong>~500 puhelua/kk × 5 min = 40h/kk.</strong> Virkailijan aika menee puhelimeen eikä vastaanottotyöhön.</div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Online-ajanvaraus + automaattiset muistutukset. Puhelin jää vain monimutkaisiin tapauksiin.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Online-ajanvaraus + automaattiset SMS-muistutukset</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~400h ≈ 10 000€/vuosi</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-high">Korkea</span>
+      <h3 class="finding-title">Hoitosuunnitelmat eivät ole seurannassa — potilaat katoavat</h3>
+    </div>
+    <div class="finding-body">Potilaalle tehdään hoitosuunnitelma mutta kukaan ei seuraa varaako hän jatkoajan. <strong>Potilaat "katoavat" ja palaavat vasta kun tilanne on pahentunut.</strong> Jokainen kadonnut potilas = 500–2 000€ menetettyä hoitoa.</div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Automaattinen muistutus: "Hoitosuunnitelmasi seuraava vaihe on varaamatta." Ei vaadi kenenkään aikaa.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Automaattinen seuranta + muistutusviesti potilaalle</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">Arvio: 5–10 lisäjaksoa/vuosi = 2 500–10 000€</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-med">Keskitaso</span>
+      <h3 class="finding-title">Google-arvosteluja tulee harvoin — ja niihin ei vastata</h3>
+    </div>
+    <div class="finding-body">22 arvostelua, kilpailijoilla 80+. <strong>Uudet potilaat etsivät hammaslääkäriä Googlesta</strong> — ja valitsevat sen jolla on enemmän arvosteluja. Jokainen uusi potilas on 500–3 000€ vuodessa.</div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Automaattinen arvostelumuistutus SMS:llä käynnin jälkeen + vastauspohja kaikkiin arvosteluihin.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Automaattinen arvostelumuistutus + vastauspohja</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">Jo 2 uutta potilasta/kk = ~2 000€/kk lisää</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-low">Matala</span>
+      <h3 class="finding-title">Materiaalitilaukset tehdään "kun loppuu"</h3>
+    </div>
+    <div class="finding-body">Hätätilauksia tulee kuukausittain koska varastoa ei seurata. <strong>Hätätilaukset ovat kalliimpia ja aiheuttavat hoitojen siirtoja</strong> — joka siirto on menetettyä liikevaihtoa.</div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Yksinkertainen varastoseuranta + automaattinen tilaushälytys kun raja alittuu. Ei hätätilauksia.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Varastoseuranta + automaattinen tilaushälytys</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">Hätätilaukset ↓, arviolta 3 000–5 000€/vuosi</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="roadmap-section">
+  <p class="section-kicker">Ehdotettu toteutusjärjestys</p>
+  <div class="roadmap-phase"><div class="roadmap-week">Vko 1–2</div><div class="roadmap-content"><h3>Heti käyntiin</h3><p><strong>Peruutuspaikka-automaatio</strong> (suurin yksittäinen tuotto) + <strong>Google-arvostelumuistutus</strong>. Molemmat käyntiin parissa tunnissa.</p></div></div>
+  <div class="roadmap-phase"><div class="roadmap-week">Vko 3–4</div><div class="roadmap-content"><h3>Online-ajanvaraus</h3><p>Käyttöönotto + potilasviestintä siirtymästä. <strong>Virkailija vapautuu vastaanottotyöhön</strong> heti ensimmäisellä viikolla.</p></div></div>
+  <div class="roadmap-phase"><div class="roadmap-week">Kk 2</div><div class="roadmap-content"><h3>Hoitosuunnitelmien seuranta</h3><p>Automaattinen muistutus puuttuvista jatkoajoista. <strong>Potilaat eivät enää "katoa".</strong></p></div></div>
+  <div class="roadmap-phase"><div class="roadmap-week">Kk 3+</div><div class="roadmap-content"><h3>Materiaaliseuranta</h3><p>Rakennetaan kun perusasiat pyörivät. <strong>Pieni investointi, tasainen tuotto.</strong></p></div></div>
+</section>
+
+<section class="bottomline-section">
+  <p class="section-kicker" style="justify-content:center;">Johtopäätös</p>
+  <h2>~45 000€ vuodessa <em>kiinni.</em></h2>
+  <p class="bottomline-text">Peruutuspaikkojen täyttö yksinään tuo ~30 000€ — ja se on käynnistettävissä tänään. <strong>Katsastuksen hinta 490€. Takaisinmaksuaika: päiviä.</strong></p>
+</section>
+
+</div><!-- /report-hammas -->
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  RAPORTTI 3: FYSIOTERAPIA                              -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="report-panel" id="report-fysio">
+
+<section class="report-header">
+  <div class="report-badge">Esimerkkiraportti</div>
+  <h2>AI-katsastus:<br><em>Liike & Voima Fysioterapia</em></h2>
+  <div class="report-meta">
+    <div class="report-meta-item"><strong>Toimiala:</strong> Fysioterapia</div>
+    <div class="report-meta-item"><strong>Henkilöstö:</strong> 6</div>
+    <div class="report-meta-item"><strong>Liikevaihto:</strong> ~450 k€</div>
+  </div>
+  <div class="report-disclaimer">Kuvitteellinen esimerkki. Oikeassa raportissa luvut perustuvat sinun dataasi, prosesseihisi ja tilanteeseen.</div>
+</section>
+
+<section class="summary-section">
+  <p class="section-kicker">Yhteenveto</p>
+  <p class="summary-text">Eniten aikaa kuluu Kela-raportointiin ja harjoitusohjelmien tekemiseen. Suurin rahallinen vuoto: 15% no-show-prosentti. <strong>5 löydöstä, joista 2 voi korjata heti.</strong></p>
+  <div class="summary-grid">
+    <div class="summary-card"><div class="summary-num">5</div><div class="summary-label">Löydöstä</div></div>
+    <div class="summary-card"><div class="summary-num">~63 000€</div><div class="summary-label">Arvioitu vuosivaikutus</div></div>
+    <div class="summary-card"><div class="summary-num">2</div><div class="summary-label">Nopeimmat voitot</div></div>
+  </div>
+</section>
+
+<section class="findings-section">
+  <p class="section-kicker">Löydökset priorisoituna</p>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-high">Korkea</span>
+      <h3 class="finding-title">No-show-prosentti on 15% — tuoli tyhjänä, lasku juoksee</h3>
+    </div>
+    <div class="finding-body">Asiakkaat unohtavat aikansa. <strong>450 k€ × 15% = ~67 000€ menetettyä liikevaihtoa vuodessa.</strong> Yksinkertainen muistutus 24h ennen puolittaisi luvun.</div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Automaattinen muistutus 24h ennen + helppo peruutus/siirto linkillä. Asiakas joko tulee tai peruu ajoissa.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">SMS-muistutus 24h ennen + peruutuslinkki</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">No-show ↓ 50% = ~33 000€/vuosi</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-high">Korkea</span>
+      <h3 class="finding-title">Kela-raportointi vie 4–5 tuntia viikossa — iltaisin</h3>
+    </div>
+    <div class="finding-body">Jokainen kuntoutusjakso vaatii yksityiskohtaiset raportit. <strong>Fysioterapeutit kirjoittavat raportteja iltaisin</strong> omalla ajallaan koska päivät ovat täynnä asiakkaita. 4h/vko × 45 vko = ~180h/vuosi.</div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Äänimuistiinpano käynnin jälkeen → raportti muotoillaan automaattisesti Kela-vaatimusten mukaan. Tarkistat ja hyväksyt.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Äänitys → automaattinen Kela-raporttiluonnos</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~180h ≈ 15 000€ (iltatyö poistuu)</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-high">Korkea</span>
+      <h3 class="finding-title">Harjoitusohjelmat tehdään joka kerta alusta</h3>
+    </div>
+    <div class="finding-body">Samankaltaisille vaivoille samankaltaisia ohjelmia — mutta <strong>valmiita pohjia ei ole</strong>. Jokainen ohjelma kirjoitetaan käsin. ~20 ohjelmaa/vko × 25 min = 10h/viikko.</div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Ohjelmakirjasto vaivan ja kehonosan mukaan. Valitse pohja, muokkaa asiakkaalle. 25 min → 5 min.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Valmis ohjelmakirjasto + automaattinen PDF asiakkaalle</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~120h ≈ 10 000€/vuosi</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-med">Keskitaso</span>
+      <h3 class="finding-title">Kotiharjoittelu jää tekemättä — kukaan ei seuraa</h3>
+    </div>
+    <div class="finding-body">Ohjelma annetaan ja toivotaan parasta. <strong>Kuntoutuminen hidastuu, jaksot pitenevät</strong> ja asiakas ei saa tuloksia → ei tule takaisin. 10% asiakasmenetys = ~45 000€/vuosi.</div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Automaattinen viikkokuuluminen: "Miten harjoittelu sujui?" Pieni muistutus, iso vaikutus sitoutumiseen.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Automaattinen viikkokuuluminen WhatsAppilla</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">10% parempi pysyvyys ≈ 4 500€/vuosi</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-med">Keskitaso</span>
+      <h3 class="finding-title">Laskutus on manuaalista ja viiveellistä</h3>
+    </div>
+    <div class="finding-body"><strong>Laskut tehdään kuukauden lopussa</strong> eikä käyntikohtaisesti. Virheitä tulee, kassavirta kärsii, ja 2h/vko menee laskujen koostamiseen.</div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Käyntikohtainen automaattilaskutus. Asiakas käy → lasku lähtee samana päivänä. Ei erillistä laskutuskierrosta.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Automaattilaskutus käyntikohtaisesti</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~60h ≈ 5 000€ + kassavirta paranee</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="roadmap-section">
+  <p class="section-kicker">Ehdotettu toteutusjärjestys</p>
+  <div class="roadmap-phase"><div class="roadmap-week">Vko 1–2</div><div class="roadmap-content"><h3>Heti käyntiin</h3><p><strong>SMS-muistutukset</strong> (suurin yksittäinen tuotto, no-show ↓) + <strong>äänimuistiinpanot</strong> Kela-raportteihin. Iltatyö vähenee heti.</p></div></div>
+  <div class="roadmap-phase"><div class="roadmap-week">Vko 3–4</div><div class="roadmap-content"><h3>Harjoitusohjelmakirjasto</h3><p>Pohjien luonti yleisimmille vaivoille. <strong>25 min per ohjelma → 5 min.</strong> Tiimi säästää 10h/viikko.</p></div></div>
+  <div class="roadmap-phase"><div class="roadmap-week">Kk 2</div><div class="roadmap-content"><h3>Seuranta + laskutus</h3><p>WhatsApp-viikkokuuluminen + <strong>automaattilaskutus käyntikohtaisesti</strong>. Kassavirta paranee heti.</p></div></div>
+  <div class="roadmap-phase"><div class="roadmap-week">Kk 3+</div><div class="roadmap-content"><h3>Kasvu</h3><p>Kun perusasiat pyörivät, mietitään <strong>ryhmäpalvelut, verkkokurssit tai uusi terapeutti</strong>.</p></div></div>
+</section>
+
+<section class="bottomline-section">
+  <p class="section-kicker" style="justify-content:center;">Johtopäätös</p>
+  <h2>~63 000€ vuodessa <em>löydettävissä.</em></h2>
+  <p class="bottomline-text">No-show-muistutus yksinään tuo ~33 000€ — ja se on käynnistettävissä tänään. <strong>Katsastuksen hinta 490€. Takaisinmaksuaika: päiviä.</strong></p>
+</section>
+
+</div><!-- /report-fysio -->
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  RAPORTTI 4: TILITOIMISTO                              -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="report-panel" id="report-tili">
+
+<section class="report-header">
+  <div class="report-badge">Esimerkkiraportti</div>
+  <h2>AI-katsastus:<br><em>Pohjanmaan Tilipalvelu Oy</em></h2>
+  <div class="report-meta">
+    <div class="report-meta-item"><strong>Toimiala:</strong> Tilitoimisto</div>
+    <div class="report-meta-item"><strong>Henkilöstö:</strong> 10</div>
+    <div class="report-meta-item"><strong>Liikevaihto:</strong> ~650 k€</div>
+  </div>
+  <div class="report-disclaimer">Kuvitteellinen esimerkki. Oikeassa raportissa luvut perustuvat sinun dataasi, prosesseihisi ja tilanteeseen.</div>
+</section>
+
+<section class="summary-section">
+  <p class="section-kicker">Yhteenveto</p>
+  <p class="summary-text">Eniten aikaa kuluu manuaaliseen tiliöintiin, asiakaskyselyihin vastaamiseen ja raporttien koostamiseen. <strong>5 löydöstä, joista 2 voi korjata heti.</strong></p>
+  <div class="summary-grid">
+    <div class="summary-card"><div class="summary-num">5</div><div class="summary-label">Löydöstä</div></div>
+    <div class="summary-card"><div class="summary-num">~34 000€</div><div class="summary-label">Arvioitu vuosivaikutus</div></div>
+    <div class="summary-card"><div class="summary-num">2</div><div class="summary-label">Nopeimmat voitot</div></div>
+  </div>
+</section>
+
+<section class="findings-section">
+  <p class="section-kicker">Löydökset priorisoituna</p>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-high">Korkea</span>
+      <h3 class="finding-title">Tiliöinti on 70% manuaalista — vaikka ei tarvitsisi olla</h3>
+    </div>
+    <div class="finding-body">Kirjanpitäjät tiliöivät samankaltaisia tositteita käsin päivästä toiseen. Automaattisäännöt puuttuvat tai ovat vanhentuneet. <strong>~200 turhaa manuaalitiliöintiä/viikko × 3 min = 10h/viikko.</strong></div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Tiliöintisääntöjen päivitys + AI-avusteinen ehdotus uusille tositteille. Manuaalityö 70% → 20%.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Tiliöintisääntöjen päivitys + AI-avusteinen ehdotus</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~250h ≈ 17 500€/vuosi</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-high">Korkea</span>
+      <h3 class="finding-title">Asiakkaat kyselevät samoja asioita — toistuvasti</h3>
+    </div>
+    <div class="finding-body">"Mikä on ALV-ilmoituksen deadline?", "Miten kirjaan kilometrikorvaukset?" <strong>Samat kysymykset kymmeniä kertoja kuussa.</strong> Jokainen vastaus vie 5–15 minuuttia kirjanpitäjän ajasta.</div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Asiakas-FAQ yleisimmistä aiheista + automaattivastaus kun kysymys tunnistetaan. Kirjanpitäjä vastaa vain aitoihin ongelmiin.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">FAQ-sivu + automaattivastaukset yleisimpiin kysymyksiin</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~120h ≈ 8 400€/vuosi</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-high">Korkea</span>
+      <h3 class="finding-title">Kuukausiraportit koostetaan käsin — 80+ asiakkaalle</h3>
+    </div>
+    <div class="finding-body">Sama raporttipohja täytetään käsin eri asiakkaille. Lukuja kopioidaan järjestelmästä taulukkoon, muotoillaan ja lähetetään. <strong>20 min/asiakas × 80 = 27h/kk.</strong></div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Automaattinen raporttipohja joka vetää luvut suoraan kirjanpitodatasta. 20 min → 2 min per asiakas.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Automaattinen raporttipohja suoraan kirjanpitodatasta</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~80h ≈ 5 600€/vuosi</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-med">Keskitaso</span>
+      <h3 class="finding-title">Tositteiden kerääminen asiakkailta on kaaosta</h3>
+    </div>
+    <div class="finding-body">Kuitteja tulee sähköpostilla, WhatsAppilla, kirjekuoressa ja Dropboxissa. <strong>Kirjanpitäjä etsii ja järjestelee</strong> sen sijaan että kirjaisi. Virheitä syntyy kun tositteet ovat hajallaan.</div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Yksi kanava per asiakas. Tositteet menevät suoraan oikeaan paikkaan — ei enää etsimistä.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Yksi tositekanava per asiakas + automaattinen lajittelu</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">~40h ≈ 2 800€ + vähemmän virheitä</div></div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <span class="finding-priority priority-low">Matala</span>
+      <h3 class="finding-title">Kasvu riippuu täysin suosittelusta — ei prosessia</h3>
+    </div>
+    <div class="finding-body">Kaikki uudet asiakkaat tulevat puskaradion kautta. <strong>Ei nettisivua, ei Google-näkyvyyttä.</strong> Toimii nyt — mutta yksikin avainasiakas lähtee ja tilanne muuttuu.</div>
+    <div class="finding-detail-grid">
+      <div class="finding-detail"><div class="finding-detail-label">Ratkaisu</div><div class="finding-detail-value">Yksinkertainen nettisivu + Google Business -profiili. Löydyttävyys "tilitoimisto + paikkakunta" -hauissa.</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Työkalu</div><div class="finding-detail-value">Nettisivu + Google-näkyvyys (voi tehdä päivässä)</div></div>
+      <div class="finding-detail"><div class="finding-detail-label">Arvioitu säästö</div><div class="finding-detail-value highlight">Jo 2 uutta asiakasta/vuosi = ~15 000€ lisää</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="roadmap-section">
+  <p class="section-kicker">Ehdotettu toteutusjärjestys</p>
+  <div class="roadmap-phase"><div class="roadmap-week">Vko 1–2</div><div class="roadmap-content"><h3>Heti käyntiin</h3><p><strong>Tiliöintisääntöjen päivitys</strong> (suurin yksittäinen säästö, ei vaadi uusia työkaluja) + <strong>asiakas-FAQ</strong> 10 yleisimpään kysymykseen.</p></div></div>
+  <div class="roadmap-phase"><div class="roadmap-week">Vko 3–4</div><div class="roadmap-content"><h3>Raporttiautomaatio</h3><p>Kuukausiraporttipohja joka vetää luvut automaattisesti. <strong>20 min → 2 min per asiakas.</strong> 80 asiakasta × 18 min säästö = 24h/kk vapautuu.</p></div></div>
+  <div class="roadmap-phase"><div class="roadmap-week">Kk 2</div><div class="roadmap-content"><h3>Tositekanavat</h3><p>Yksi kanava per asiakas. <strong>Loppu kuittien etsimiselle</strong> sähköposteista ja WhatsApp-ryhmistä.</p></div></div>
+  <div class="roadmap-phase"><div class="roadmap-week">Kk 3+</div><div class="roadmap-content"><h3>Näkyvyys</h3><p>Nettisivu + Google Business. <strong>Kasvu ei enää riipu pelkästä puskaradiosta.</strong></p></div></div>
+</section>
+
+<section class="bottomline-section">
+  <p class="section-kicker" style="justify-content:center;">Johtopäätös</p>
+  <h2>~34 000€ vuodessa <em>manuaalityötä pois.</em></h2>
+  <p class="bottomline-text">Tiliöintisääntöjen päivitys yksinään vapauttaa ~250 tuntia vuodessa — ja se ei vaadi uusia työkaluja. <strong>Katsastuksen hinta 490€. Takaisinmaksuaika: viikkoja.</strong></p>
+</section>
+
+</div><!-- /report-tili -->
+
+<!-- ── CTA (shared) ── -->
+<section class="cta-block">
+  <h2>Haluatko oman <em>raporttisi?</em></h2>
+  <p>45 minuuttia aikaasi. Priorisoitu raportti 3 arkipäivässä. Jos en löydä vähintään 3 konkreettista parannuskohdetta — et maksa.</p>
+  <a href="https://cal.com/harri-aro-j6fjsq/45min" class="cta-btn" target="_blank">Varaa AI-katsastus — 490 € &#8599;</a>
+</section>
+
+<footer class="site-footer">
+  <div>
+    <div class="footer-id">Harri Aro</div>
+    <div class="footer-handle"><a href="https://www.linkedin.com/in/harri-aro-8b2112122/" target="_blank" rel="noopener">LinkedIn &#8599;</a></div>
+  </div>
+  <div class="footer-stamp">
+    AI-katsastus pk-yrittäjille<br>
+    harriaro.fi
+  </div>
+</footer>
+
+<script>
+function switchReport(id) {
+  document.querySelectorAll('.report-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('report-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  window.scrollTo({top: document.querySelector('.tab-bar').offsetTop - 20, behavior: 'smooth'});
+}
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
