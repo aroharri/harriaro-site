@@ -688,6 +688,25 @@ nav {
   </div>
 </footer>
 
+<!-- Analytics: CTA tracking + scroll depth -->
+<script>
+(function(){
+  function t(n,d){try{window.va&&window.va('event',{name:n,data:d})}catch(e){}}
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a');if(!a)return;var p=location.pathname;
+    if(a.classList.contains('cta-btn'))
+      t('cta_click',{page:p,text:a.textContent.trim().substring(0,40),href:a.getAttribute('href')});
+    else if(a.hostname&&a.hostname!==location.hostname)
+      t('outbound_click',{page:p,href:a.href});
+  });
+  var marks={};
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement,pct=Math.round(window.scrollY/(h.scrollHeight-h.clientHeight)*100);
+    [25,50,75,100].forEach(function(m){if(pct>=m&&!marks[m]){marks[m]=true;t('scroll_depth',{depth:m,page:location.pathname})}});
+  });
+})();
+</script>
+
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
