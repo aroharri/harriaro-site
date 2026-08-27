@@ -3,1039 +3,831 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI-katsastus pk-yrittäjille — Harri Aro</title>
-<meta name="description" content="Löydän yrityksestäsi vähintään 3 kohtaa joissa aikaa kuluu turhaan — ja kerron miten ne korjataan. 490 € tai rahat takaisin.">
-<meta name="theme-color" content="#0a0a0a">
-<meta property="og:title" content="AI-katsastus pk-yrittäjille — Harri Aro">
-<meta property="og:description" content="Löydän yrityksestäsi vähintään 3 kohtaa joissa aikaa kuluu turhaan — ja kerron miten ne korjataan. 490 € tai rahat takaisin.">
+<title>Power BI pk-yrityksille — johdon näkymä kolmessa viikossa | Harri Aro</title>
+<meta name="description" content="Lopeta maanantain Excel-kokoaminen. Rakennan Power BI -dashboardin pk-yrityksellesi — kiinteällä hinnalla, kolmessa viikossa. Aloitetaan 490€ katsastuksella.">
+<link rel="canonical" href="https://harriaro.fi/">
+
+<!-- Open Graph -->
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
-<link href="fonts/fonts.css" rel="stylesheet">
+<meta property="og:url" content="https://harriaro.fi/">
+<meta property="og:title" content="Power BI pk-yrityksille — johdon näkymä kolmessa viikossa | Harri Aro">
+<meta property="og:description" content="Lopeta maanantain Excel-kokoaminen. Rakennan Power BI -dashboardin pk-yrityksellesi — kiinteällä hinnalla, kolmessa viikossa. Aloitetaan 490€ katsastuksella.">
+<meta property="og:site_name" content="Harri Aro — harriaro.fi">
+<meta name="twitter:card" content="summary">
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://harriaro.fi/#harri",
+      "name": "Harri Aro",
+      "url": "https://harriaro.fi",
+      "jobTitle": "Power BI -konsultti",
+      "description": "Power BI -rakentaja pk-yrityksille. Rakennan johdon raportointinäkymät — kiinteällä hinnalla, kolmessa viikossa.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Sipoo",
+        "addressCountry": "FI"
+      },
+      "sameAs": ["https://www.linkedin.com/in/harriaro"]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://harriaro.fi/#katsastus",
+      "name": "Power BI -katsastus",
+      "description": "Selvitän tarkalleen mitä dataa yrityksellänne on, missä se piilee, ja miten Power BI rakennetaan juuri teidän tilanteeseenne. Kirjallinen raportti 3 arkipäivässä.",
+      "provider": { "@id": "https://harriaro.fi/#harri" },
+      "offers": {
+        "@type": "Offer",
+        "price": "490",
+        "priceCurrency": "EUR"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://harriaro.fi/#projekti",
+      "name": "Power BI dashboard -projekti",
+      "description": "Valmis Power BI -kokonaisuus pk-yritykselle — datamalli, raportit, automaattiset päivitykset, käyttäjäkoulutus. Tyypillisesti 3 viikkoa aloituksesta käyttöönottoon.",
+      "provider": { "@id": "https://harriaro.fi/#harri" },
+      "offers": {
+        "@type": "Offer",
+        "priceRange": "2500-7000€",
+        "priceCurrency": "EUR"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Mitä dataa tarvitaan ennen kuin voi aloittaa Power BI -projektin?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ei mitään erityistä. Excel-taulukot, ERP, CRM, Shopify, Procountor — mitä tahansa teillä on. Katsastuksessa selvitetään mitä lähteitä käytetään ja miten ne yhdistetään."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kuinka paljon Power BI -dashboard maksaa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Dashboard-projekti maksaa 2 500–7 000€ kiinteällä hinnalla. Aloitetaan 490€ katsastuksella, jossa selvitetään tarkka scope ja hinta ennen sitoutumista."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kuinka kauan Power BI -projekti kestää?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tyypillinen dashboard-projekti: 2–4 viikkoa aloituksesta käyttöönottoon. Isoilla konsulttitaloilla sama projekti kestää 3–6 kuukautta."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --black: #0a0a0a;
-  --off-white: #f0ebe3;
-  --grey: #6b6560;
-  --accent: #c8401a;
-  --accent-light: #e05535;
-  --line: rgba(240,235,227,0.1);
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--black);
-  color: var(--off-white);
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-weight: 300;
-  line-height: 1.6;
-  overflow-x: hidden;
-}
-
-/* grain */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 999;
-}
-
-a { color: inherit; text-decoration: none; }
-
-/* ── NAV ────────────────────────────────────────────── */
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 24px 48px;
-  border-bottom: 1px solid var(--line);
-  position: sticky;
-  top: 0;
-  background: var(--black);
-  z-index: 50;
-}
-
-.nav-logo {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  color: var(--grey);
-  text-transform: uppercase;
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-}
-
-.nav-link {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  color: var(--grey);
-  text-transform: uppercase;
-  transition: color 0.2s;
-}
-
-.nav-link:hover { color: var(--off-white); }
-
-.nav-btn {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--black);
-  background: var(--off-white);
-  border: none;
-  padding: 11px 22px;
-  cursor: pointer;
-  transition: background 0.2s;
-  text-decoration: none;
-}
-
-.nav-btn:hover { background: var(--accent); color: var(--off-white); }
-
-/* ── HERO ───────────────────────────────────────────── */
-.hero {
-  padding: 80px 48px 64px;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.hero-kicker {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--grey);
-  margin-bottom: 28px;
-}
-
-.hero-promise {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(42px, 8vw, 88px);
-  font-weight: 900;
-  line-height: 0.95;
-  letter-spacing: -0.025em;
-  margin-bottom: 0;
-}
-
-.hero-promise .line2 {
-  display: block;
-  color: var(--accent-light);
-  font-style: italic;
-}
-
-.hero-divider {
-  width: 48px;
-  height: 1px;
-  background: var(--accent);
-  margin: 40px 0;
-}
-
-.hero-body {
-  font-size: 19px;
-  color: var(--grey);
-  max-width: 540px;
-  line-height: 1.7;
-  margin-bottom: 48px;
-}
-
-.hero-body strong { color: var(--off-white); font-weight: 400; }
-
-.hero-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  background: var(--accent);
-  color: var(--off-white);
-  border: none;
-  padding: 20px 40px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 13px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background 0.2s;
-  text-decoration: none;
-}
-
-.hero-cta:hover { background: var(--accent-light); }
-
-.hero-sub-note {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  color: var(--grey);
-  margin-top: 16px;
-  letter-spacing: 0.06em;
-  line-height: 1.8;
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.hero-kicker   { animation: fadeUp 0.6s 0.05s ease both; }
-.hero-promise  { animation: fadeUp 0.6s 0.2s  ease both; }
-.hero-divider  { animation: fadeUp 0.6s 0.35s ease both; }
-.hero-body     { animation: fadeUp 0.6s 0.45s ease both; }
-.hero-cta, .hero-sub-note { animation: fadeUp 0.6s 0.55s ease both; }
-
-/* ── SECTION KICKER ────────────────────────────────── */
-.section-kicker {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--grey);
-  margin-bottom: 40px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.section-kicker::before {
-  content: '';
-  display: block;
-  width: 24px;
-  height: 1px;
-  background: var(--accent);
-}
-
-/* ── STEPS ──────────────────────────────────────────── */
-.steps-section {
-  border-top: 1px solid var(--line);
-  padding: 80px 48px;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.steps-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--line);
-  margin-top: 40px;
-}
-
-.step-card {
-  background: var(--black);
-  padding: 40px;
-}
-
-.step-card .num {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  color: var(--accent);
-  letter-spacing: 0.1em;
-  margin-bottom: 20px;
-}
-
-.step-card h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 14px;
-  line-height: 1.3;
-}
-
-.step-card p {
-  font-size: 14px;
-  color: var(--grey);
-  line-height: 1.75;
-}
-
-/* ── PAIN SECTION ──────────────────────────────────── */
-.pain-section {
-  padding: 80px 48px;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.pain-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0 48px;
-  margin-top: 40px;
-}
-
-.pain-item {
-  display: flex;
-  gap: 16px;
-  padding: 24px 0;
-  border-bottom: 1px solid var(--line);
-  align-items: baseline;
-}
-
-.pain-icon {
-  font-family: 'IBM Plex Mono', monospace;
-  color: var(--accent);
-  font-size: 14px;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.pain-item p {
-  font-size: 15px;
-  color: var(--grey);
-  line-height: 1.7;
-}
-
-.pain-item p strong { color: var(--off-white); font-weight: 400; }
-
-/* ── ROI SECTION ───────────────────────────────────── */
-.roi-section {
-  border-top: 1px solid var(--line);
-  padding: 80px 48px;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.roi-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 1px;
-  background: var(--line);
-  margin-top: 40px;
-}
-
-.roi-card {
-  background: var(--black);
-  padding: 40px;
-}
-
-.roi-card h3 {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 20px;
-}
-
-.roi-card p {
-  font-size: 15px;
-  color: var(--grey);
-  line-height: 1.75;
-}
-
-.roi-card p strong { color: var(--off-white); font-weight: 400; }
-
-.roi-card .roi-big {
-  font-family: 'Playfair Display', serif;
-  font-size: 36px;
-  font-weight: 900;
-  color: var(--off-white);
-  line-height: 1;
-  margin-bottom: 12px;
-}
-
-/* ── PROOF ──────────────────────────────────────────── */
-.proof-section {
-  border-top: 1px solid var(--line);
-  padding: 64px 48px;
-  max-width: 1000px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 48px;
-  align-items: center;
-}
-
-.proof-num {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(36px, 5vw, 56px);
-  font-weight: 900;
-  color: var(--accent);
-  line-height: 1;
-}
-
-.proof-quote {
-  font-family: 'Playfair Display', serif;
-  font-size: 18px;
-  font-style: italic;
-  font-weight: 700;
-  line-height: 1.5;
-}
-
-.proof-quote::before { content: '\201C'; color: var(--accent); }
-.proof-quote::after  { content: '\201D'; color: var(--accent); }
-
-.proof-name {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  color: var(--grey);
-  margin-top: 8px;
-  letter-spacing: 0.06em;
-}
-
-.proof-link {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  color: var(--grey);
-  letter-spacing: 0.06em;
-  margin-top: 4px;
-  transition: color 0.2s;
-}
-
-.proof-link:hover { color: var(--off-white); }
-
-/* ── ABOUT ──────────────────────────────────────────── */
-.about-section {
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  background: var(--line);
-  gap: 1px;
-}
-
-.about-block {
-  background: var(--black);
-  padding: 40px;
-}
-
-.about-num {
-  font-family: 'Playfair Display', serif;
-  font-size: 48px;
-  font-weight: 900;
-  color: var(--accent);
-  line-height: 1;
-  margin-bottom: 12px;
-}
-
-.about-block h3 {
-  font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 10px;
-  line-height: 1.4;
-}
-
-.about-block p { font-size: 13px; color: var(--grey); line-height: 1.7; }
-
-/* ── CTA SECTION ───────────────────────────────────── */
-.cta-section {
-  padding: 80px 48px;
-  text-align: center;
-  background: rgba(200,64,26,0.04);
-  border-top: 1px solid var(--line);
-}
-
-.cta-section h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(28px, 4vw, 44px);
-  font-weight: 900;
-  line-height: 1.1;
-  margin-bottom: 16px;
-}
-
-.cta-section h2 em {
-  font-style: italic;
-  color: var(--accent-light);
-}
-
-.cta-section .cta-body {
-  font-size: 16px;
-  color: var(--grey);
-  max-width: 480px;
-  margin: 0 auto 32px;
-  line-height: 1.7;
-}
-
-.cta-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  background: var(--accent);
-  color: var(--off-white);
-  border: none;
-  padding: 20px 48px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 13px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background 0.2s;
-  text-decoration: none;
-}
-
-.cta-btn:hover { background: var(--accent-light); }
-
-.cta-sub {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  color: var(--grey);
-  margin-top: 16px;
-  letter-spacing: 0.06em;
-}
-
-/* ── DIY PROMPT ────────────────────────────────────── */
-.diy-section {
-  padding: 64px 48px;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.diy-section details {
-  border: 1px solid var(--line);
-}
-
-.diy-section summary {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  color: var(--grey);
-  padding: 20px 24px;
-  cursor: pointer;
-  transition: color 0.2s;
-  list-style: none;
-}
-
-.diy-section summary::-webkit-details-marker { display: none; }
-
-.diy-section summary::before {
-  content: '▶ ';
-  font-size: 10px;
-  color: var(--accent);
-}
-
-.diy-section details[open] summary::before {
-  content: '▼ ';
-}
-
-.diy-section summary:hover { color: var(--off-white); }
-
-.diy-content {
-  padding: 24px;
-  border-top: 1px solid var(--line);
-}
-
-.diy-content p {
-  font-size: 13px;
-  color: var(--grey);
-  line-height: 1.7;
-  margin-bottom: 16px;
-}
-
-.diy-content p:last-child { margin-bottom: 0; }
-
-.diy-content pre {
-  background: rgba(240,235,227,0.03);
-  border: 1px solid var(--line);
-  padding: 24px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  color: var(--grey);
-  line-height: 1.8;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  overflow-x: auto;
-  margin-bottom: 16px;
-}
-
-/* ── FAQ ────────────────────────────────────────────── */
-.faq-section {
-  border-top: 1px solid var(--line);
-  padding: 80px 48px;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.faq-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 48px;
-}
-
-.faq-header h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 32px;
-  font-weight: 700;
-}
-
-.faq-header-right p {
-  font-size: 14px;
-  color: var(--grey);
-}
-
-.faq-item { border-bottom: 1px solid var(--line); }
-
-.faq-q {
-  width: 100%;
-  background: none;
-  border: none;
-  color: var(--off-white);
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  text-align: left;
-  padding: 24px 0;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-}
-
-.faq-arrow {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 18px;
-  color: var(--accent);
-  flex-shrink: 0;
-  transition: transform 0.3s;
-}
-
-.faq-a {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease, padding 0.3s ease;
-  font-size: 15px;
-  color: var(--grey);
-  line-height: 1.7;
-}
-
-.faq-a strong { color: var(--off-white); font-weight: 400; }
-
-.faq-item.open .faq-a {
-  max-height: 500px;
-  padding-bottom: 24px;
-}
-
-.faq-item.open .faq-arrow {
-  transform: rotate(45deg);
-}
-
-/* ── RETAINER TEASER ───────────────────────────────── */
-.retainer-teaser {
-  border-top: 1px solid var(--line);
-  padding: 64px 48px;
-  max-width: 1000px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 48px;
-  align-items: center;
-}
-
-.retainer-teaser h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(24px, 3vw, 32px);
-  font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 16px;
-}
-
-.retainer-teaser h2 em {
-  font-style: italic;
-  color: var(--accent-light);
-}
-
-.retainer-teaser p {
-  font-size: 15px;
-  color: var(--grey);
-  line-height: 1.7;
-}
-
-.retainer-teaser-right {
-  text-align: right;
-}
-
-.retainer-link {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  color: var(--grey);
-  border: 1px solid var(--line);
-  padding: 16px 24px;
-  display: inline-block;
-  transition: all 0.2s;
-}
-
-.retainer-link:hover {
-  color: var(--off-white);
-  border-color: rgba(240,235,227,0.3);
-}
-
-/* ── FOOTER ─────────────────────────────────────────── */
-.site-footer {
-  border-top: 1px solid var(--line);
-  padding: 28px 48px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.footer-id { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; }
-.footer-handle { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--grey); margin-top: 3px; letter-spacing: 0.06em; }
-.footer-handle a { transition: color 0.2s; }
-.footer-handle a:hover { color: var(--accent-light); }
-
-.footer-stamp {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  color: var(--grey);
-  letter-spacing: 0.06em;
-  text-align: right;
-  line-height: 2;
-}
-
-/* ── SECTION LINK ──────────────────────────────────── */
-.section-link-wrap { padding-top: 24px; }
-
-.section-link {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  color: var(--grey);
-  letter-spacing: 0.08em;
-  transition: color 0.2s;
-}
-
-.section-link:hover { color: var(--off-white); }
-
-/* ── RESPONSIVE ─────────────────────────────────────── */
-@media (max-width: 768px) {
-  nav { padding: 18px 24px; }
-  .nav-links { gap: 16px; }
-  .nav-link { display: none; }
-  .hero { padding: 56px 24px 48px; }
-  .steps-section { padding: 56px 24px; }
-  .steps-grid { grid-template-columns: 1fr; }
-  .step-card { padding: 32px 24px; }
-  .pain-section { padding: 56px 24px; }
-  .pain-grid { grid-template-columns: 1fr; }
-  .roi-section { padding: 56px 24px; }
-  .roi-grid { grid-template-columns: 1fr; }
-  .roi-card { padding: 32px 24px; }
-  .proof-section { grid-template-columns: 1fr; gap: 24px; padding: 48px 24px; text-align: center; }
-  .about-section { grid-template-columns: 1fr; }
-  .about-block { padding: 32px 24px; }
-  .cta-section { padding: 56px 24px; }
-  .diy-section { padding: 48px 24px; }
-  .faq-section { padding: 56px 24px; }
-  .faq-header { flex-direction: column; gap: 8px; }
-  .retainer-teaser { grid-template-columns: 1fr; gap: 24px; padding: 56px 24px; }
-  .retainer-teaser-right { text-align: left; }
-  .site-footer { padding: 24px; flex-direction: column; gap: 20px; text-align: center; }
-}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:       #0B0D10;
+    --card:     #13161C;
+    --card2:    #1A1F28;
+    --border:   #1E2530;
+    --amber:    #F59E0B;
+    --amber-d:  #D97706;
+    --text:     #F1F5F9;
+    --muted:    #64748B;
+    --light:    #94A3B8;
+    --green:    #22C55E;
+    --r:        8px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 32px;
+    background: rgba(11,13,16,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600; font-size: 16px;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nav-name span { color: var(--amber); }
+  .btn {
+    display: inline-block;
+    padding: 10px 22px;
+    background: var(--amber);
+    color: #000;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600; font-size: 14px;
+    border-radius: var(--r);
+    text-decoration: none;
+    transition: background .15s;
+    border: none; cursor: pointer;
+  }
+  .btn:hover { background: var(--amber-d); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--amber);
+    border: 1.5px solid var(--amber);
+  }
+  .btn-ghost:hover { background: rgba(245,158,11,.08); }
+
+  /* HERO */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    padding: 80px 32px 72px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(36px, 5vw, 54px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -.02em;
+    margin-bottom: 20px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--amber);
+  }
+  .hero-sub {
+    font-size: 18px;
+    color: var(--light);
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .hero-note {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 16px;
+  }
+  .hero-note strong { color: var(--light); }
+
+  /* MOCK DASHBOARD */
+  .dashboard-mock {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    overflow: hidden;
+  }
+  .dash-titlebar {
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 16px; padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .dash-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .dash-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px; font-weight: 600;
+    color: var(--muted);
+    margin-left: 4px;
+  }
+  .dash-kpis {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px; margin-bottom: 16px;
+  }
+  .kpi-card {
+    background: var(--card2);
+    border-radius: 6px; padding: 10px 12px;
+    opacity: 0; animation: fadeUp .4s forwards;
+  }
+  .kpi-card:nth-child(1) { animation-delay: .1s; }
+  .kpi-card:nth-child(2) { animation-delay: .25s; }
+  .kpi-card:nth-child(3) { animation-delay: .4s; }
+  .kpi-label { font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; }
+  .kpi-val {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px; font-weight: 700;
+    color: var(--text);
+  }
+  .kpi-delta { font-size: 10px; color: var(--green); margin-top: 2px; }
+
+  /* Bar chart */
+  .bar-chart { height: 100px; display: flex; align-items: flex-end; gap: 6px; margin-bottom: 14px; }
+  .bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .bar {
+    width: 100%; border-radius: 3px 3px 0 0;
+    background: var(--amber);
+    transform: scaleY(0); transform-origin: bottom;
+    animation: growBar .6s cubic-bezier(.22,1,.36,1) forwards;
+  }
+  .bar.dim { background: var(--border); }
+  .bar:nth-child(1) { animation-delay: .5s; }
+  .bar-wrap:nth-child(1) .bar { animation-delay: .5s; }
+  .bar-wrap:nth-child(2) .bar { animation-delay: .6s; }
+  .bar-wrap:nth-child(3) .bar { animation-delay: .7s; }
+  .bar-wrap:nth-child(4) .bar { animation-delay: .8s; }
+  .bar-wrap:nth-child(5) .bar { animation-delay: .9s; }
+  .bar-wrap:nth-child(6) .bar { animation-delay: 1.0s; }
+  .bar-label { font-size: 8px; color: var(--muted); }
+
+  .dash-line {
+    height: 1px; background: var(--border);
+    margin-bottom: 12px;
+  }
+  .dash-table-row {
+    display: flex; justify-content: space-between;
+    font-size: 11px; color: var(--light);
+    padding: 5px 0; border-bottom: 1px solid rgba(30,37,48,.5);
+    opacity: 0; animation: fadeUp .3s forwards;
+  }
+  .dash-table-row:nth-child(1) { animation-delay: 1.1s; }
+  .dash-table-row:nth-child(2) { animation-delay: 1.2s; }
+  .dash-table-row:nth-child(3) { animation-delay: 1.3s; }
+  .dash-table-row .green { color: var(--green); }
+
+  @keyframes growBar {
+    to { transform: scaleY(1); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* PROOF STRIP */
+  .proof {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 28px 32px;
+  }
+  .proof-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .proof-item { text-align: center; }
+  .proof-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px; font-weight: 700;
+    color: var(--amber);
+    line-height: 1.1;
+  }
+  .proof-txt { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  /* SECTIONS */
+  section { padding: 72px 32px; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-eye {
+    font-size: 11px; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--amber);
+    margin-bottom: 12px;
+  }
+  .section-h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(26px, 3.5vw, 38px);
+    font-weight: 700; line-height: 1.15;
+    letter-spacing: -.02em;
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    font-size: 17px; color: var(--light);
+    max-width: 560px; line-height: 1.65;
+    margin-bottom: 48px;
+  }
+
+  /* PRODUCTS */
+  .products-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .product-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 28px;
+    display: flex; flex-direction: column;
+    position: relative; overflow: hidden;
+  }
+  .product-card.featured {
+    border-color: var(--amber);
+    background: linear-gradient(160deg, #1a1500 0%, var(--card) 60%);
+  }
+  .product-card.featured::before {
+    content: "Yleisin aloituspiste";
+    position: absolute; top: 16px; right: 16px;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: .07em; text-transform: uppercase;
+    color: #000; background: var(--amber);
+    padding: 3px 9px; border-radius: 99px;
+  }
+  .product-tag {
+    font-size: 11px; font-weight: 600; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .product-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px; font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .product-price {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 32px; font-weight: 700;
+    color: var(--amber); line-height: 1;
+    margin-bottom: 4px;
+  }
+  .product-price-note { font-size: 12px; color: var(--muted); margin-bottom: 20px; }
+  .product-desc { font-size: 14px; color: var(--light); line-height: 1.6; margin-bottom: 24px; flex: 1; }
+  .product-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .product-list li {
+    font-size: 13px; color: var(--light);
+    padding-left: 20px; position: relative;
+  }
+  .product-list li::before {
+    content: "✓"; position: absolute; left: 0;
+    color: var(--green); font-weight: 700;
+  }
+
+  /* HOW IT WORKS */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .step {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 28px;
+  }
+  .step-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--amber);
+    margin-bottom: 14px;
+  }
+  .step h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px; font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .step p { font-size: 14px; color: var(--light); line-height: 1.6; }
+
+  /* WHY NOT BIG AGENCY */
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .compare-col {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 28px;
+  }
+  .compare-col.them { opacity: .75; }
+  .compare-col.me { border-color: var(--amber); }
+  .compare-head {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px; font-weight: 700;
+    margin-bottom: 20px; color: var(--muted);
+  }
+  .compare-col.me .compare-head { color: var(--amber); }
+  .compare-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .compare-list li {
+    font-size: 14px; color: var(--light);
+    padding-left: 24px; position: relative; line-height: 1.5;
+  }
+  .compare-list li::before {
+    position: absolute; left: 0; font-weight: 700;
+  }
+  .compare-col.them .compare-list li::before { content: "✗"; color: #EF4444; }
+  .compare-col.me   .compare-list li::before { content: "✓"; color: var(--green); }
+
+  /* CTA SECTION */
+  .cta-section {
+    background: linear-gradient(135deg, #0f1a0a 0%, #0B0D10 50%, #1a1200 100%);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .cta-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+  .cta-inner h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700; line-height: 1.15;
+    letter-spacing: -.02em; margin-bottom: 16px;
+  }
+  .cta-inner p { font-size: 17px; color: var(--light); margin-bottom: 32px; line-height: 1.6; }
+  .cta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .cta-fact {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px; padding: 14px 16px; text-align: left;
+  }
+  .cta-fact-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 4px; }
+  .cta-fact-val { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; }
+  .cta-note { font-size: 12px; color: var(--muted); margin-top: 8px; }
+
+  /* FAQ */
+  .faq-list { display: flex; flex-direction: column; gap: 0; }
+  details {
+    border-bottom: 1px solid var(--border);
+    padding: 20px 0;
+  }
+  details:first-child { border-top: 1px solid var(--border); }
+  summary {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px; font-weight: 600;
+    cursor: pointer; list-style: none;
+    display: flex; justify-content: space-between; align-items: center;
+    color: var(--text);
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: "+"; font-size: 22px; color: var(--amber);
+    line-height: 1; flex-shrink: 0;
+  }
+  details[open] summary::after { content: "–"; }
+  details p {
+    font-size: 14px; color: var(--light);
+    line-height: 1.7; margin-top: 14px;
+    max-width: 680px;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 40px 32px;
+    border-top: 1px solid var(--border);
+  }
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600; font-size: 15px; color: var(--text);
+  }
+  .footer-name span { color: var(--amber); }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a {
+    font-size: 13px; color: var(--muted); text-decoration: none;
+  }
+  .footer-links a:hover { color: var(--text); }
+
+  /* DIVIDER */
+  .divider { height: 1px; background: var(--border); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; }
+    .hero { grid-template-columns: 1fr; padding: 48px 20px 40px; gap: 32px; }
+    .dashboard-mock { order: -1; }
+    .proof-inner { grid-template-columns: 1fr 1fr; gap: 20px; }
+    .products-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr; }
+    .compare-grid { grid-template-columns: 1fr; }
+    .cta-grid { grid-template-columns: 1fr; }
+    section { padding: 52px 20px; }
+    .proof { padding: 24px 20px; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+  }
 </style>
 </head>
 <body>
 
-<!-- ── NAV ── -->
+<!-- NAV -->
 <nav>
-  <div class="nav-logo">Harri Aro</div>
-  <div class="nav-links">
-    <a href="palvelu.html" class="nav-link">Jatkuva yhteistyö</a>
-    <a href="case-peltitaikurit.html" class="nav-link">Case</a>
-    <a href="#varaa" class="nav-btn">Varaa AI-katsastus &#8599;</a>
-  </div>
+  <a href="#" class="nav-name">Harri <span>Aro</span></a>
+  <a href="mailto:harri@harriaro.fi?subject=Power BI -katsastus" class="btn">Varaa katsastus — 490€</a>
 </nav>
 
-<!-- ── HERO ── -->
-<section class="hero">
-  <p class="hero-kicker">AI-katsastus pk-yrittäjille — 490 €</p>
-  <h1 class="hero-promise">
-    Vie bisneksesi
-    <span class="line2">tekoälykatsastukseen.</span>
-  </h1>
-  <div class="hero-divider"></div>
-  <p class="hero-body">
-    Löydän yrityksestäsi vähintään 3 kohtaa joissa aikaa kuluu turhaan — ja kerron tarkasti <strong>miten jokainen niistä korjataan</strong>. Jos en löydä, et maksa mitään.
-  </p>
-  <a href="#varaa" class="hero-cta">Varaa aika — 490 € &#8599;</a>
-  <p class="hero-sub-note">45 min haastattelu + raportti + 30 min läpikäynti.<br>Lasku vasta raportin jälkeen.</p>
-</section>
-
-<!-- ── MITEN TOIMII ── -->
-<section class="steps-section">
-  <p class="section-kicker">Näin se toimii</p>
-  <div class="steps-grid">
-    <div class="step-card">
-      <div class="num">01</div>
-      <h3>Varaat ajan</h3>
-      <p>Valitset sopivan ajan kalenterista. Ei lomakkeita, ei odottelua. 30 sekuntia ja olet varannut.</p>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Power BI · Pk-yritykset · Sipoo / Koko Suomi</div>
+    <h1>Data on jo teillä. Minä teen siitä <em>johdon näkymän.</em></h1>
+    <p class="hero-sub">Rakennan Power BI -dashboardit pk-yrityksille — nopeasti, selkeästi, hinnoilla näkyvissä. Aloitetaan 490€ katsastuksella.</p>
+    <div class="hero-ctas">
+      <a href="mailto:harri@harriaro.fi?subject=Power BI -katsastus" class="btn">Varaa katsastus — 490€</a>
+      <a href="#tuotteet" class="btn btn-ghost">Katso tuotteet</a>
     </div>
-    <div class="step-card">
-      <div class="num">02</div>
-      <h3>Kerrot arjestasi</h3>
-      <p>45 minuutin haastattelu jossa käydään läpi mihin aikasi oikeasti menee. Ei teknistä osaamista tarvita — kerrot vain miten bisnes pyörii.</p>
-    </div>
-    <div class="step-card">
-      <div class="num">03</div>
-      <h3>Saat selkeän raportin</h3>
-      <p>3 arkipäivässä. Löydökset priorisoituna, jokaiseen konkreettinen ratkaisu ja aikasäästöarvio. Plus 30 min läpikäynti.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ── KIPUPISTEET ── -->
-<section class="pain-section">
-  <p class="section-kicker">Kuulostaako tutulta?</p>
-  <div class="pain-grid">
-    <div class="pain-item">
-      <span class="pain-icon">&rarr;</span>
-      <p>Tarjousten tekeminen vie tunnin per tarjous. <strong>Sama pohja, samat tiedot, käsin joka kerta.</strong></p>
-    </div>
-    <div class="pain-item">
-      <span class="pain-icon">&rarr;</span>
-      <p>Perjantai-illat menevät laskutukseen tai raportointiin. <strong>Työ joka ei vaadi aivojasi — mutta vie aikasi.</strong></p>
-    </div>
-    <div class="pain-item">
-      <span class="pain-icon">&rarr;</span>
-      <p>Tiedät että pitäisi hyödyntää tekoälyä. <strong>Mutta kuka ehtii selvittää miten, kun perusbisnes vie kaiken ajan?</strong></p>
-    </div>
-    <div class="pain-item">
-      <span class="pain-icon">&rarr;</span>
-      <p>Asiakaspuhelut, aikataulutus, seuranta — <strong>kaikki pyörii sinun kauttasi</strong>. Ja joka päivä samat asiat uudelleen.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ── HINTAKEHYS ── -->
-<section class="roi-section">
-  <p class="section-kicker">Mitä 490 € ostaa</p>
-  <div class="roi-grid">
-    <div class="roi-card">
-      <h3>Tiedät mistä aloittaa</h3>
-      <p>Priorisoitu lista — <strong>ei kaikkea kerralla</strong>, vaan se mikä tuottaa eniten ensimmäisenä. Ei arvailua, ei kokeiluja pimeässä.</p>
-    </div>
-    <div class="roi-card">
-      <h3>Näet mitä se tarkoittaa rahana</h3>
-      <p>Jokaisen löydöksen kohdalla <strong>aikasäästö laskettuna euroiksi</strong>. Päätät itse onko se sen arvoista.</p>
-    </div>
-    <div class="roi-card">
-      <h3>Voit toimia heti</h3>
-      <p>Raportti kertoo mitä, millä työkalulla ja miten. <strong>Et ole riippuvainen minusta</strong> — toteutat omaan tahtiin tai pyydät apua.</p>
-    </div>
-  </div>
-  <div style="background: rgba(200,64,26,0.07); border: 1px solid rgba(200,64,26,0.2); padding: 32px 40px; margin-top: 1px;">
-    <p style="font-size: 15px; color: var(--grey); line-height: 1.7;">
-      <strong style="color: var(--off-white); font-weight: 400;">Konteksti:</strong> Yrittäjän tunti maksaa 80–150 €. Jos katsastus löytää 5 tuntia viikossa jotka menevät rutiineihin — se on 400–750 € kuukaudessa. Joka kuukausi. Katsastus maksaa 490 € kerran.
+    <p class="hero-note">
+      <strong>Käänteinen takuu:</strong> jos katsastuksessa ei löydy vähintään 3 konkreettista kohtaa — ette maksa mitään.
     </p>
   </div>
-</section>
 
-<!-- ── TODISTE ── -->
-<section class="proof-section">
-  <div class="proof-num">16 000€+</div>
-  <div>
-    <p class="proof-quote">Ensimmäinen konkreettinen hyöty tuli viikossa. Joku ulkopuolinen joka uskaltaa sanoa ääneen sen mitä muut eivät.</p>
-    <p class="proof-name">— Elmeri, Peltitaikurit</p>
-    <a href="case-peltitaikurit.html" class="proof-link">Lue koko tarina &#8599;</a>
-  </div>
-</section>
-
-<!-- ── KUKA TEKEE ── -->
-<section class="about-section">
-  <div class="about-block">
-    <div class="about-num">12+</div>
-    <h3>Vuotta talous- ja strategiatyötä</h3>
-    <p>Näen luvuista sen mitä muut eivät huomaa. Ymmärrän bisnestä — en vain teknologiaa.</p>
-  </div>
-  <div class="about-block">
-    <div class="about-num">50+</div>
-    <h3>AI-automaatiota rakennettu</h3>
-    <p>Raportoinnista laskutukseen, tarjousprosesseista asiakasviestintään. Käytännön tekoja.</p>
-  </div>
-  <div class="about-block">
-    <div class="about-num">490€</div>
-    <h3>Tai rahat takaisin</h3>
-    <p>Löydän 3 konkreettista säästökohtaa tai et maksa. Ei poikkeuksia. Laitan oman nahkani peliin.</p>
-  </div>
-</section>
-
-<!-- ── VARAA AIKA ── -->
-<section class="cta-section" id="varaa">
-  <h2>Varaa <em>AI-katsastus.</em></h2>
-  <p class="cta-body">
-    45 minuuttia aikaasi. Selkeä raportti 3 arkipäivässä. Tiedät tarkalleen mistä aloittaa.
-  </p>
-  <a href="https://cal.com/harri-aro-j6fjsq/45min" class="cta-btn" target="_blank">Varaa aika — 490 € &#8599;</a>
-  <p class="cta-sub">Maksu vasta raportin jälkeen. 3 löydöstä tai rahat takaisin.</p>
-</section>
-
-<!-- ── TEE ITSE ── -->
-<section class="diy-section">
-  <details>
-    <summary>Haluatko kokeilla itse ensin? Tässä prompt jolla pääset alkuun.</summary>
-    <div class="diy-content">
-      <p>Syötä tämä prompt Claudeen tai ChatGPT:hen. Vastaa kysymyksiin rehellisesti. Saat ensimmäisen kuvan siitä missä aikasi menee. Jos se riittää — hienoa, säästit 490 €. Jos haluat syvemmälle — tiedät mistä minut löydät.</p>
-      <pre>Toimi bisnesanalyytikkona joka on erikoistunut pk-yritysten prosessien tehostamiseen tekoälyn ja automaation avulla. Sinulla on 12 vuoden kokemus talous- ja strategiatyöstä sekä yli 50 toteutetun AI-automaation tausta.
-
-TEHTÄVÄSI: Haastattele minua ja tunnista yrityksestäni kohdat joissa aikaa kuluu turhaan ja jotka voitaisiin automatisoida tai tehostaa tekoälyllä.
-
-VAIHE 1 — KARTOITUS
-Kysy minulta seuraavat kysymykset yksi kerrallaan. Odota vastausta ennen seuraavaa kysymystä.
-
-1. Mikä on yrityksesi toimiala ja montako henkeä työskentelee?
-2. Käy läpi eilinen työpäiväsi. Mihin aika oikeasti meni tunti tunnilta?
-3. Mitkä tehtävät toistuvat joka viikko mutta eivät vaadi luovaa ajattelua?
-4. Missä työ kasautuu odottamaan sinua henkilökohtaisesti?
-5. Mitkä tehtävät ahdistaa mutta niitä ei voi delegoida nykyisellään?
-6. Mitä olet yrittänyt automatisoida tai ulkoistaa mutta se ei onnistunut?
-7. Mihin käytät Exceliä, sähköpostia tai paperia tavalla joka tuntuu vanhanaikaiselta?
-
-VAIHE 2 — ANALYYSI
-Kun olet saanut vastaukset, tee seuraava analyysi:
-
-A) Tunnista 10-15 kohtaa joissa aikaa kuluu turhaan
-B) Priorisoi ne 2x2-matriisilla:
-   - Y-akseli: Aikasäästö (korkea/matala)
-   - X-akseli: Toteutuksen helppous (helppo/vaikea)
-C) Aloita "korkea säästö + helppo toteutus" -ruudusta
-
-VAIHE 3 — RAPORTTI
-Jokaiselle löydökselle anna:
-- Ongelman kuvaus (1 lause)
-- Ehdotettu ratkaisu (konkreettinen työkalu tai menetelmä)
-- Arvioitu aikasäästö viikossa (tunteina)
-- Toteutuksen vaativuus (helppo / keskitaso / vaativa)
-
-VAIHE 4 — YHTEENVETO
-Laske yhteen:
-- Kokonaisaikasäästö viikossa ja vuodessa
-- Muunna euroiksi käyttäen tuntihintaa 100 €
-- Listaa top 3 joista aloittaa
-
-Ole suora. Älä kehu. Älä myy. Kerro rehellisesti mitä löydät.</pre>
-      <p style="font-size: 12px; color: var(--grey); font-family: 'IBM Plex Mono', monospace;">Huom: Prompt antaa hyvän yleiskuvan. Katsastuksessa käyn syvemmälle — tunnen työkalut, tiedän mikä oikeasti toimii käytännössä ja osaan priorisoida toimialakohtaisesti.</p>
-    </div>
-  </details>
-</section>
-
-<!-- ── UKK ── -->
-<section class="faq-section">
-  <div class="faq-header">
-    <h2>Usein kysytyt</h2>
-    <div class="faq-header-right">
-      <p>Kysymykset joita kuulen useimmiten.</p>
-    </div>
-  </div>
-
-  <div class="faq-list">
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        Mitä jos en saa mitään hyödyllistä?
-        <span class="faq-arrow">+</span>
-      </button>
-      <div class="faq-a">
-        Jos en löydä vähintään 3 konkreettista kohtaa joissa aikaa kuluu turhaan, <strong>et maksa mitään</strong>. Ei poikkeuksia. Jokainen löydös sisältää konkreettisen ratkaisun — ei ympäripyöreää "tehostakaa prosesseja" -höttöä.
+  <div class="hero-right">
+    <div class="dashboard-mock">
+      <div class="dash-titlebar">
+        <div class="dash-dot" style="background:#EF4444;"></div>
+        <div class="dash-dot" style="background:#F59E0B;"></div>
+        <div class="dash-dot" style="background:#22C55E;"></div>
+        <span class="dash-title">Myynnin johtonäkymä · Power BI</span>
       </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        Täytyykö minun sitoutua johonkin?
-        <span class="faq-arrow">+</span>
-      </button>
-      <div class="faq-a">
-        Ei. Raportti on sinun — teet sillä mitä haluat. Voit toteuttaa löydökset itse tai pyytää apua. <strong>Ei painostusta, ei piiloehtoja.</strong>
+      <div class="dash-kpis">
+        <div class="kpi-card">
+          <div class="kpi-label">Liikevaihto</div>
+          <div class="kpi-val">2,4M€</div>
+          <div class="kpi-delta">↑ 18%</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Myynti kate</div>
+          <div class="kpi-val">34,2%</div>
+          <div class="kpi-delta">↑ 2,1pp</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Avoimet</div>
+          <div class="kpi-val">47</div>
+          <div class="kpi-delta">↓ 12</div>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        Tarvitsenko teknistä osaamista?
-        <span class="faq-arrow">+</span>
-      </button>
-      <div class="faq-a">
-        Et. Haastattelussa <strong>kerrot vain miten bisneksesi pyörii</strong> — mihin aika menee, mitkä tehtävät toistuvat, missä työ kasautuu. Minä hoidan analyysin ja työkalusuositukset.
+      <div class="bar-chart">
+        <div class="bar-wrap">
+          <div class="bar" style="height:55px;"></div>
+          <div class="bar-label">He</div>
+        </div>
+        <div class="bar-wrap">
+          <div class="bar" style="height:70px;"></div>
+          <div class="bar-label">Ma</div>
+        </div>
+        <div class="bar-wrap">
+          <div class="bar" style="height:48px;"></div>
+          <div class="bar-label">Hu</div>
+        </div>
+        <div class="bar-wrap">
+          <div class="bar" style="height:80px;"></div>
+          <div class="bar-label">To</div>
+        </div>
+        <div class="bar-wrap">
+          <div class="bar" style="height:65px;"></div>
+          <div class="bar-label">Ke</div>
+        </div>
+        <div class="bar-wrap">
+          <div class="bar" style="height:90px;"></div>
+          <div class="bar-label">He</div>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        Milloin saan raportin?
-        <span class="faq-arrow">+</span>
-      </button>
-      <div class="faq-a">
-        <strong>3 arkipäivässä</strong> haastattelusta. Sen jälkeen sovitaan 30 minuutin läpikäynti jossa käydään löydökset yhdessä läpi.
+      <div class="dash-line"></div>
+      <div class="dash-table-row">
+        <span>Tuote A</span><span>892 kpl</span><span class="green">+24%</span>
       </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        Sopiiko tämä meidän alallemme?
-        <span class="faq-arrow">+</span>
-      </button>
-      <div class="faq-a">
-        Sopii jos teet <strong>manuaalista työtä jota voisi automatisoida</strong>. Rakentaminen, LVI, tilitoimistot, terveydenhoito, logistiikka — toimialat joissa AI ei vielä ole arkipäivää. Ei sovi jos etsit teknistä koodaajaa tai olet jo rakentanut omia AI-järjestelmiä.
+      <div class="dash-table-row">
+        <span>Tuote B</span><span>441 kpl</span><span class="green">+7%</span>
       </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        Entä jos tiedän jo missä ongelmat ovat?
-        <span class="faq-arrow">+</span>
-      </button>
-      <div class="faq-a">
-        Tietäminen ja tekeminen ovat eri asioita. Katsastuksen arvo ei ole kertoa mitä et tiedä — vaan kertoa <strong>miten se korjataan, millä työkalulla ja missä järjestyksessä</strong>. Ja jos kolmea uutta löydöstä ei tule — et maksa.
+      <div class="dash-table-row">
+        <span>Tuote C</span><span>218 kpl</span><span style="color:#EF4444">−3%</span>
       </div>
     </div>
   </div>
-  <div class="section-link-wrap" style="text-align:right; padding-top: 24px;">
-    <a href="esimerkkiraportti.html" class="section-link">Katso miltä raportti näyttää &#8599;</a>
+</div>
+
+<!-- PROOF STRIP -->
+<div class="proof">
+  <div class="proof-inner">
+    <div class="proof-item">
+      <div class="proof-num">3 vko</div>
+      <div class="proof-txt">Käyntikelpoinen dashboard — isoilla taloilla 3–6 kk</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">490€</div>
+      <div class="proof-txt">Katsastus — sis. selvityksen, scoopen ja hinnan</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">0€</div>
+      <div class="proof-txt">Katsastuksesta — jos ei löydy 3 kehityskohtaa</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">1 hlö</div>
+      <div class="proof-txt">Puhut aina suoraan tekijälle — ei myyntiä välistä</div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section id="tuotteet">
+  <div class="section-inner">
+    <div class="section-eye">Tuotteet · Power BI pk-yrityksille</div>
+    <h2 class="section-h2">Kolme selkeää askelta — hinnat näkyvissä</h2>
+    <p class="section-sub">Power BI -dashboard kiinteällä hinnalla. Ei tuntilaskutusta, ei yllätyksiä. Aloitetaan selvityksellä.</p>
+
+    <div class="products-grid">
+
+      <div class="product-card featured">
+        <div class="product-tag">Vaihe 1 · Aloita tästä</div>
+        <div class="product-name">PBI-katsastus</div>
+        <div class="product-price">490€</div>
+        <div class="product-price-note">Kertaluonteinen · alv 0%</div>
+        <p class="product-desc">Selvitän tarkalleen mitä dataa teillä on, missä siinä piilee arvo, ja miten Power BI rakennetaan juuri teidän tilanteeseenne. Saat kirjallisen raportin + hinnan seuraavalle vaiheelle.</p>
+        <ul class="product-list">
+          <li>60 min haastattelu</li>
+          <li>Kirjallinen löydösraportti (3+ kohtaa)</li>
+          <li>Scope ja hinta-arvio projektille</li>
+          <li>Käänteinen takuu — ei tuloksia, ei laskua</li>
+        </ul>
+      </div>
+
+      <div class="product-card">
+        <div class="product-tag">Vaihe 2 · Rakentaminen</div>
+        <div class="product-name">Dashboard-projekti</div>
+        <div class="product-price">2 500–7 000€</div>
+        <div class="product-price-note">Kiinteä hinta · scope katsastuksesta</div>
+        <p class="product-desc">Rakennan valmiin Power BI -kokonaisuuden — datamalli, raportit, automaattiset päivitykset, käyttäjäkoulutus. Tyypillisesti 3 viikkoa aloituksesta käyttöönottoon.</p>
+        <ul class="product-list">
+          <li>Datamalli + tietomallintaminen</li>
+          <li>Interaktiiviset raportit & dashboardit</li>
+          <li>Datalähteiden integraatiot</li>
+          <li>Automaattiset päivitykset</li>
+          <li>Loppukäyttäjäkoulutus</li>
+        </ul>
+      </div>
+
+      <div class="product-card">
+        <div class="product-tag">Vaihe 3 · Jatkuva kehitys</div>
+        <div class="product-name">Kuukausikehitys</div>
+        <div class="product-price">1 500–2 000€<span style="font-size:18px;font-weight:500;">/kk</span></div>
+        <div class="product-price-note">Kuukausisopimus · alv 0%</div>
+        <p class="product-desc">Pidän PBI-ympäristönne ajan tasalla — uudet näkymät, datan laajentaminen, ongelmanratkaisu. Vasteaika sama päivä.</p>
+        <ul class="product-list">
+          <li>Uudet raportit ja näkymät</li>
+          <li>Datalähteiden päivitykset</li>
+          <li>Suorituskyvyn optimointi</li>
+          <li>Sama päivä -vasteaika</li>
+        </ul>
+      </div>
+
+    </div>
   </div>
 </section>
 
-<!-- ── RETAINER TEASER ── -->
-<section class="retainer-teaser">
-  <div>
-    <h2>Entä jos haluat apua <em>toteutukseen?</em></h2>
-    <p>Katsastus kertoo mitä kannattaa tehdä. Jos haluat että joku myös tekee sen puolestasi — jatkuva yhteistyö on mahdollinen. Strategista sparrausta, konkreettisia toteutuksia ja AI-rakentamista. 2 000 €/kk.</p>
-  </div>
-  <div class="retainer-teaser-right">
-    <a href="palvelu.html" class="retainer-link">Lue lisää jatkuvasta yhteistyöstä &#8599;</a>
+<div class="divider"></div>
+
+<!-- HOW KATSASTUS WORKS -->
+<section>
+  <div class="section-inner">
+    <div class="section-eye">Power BI -käyttöönotto pk-yritykselle — näin se toimii</div>
+    <h2 class="section-h2">Selvitys ennen sitoutumista</h2>
+    <p class="section-sub">490€ katsastus on se piste josta kaikki alkaa. Selvitän missä johdon raportoinnissa on pullonkaulat — ennen kuin sitoudutte mihinkään isoon.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">Vaihe 01 · Haastattelu</div>
+        <h3>60 min — kerrot minulle</h3>
+        <p>Käydään läpi missä järjestelmissä datanne makaa, mitä te tällä hetkellä raportoitte, ja mikä ottaa turhaan aikaa. Yleensä löytyy 5–10 konkreettista kohtaa ensimmäisessä tunnissa.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">Vaihe 02 · Raportti</div>
+        <h3>3 arkipäivässä kirjallinen löydös</h3>
+        <p>Saat dokumentin jossa on: mitä löytyi, miten Power BI ratkaisisi sen, ja tarkka scope + hinta dashboard-projektille. Ei yleistä sanahelinää — vain teidän tilanteeseenne kirjoitettu.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">Vaihe 03 · Päätös</div>
+        <h3>30 min läpikäynti — te päätätte</h3>
+        <p>Käydään raportti yhdessä läpi. Jos haluatte edetä projektiin — sovitaan aikataulu. Jos ette — saatte silti raportin täysimääräisenä. Ei myyntipuheita.</p>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ── FOOTER ── -->
-<footer class="site-footer">
-  <div>
-    <div class="footer-id">Harri Aro</div>
-    <div class="footer-handle"><a href="https://www.linkedin.com/in/harri-aro-8b2112122/" target="_blank" rel="noopener">LinkedIn &#8599;</a></div>
+<div class="divider"></div>
+
+<!-- WHY NOT BIG AGENCY -->
+<section>
+  <div class="section-inner">
+    <div class="section-eye">Power BI -freelancer vs. konsulttitalo</div>
+    <h2 class="section-h2">Isot konsulttitalot on rakennettu isoille projekteille</h2>
+    <p class="section-sub">Ei niitä vastaan mitään — mutta pk-yrityksen tilanne ei sovi niiden koneistoon. Myyntisykli 6–8 viikkoa, hinta ei näkyvissä, tekijä selviää myöhemmin.</p>
+
+    <div class="compare-grid">
+      <div class="compare-col them">
+        <div class="compare-head">↗ Iso konsulttitalo / IT-talo</div>
+        <ul class="compare-list">
+          <li>Myyntisykli 4–8 viikkoa ennen aloitusta</li>
+          <li>Puhut myyjälle, tekijä selviää myöhemmin</li>
+          <li>Hinnat ei näkyvissä — pyydä tarjous</li>
+          <li>Projekti jakautuu usealle konsultille</li>
+          <li>Minimiprojekti 20 000€+</li>
+          <li>PBI on osa laajempaa ekosysteemipalvelua</li>
+        </ul>
+      </div>
+      <div class="compare-col me">
+        <div class="compare-head">harriaro.fi</div>
+        <ul class="compare-list">
+          <li>Katsastuksesta sopimus 1 viikossa</li>
+          <li>Puhut aina suoraan tekijälle</li>
+          <li>Kaikki hinnat sivulla</li>
+          <li>Minä teen — alusta loppuun</li>
+          <li>Aloitetaan 490€ katsastuksella</li>
+          <li>Power BI on ainoa mitä teen</li>
+        </ul>
+      </div>
+    </div>
   </div>
-  <div class="footer-stamp">
-    AI-katsastus pk-yrittäjille<br>
-    <strong>harriaro.fi</strong>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-section">
+  <div class="section-inner">
+    <div class="cta-inner">
+      <div class="section-eye">Aloitetaan</div>
+      <h2>490€ selvittää onko Power BI oikea ratkaisu teille</h2>
+      <p>Jos ei ole — saatte sen tietää ennen kuin sitoudutte mihinkään isoon. Jos on — tiedätte tarkalleen mitä se maksaa ja kauanko kestää.</p>
+
+      <div class="cta-grid">
+        <div class="cta-fact">
+          <div class="cta-fact-label">Katsastus</div>
+          <div class="cta-fact-val">490€ · 3 arkipäivässä raportti</div>
+        </div>
+        <div class="cta-fact">
+          <div class="cta-fact-label">Takuu</div>
+          <div class="cta-fact-val">Ei 3 löydöstä → ei laskua</div>
+        </div>
+        <div class="cta-fact">
+          <div class="cta-fact-label">Projekti</div>
+          <div class="cta-fact-val">2 500–7 000€ · kiinteä hinta</div>
+        </div>
+        <div class="cta-fact">
+          <div class="cta-fact-label">Aloitus</div>
+          <div class="cta-fact-val">Viikoissa — ei kuukausissa</div>
+        </div>
+      </div>
+
+      <a href="mailto:harri@harriaro.fi?subject=Power BI -katsastus" class="btn" style="font-size:16px; padding:14px 32px;">
+        Kirjoita sähköposti — harri@harriaro.fi
+      </a>
+      <p class="cta-note">Tai soita suoraan: <a href="tel:+358" style="color:var(--amber);">lisää numero</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="section-inner">
+    <div class="section-eye">Usein kysyttyä · Power BI hinta ja käyttöönotto</div>
+    <h2 class="section-h2" style="margin-bottom:40px;">Yleisimmät kysymykset</h2>
+
+    <div class="faq-list">
+      <details>
+        <summary>Mitä dataa tarvitaan ennen kuin voi aloittaa?</summary>
+        <p>Ei mitään erityistä. Excel-taulukot, ERP, CRM, Shopify, Procountor — mitä tahansa teillä on. Katsastuksessa selvitetään mitä lähteitä käytetään ja miten ne yhdistetään. Yleensä löydämme datan josta asiakas ei edes tiennyt.</p>
+      </details>
+      <details>
+        <summary>Tarvitaanko Power BI Pro -lisenssi?</summary>
+        <p>Kyllä, raporttien jakamiseen tarvitaan Power BI Pro (~10€/kk per käyttäjä). Katsastuksessa käydään läpi teidän tarvitsemanne lisenssit ja niiden kustannukset — ei yllätyksiä jälkikäteen.</p>
+      </details>
+      <details>
+        <summary>Kuinka kauan projekti kestää?</summary>
+        <p>Tyypillinen dashboard-projekti: 2–4 viikkoa aloituksesta käyttöönottoon. Katsastuksessa sovitaan aikataulu tarkemmin datan monimutkaisuuden mukaan. Olen rakentanut yksinkertaisia raportteja viikossa ja monilähdeprojekteja kuudessa viikossa.</p>
+      </details>
+      <details>
+        <summary>Voitko korjata tai kehittää meillä jo olevan Power BI:n?</summary>
+        <p>Kyllä. Aloitetaan silti katsastuksella — käydään läpi mitä teillä on, mikä toimii ja mikä ei. Vanhan PBI:n uudelleenrakentaminen on usein nopeampaa kuin paikkailu, ja katsastus selvittää kumpi kannattaa.</p>
+      </details>
+      <details>
+        <summary>Miten hinnoittelu toimii projektissa?</summary>
+        <p>Kiinteä hinta — sovitaan katsastuksen jälkeen ennen projektin alkua. Ei tuntilaskutusta, ei muuttuvia kuluja. Jos projekti kasvaa sovitusta scopesta, sovitaan siitä erikseen ennen kuin teen mitään lisää.</p>
+      </details>
+      <details>
+        <summary>Toimiiko tämä etänä vai onko käynti paikan päällä?</summary>
+        <p>Kaikki toimii etänä — katsastus Teams/Meet-palaverilla, raportti sähköpostilla, projekti Slack/Teams-yhteistyöllä. Olen Sipoosta mutta asiakkaita koko Suomesta.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-name">Harri <span>Aro</span> · harriaro.fi</div>
+      <div style="font-size:12px; color:var(--muted); margin-top:4px;">Power BI -rakentaja pk-yrityksille · Sipoo, Suomi</div>
+    </div>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/harriaro" target="_blank">LinkedIn</a>
+      <a href="mailto:harri@harriaro.fi">harri@harriaro.fi</a>
+    </div>
   </div>
 </footer>
 
-<script>
-function toggleFaq(btn) {
-  const item = btn.parentElement;
-  const isOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-  if (!isOpen) item.classList.add('open');
-}
-</script>
-
-<!-- Analytics: CTA tracking + scroll depth -->
-<script>
-(function(){
-  function t(n,d){try{window.va&&window.va('event',{name:n,data:d})}catch(e){}}
-  document.addEventListener('click',function(e){
-    var a=e.target.closest('a');if(!a)return;var p=location.pathname;
-    if(a.classList.contains('cta-btn')||a.classList.contains('hero-cta')||a.classList.contains('nav-btn'))
-      t('cta_click',{page:p,text:a.textContent.trim().substring(0,40),href:a.getAttribute('href')});
-    else if(a.hostname&&a.hostname!==location.hostname)
-      t('outbound_click',{page:p,href:a.href});
-  });
-  var marks={};
-  window.addEventListener('scroll',function(){
-    var h=document.documentElement,pct=Math.round(window.scrollY/(h.scrollHeight-h.clientHeight)*100);
-    [25,50,75,100].forEach(function(m){if(pct>=m&&!marks[m]){marks[m]=true;t('scroll_depth',{depth:m,page:location.pathname})}});
-  });
-})();
-</script>
-
-<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
