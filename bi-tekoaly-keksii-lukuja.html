@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tekoäly BI:ssä keksii lukuja — miksi datamallin laatu ratkaisee kaiken | Harri Aro</title>
+<meta name="description" content="Microsoft varoittaa itse: Power BI Copilot voi keksiä lukuja jos datamalli on puutteellinen. Garbage in, garbage out pätee tekoälyssä enemmän kuin koskaan.">
+<link rel="canonical" href="https://harriaro.fi/bi-tekoaly-keksii-lukuja.html">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Tekoäly BI:ssä keksii lukuja — miksi datamallin laatu ratkaisee kaiken","author":{"@type":"Person","name":"Harri Aro","url":"https://harriaro.fi"},"datePublished":"2026-08-28","url":"https://harriaro.fi/bi-tekoaly-keksii-lukuja.html"}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--bg:#0B0D10;--card:#13161C;--border:#1E2530;--amber:#F59E0B;--text:#F1F5F9;--muted:#64748B;--light:#94A3B8;--green:#22C55E}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(11,13,16,.92);backdrop-filter:blur(12px);z-index:100}
+  .nav-name{font-family:'Space Grotesk',sans-serif;font-weight:600;color:var(--text);text-decoration:none}
+  .nav-name span{color:var(--amber)}
+  .btn{display:inline-block;padding:10px 22px;background:var(--amber);color:#000;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;border-radius:8px;text-decoration:none}
+  .article{max-width:720px;margin:0 auto;padding:60px 32px 80px}
+  .article-eye{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:16px}
+  .article h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,4vw,42px);font-weight:700;line-height:1.15;letter-spacing:-.02em;margin-bottom:16px}
+  .article-meta{font-size:13px;color:var(--muted);margin-bottom:40px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+  .article h2{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;margin:40px 0 14px}
+  .article p{font-size:16px;color:var(--light);margin-bottom:18px;line-height:1.75}
+  .article strong{color:var(--text)}
+  .warning-box{background:#1a0a0a;border:1px solid #EF4444;border-radius:10px;padding:24px;margin:28px 0}
+  .warning-box p{margin:0;color:#fca5a5;font-size:15px;line-height:1.7}
+  .warning-box strong{color:#EF4444}
+  .highlight{background:var(--card);border-left:3px solid var(--amber);border-radius:0 8px 8px 0;padding:20px 24px;margin:28px 0}
+  .highlight p{margin:0;color:var(--text);font-size:15px}
+  .steps{display:flex;flex-direction:column;gap:16px;margin:28px 0}
+  .step-item{background:var(--card);border-radius:10px;padding:20px;display:flex;gap:16px;align-items:flex-start}
+  .step-num{background:var(--amber);color:#000;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;border-radius:6px;padding:4px 10px;flex-shrink:0}
+  .step-content h4{font-family:'Space Grotesk',sans-serif;font-weight:600;margin-bottom:6px;font-size:15px}
+  .step-content p{font-size:13px;color:var(--light);margin:0}
+  .cta-box{background:var(--card);border:1px solid var(--amber);border-radius:12px;padding:32px;margin-top:48px;text-align:center}
+  .cta-box h3{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;margin-bottom:10px}
+  .cta-box p{color:var(--light);margin-bottom:20px;font-size:15px}
+  footer{padding:32px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+  .footer-name{font-family:'Space Grotesk',sans-serif;font-weight:600}
+  .footer-name span{color:var(--amber)}
+  footer a{color:var(--muted);font-size:13px;text-decoration:none}
+  @media(max-width:640px){.article{padding:40px 20px 60px}nav{padding:14px 20px}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-name">Harri <span>Aro</span></a>
+  <a href="https://wa.me/358405658921?text=Hei%20Harri!%20N%C3%A4in%20harriaro.fi%20ja%20olen%20kiinnostunut%20Power%20BI%20-katsastuksesta.%20Voisiko%20jutella%3F" class="btn">Varaa katsastus — 490€</a>
+</nav>
+
+<div class="article">
+  <div class="article-eye">Tekoäly ja datamalli · Tärkeä varoitus</div>
+  <h1>Tekoäly BI:ssä keksii lukuja — miksi datamallin laatu ratkaisee kaiken</h1>
+  <div class="article-meta">Harri Aro · 28.8.2026 · 5 min lukuaika</div>
+
+  <p>Tämä ei ole klikkiotsikko. Se on Microsoftin oma varoitus Power BI Copilotin dokumentaatiossa:</p>
+
+  <div class="warning-box">
+    <p><strong>"Inaccuracy can occur because semantic models have missing values, and since AI is generating the summary, it can try to fill the holes and fabricate data."</strong><br><br>— Microsoft Power BI Copilot -dokumentaatio, 2026</p>
+  </div>
+
+  <p>Copilot ei valehtele tarkoituksella. Se tekee parhaansa puutteellisella datalla — ja paras arvaus voi olla väärä luku esitettynä varmuudella. MIT:n tammikuussa 2025 julkaiseman tutkimuksen mukaan tekoälymallit käyttävät todennäköisimmin varmaa kieltä ("ehdottomasti", "varmasti") juuri silloin kun ne ovat väärässä.</p>
+
+  <p>Johto lukee Copilotin tuottaman yhteenvedon ja tekee päätöksiä sen perusteella. Luku on väärä. Kukaan ei tiedä.</p>
+
+  <h2>Miksi "garbage in, garbage out" pätee tekoälyssä enemmän kuin koskaan</h2>
+
+  <p>Perinteisessä BI:ssä huono data tuottaa väärän luvun — ja se näkyy. Raportti näyttää tyhjää, nolla tai selvästi virheellisen arvon. Virhe on havaittavissa.</p>
+
+  <p>Tekoälyn kanssa tilanne on eri. Copilot ei näytä tyhjää — se täyttää aukon plausiibelilla arvauksella ja esittää sen samalla varmuudella kuin oikean luvun. Virhe ei näy pinnalta. Se vaatii validointia.</p>
+
+  <div class="highlight">
+    <p>Vanha BI-virhe: raportti näyttää tyhjää. Uusi AI-virhe: raportti näyttää väärän luvun — uskottavasti.</p>
+  </div>
+
+  <h2>Mitä "hyvä datamalli" tarkoittaa käytännössä</h2>
+
+  <p>Jotta tekoäly — Copilot tai muu — toimii luotettavasti, datamallin täytyy täyttää tietyt perusvaatimukset. Nämä eivät ole tekoälyyn liittyviä vaatimuksia — ne ovat hyvän BI-rakentamisen perusteita joita olisi pitänyt noudattaa muutenkin.</p>
+
+  <div class="steps">
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Mittarit nimetty johdonmukaisesti ja kuvattu</h4>
+        <p>Copilot lukee mittarien nimet ja kuvaukset. "Myynti_2" ja "Myynti_uusi" ovat sama asia ihmiselle — tekoälylle ne ovat kaksi eri mittaria. Nimeä selkeästi ja kirjoita kuvaus jokaiselle mittarille.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Data validoitu ja lähde dokumentoitu</h4>
+        <p>Tekoäly ei tiedä mistä data tulee tai onko se luotettavaa. Se luottaa siihen mitä sille annetaan. Validoi data ennen malliin viemistä — ei jälkeen.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Tietomalli siisti — ei kierrätettyjä rakenteita</h4>
+        <p>Monimutkaiset kiertotiet ja "tämä toimii mutta en tiedä miksi" -ratkaisut hajoavat tekoälyn kanssa. Puhtaaseen malliin tekoäly osaa luottaa — sotkuiseen ei.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>Sensitivity labels asetettu arkaluonteiselle datalle</h4>
+        <p>Power BI Copilot kunnioittaa Purview sensitivity labeleita — Restricted-tason data on estetty Copilotilta. Tämä on turvallisuusmääritys jonka pitää olla kunnossa ennen käyttöönottoa.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>Mitä tämä tarkoittaa jos harkitset Copilotia</h2>
+
+  <p>Copilot ei ole syy rakentaa kunnollinen datamalli — kunnollinen datamalli on syy ottaa Copilot käyttöön. Järjestys on tärkeä.</p>
+
+  <p>Jos Power BI on rakennettu kiireessä, scopea on laajennettu ilman suunnittelua, tai mittarien nimeäminen on epäjohdonmukaista — Copilot tuottaa epäluotettavia tuloksia. Parempi rakentaa pohja ensin.</p>
+
+  <p>EY:n 2025 tutkimuksessa 41% yrityksistä joilla oli AI-toteutusongelmia mainitsi datan laadun suurimpana ongelmana. Tekoäly ei ratkaise datan laatu-ongelmaa — se pahentaa sitä kun virheet muuttuvat näkymättömiksi.</p>
+
+  <div class="cta-box">
+    <h3>Onko teidän datamallisi valmis tekoälylle?</h3>
+    <p>490€ katsastuksessa arvioin mallin laadun ja kerron mitä pitää korjata ennen kuin tekoälytyökalut otetaan käyttöön luotettavasti.</p>
+    <a href="https://wa.me/358405658921?text=Hei%20Harri!%20N%C3%A4in%20harriaro.fi%20ja%20olen%20kiinnostunut%20Power%20BI%20-katsastuksesta.%20Voisiko%20jutella%3F" class="btn">WhatsApp — jutellaan</a>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-name">Harri <span>Aro</span> · harriaro.fi</span>
+  <div style="display:flex;gap:20px;">
+    <a href="/">Etusivu</a>
+    <a href="https://www.linkedin.com/in/harri-aro-8b2112122/" target="_blank">LinkedIn</a>
+    <a href="mailto:aro.harri@gmail.com">aro.harri@gmail.com</a>
+  </div>
+</footer>
+</body>
+</html>
