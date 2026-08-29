@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Controllerin Excel — Suomen kallein kuukausiraportti | Harri Aro</title>
+<meta name="description" content="Teillä on Power BI. Silti controller käyttää kolme tuntia maanantaiaamuna Excelin kokoamiseen. Onko tämä tietoinen valinta vai ongelma josta ei puhuta?">
+<link rel="canonical" href="https://harriaro.fi/controllerin-excel.html">
+<meta property="og:title" content="Controllerin Excel — Suomen kallein kuukausiraportti">
+<meta property="og:description" content="Teillä on Power BI. Silti controller käyttää kolme tuntia Excelin kokoamiseen. Onko tämä tietoinen valinta?">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Controllerin Excel — Suomen kallein kuukausiraportti","author":{"@type":"Person","name":"Harri Aro","url":"https://harriaro.fi"},"datePublished":"2026-08-28","url":"https://harriaro.fi/controllerin-excel.html"}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--bg:#0B0D10;--card:#13161C;--border:#1E2530;--amber:#F59E0B;--text:#F1F5F9;--muted:#64748B;--light:#94A3B8;--green:#22C55E}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(11,13,16,.92);backdrop-filter:blur(12px);z-index:100}
+  .nav-name{font-family:'Space Grotesk',sans-serif;font-weight:600;color:var(--text);text-decoration:none}
+  .nav-name span{color:var(--amber)}
+  .btn{display:inline-block;padding:10px 22px;background:var(--amber);color:#000;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;border-radius:8px;text-decoration:none}
+  .article{max-width:720px;margin:0 auto;padding:60px 32px 80px}
+  .article-eye{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:16px}
+  .article h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,4vw,42px);font-weight:700;line-height:1.15;letter-spacing:-.02em;margin-bottom:16px}
+  .article-meta{font-size:13px;color:var(--muted);margin-bottom:40px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+  .article h2{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;margin:40px 0 14px}
+  .article p{font-size:16px;color:var(--light);margin-bottom:18px;line-height:1.75}
+  .article strong{color:var(--text)}
+  .highlight{background:var(--card);border-left:3px solid var(--amber);border-radius:0 8px 8px 0;padding:20px 24px;margin:28px 0}
+  .highlight p{margin:0;color:var(--text);font-size:15px}
+  .math-box{background:#0f1a0a;border:1px solid #16a34a;border-radius:10px;padding:24px;margin:28px 0}
+  .math-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:14px}
+  .math-row:last-child{border-bottom:none;padding-top:16px;margin-top:8px;border-top:1px solid rgba(255,255,255,.15)}
+  .math-row .label{color:var(--light)}
+  .math-row .val{color:var(--text);font-weight:600;font-family:'Space Grotesk',sans-serif}
+  .math-row .val.total{color:#4ade80;font-size:18px}
+  .cta-box{background:var(--card);border:1px solid var(--amber);border-radius:12px;padding:32px;margin-top:48px;text-align:center}
+  .cta-box h3{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;margin-bottom:10px}
+  .cta-box p{color:var(--light);margin-bottom:20px;font-size:15px}
+  footer{padding:32px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+  .footer-name{font-family:'Space Grotesk',sans-serif;font-weight:600}
+  .footer-name span{color:var(--amber)}
+  footer a{color:var(--muted);font-size:13px;text-decoration:none}
+  @media(max-width:640px){.article{padding:40px 20px 60px}nav{padding:14px 20px}.math-row{flex-direction:column;align-items:flex-start;gap:4px}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-name">Harri <span>Aro</span></a>
+  <a href="https://wa.me/358405658921?text=Hei%20Harri!%20N%C3%A4in%20harriaro.fi%20ja%20olen%20kiinnostunut%20Power%20BI%20-optimoinnista.%20Voisiko%20jutella%3F" class="btn">Varaa katsastus — 490€</a>
+</nav>
+
+<div class="article">
+  <div class="article-eye">Power BI -optimointi · Provokatiivinen näkökulma</div>
+  <h1>Controllerin Excel — Suomen kallein kuukausiraportti</h1>
+  <div class="article-meta">Harri Aro · 28.8.2026 · 4 min lukuaika</div>
+
+  <p>Montako tuntia teillä menee kuukausiraportin kokoamiseen — vaikka Power BI on pystyssä?</p>
+
+  <p>Jos vastaus on enemmän kuin nolla, teillä on ongelma. Ei tekninen ongelma — se on jo ratkaistu. Teillä on bisnasongelma jota kukaan ei halua ääneen sanoa: maksatte kuukausittain siitä, että Power BI -investointi ei tuota sitä mitä piti.</p>
+
+  <h2>Lasketaan ääneen</h2>
+
+  <p>Otetaan varovainen esimerkki. Controller, 5 000€/kk. Maanantaiaamuna ennen johtoryhmää: kolme tuntia Excelin kokoamista. Kuukauden vaihde: kaksi tuntia lisää. Yhteensä viisi tuntia kuukaudessa pelkkää manuaalista tiedon siirtelyä.</p>
+
+  <div class="math-box">
+    <div class="math-row">
+      <span class="label">Controllerin tuntikustannus (sis. sivukulut)</span>
+      <span class="val">~45 €/h</span>
+    </div>
+    <div class="math-row">
+      <span class="label">Manuaalinen raportointi kuukaudessa</span>
+      <span class="val">5 tuntia</span>
+    </div>
+    <div class="math-row">
+      <span class="label">Kustannus kuukaudessa</span>
+      <span class="val">225 €/kk</span>
+    </div>
+    <div class="math-row">
+      <span class="label">Kustannus vuodessa</span>
+      <span class="val">2 700 €/vuosi</span>
+    </div>
+    <div class="math-row">
+      <span class="label">Power BI -investointi aikanaan</span>
+      <span class="val">15 000–40 000 €</span>
+    </div>
+    <div class="math-row">
+      <span class="label" style="color:var(--text);font-weight:600;">Säästö jos BI toimisi oikein</span>
+      <span class="val total">2 700 €/vuosi + controllerille aikaa oikeaan työhön</span>
+    </div>
+  </div>
+
+  <p>Nämä luvut ovat varovaisia. Monessa yrityksessä aikaa kuluu enemmän, useammalta ihmiseltä, ja johtoryhmäpalaverit venyvät kun ensimmäinen puoli tuntia menee lukujen selvittelyyn.</p>
+
+  <h2>Mutta hei — eikö tämä ole vain "niin se menee"?</h2>
+
+  <p>On helppo tottua tilanteeseen. Controller on aina kokonut Excelin, johtoryhmä on aina odottanut sitä, ja niin se on aina mennyt. Power BI tuli, mutta tapa ei muuttunut.</p>
+
+  <p>Provokatiivinen kysymys: <strong>jos palkkaisitte nyt uuden controllerin, hyväksyisittekö hänelle saman tehtävän?</strong> "Kolme tuntia maanantaiaamuista menee datan siirtelyyn Excelistä toiseen." Todennäköisesti et. Mutta nykyinen controller tekee sen koska niin on aina tehty.</p>
+
+  <div class="highlight">
+    <p>Excel ei ole ongelma. Ongelma on kun Excel korvaa sen mitä Power BI:n pitäisi tehdä automaattisesti.</p>
+  </div>
+
+  <h2>Miksi controller kokoaa Exceliä vaikka BI on pystyssä</h2>
+
+  <p><strong>BI ei kata kaikkea.</strong> Raportit tehtiin projektin alussa sovitun scopen mukaan. Liiketoiminta on muuttunut, scope ei. Muutama kriittinen mittari puuttuu — ja niitä haetaan käsin.</p>
+
+  <p><strong>Johto ei luota lukuihin.</strong> Kerran oli ristiriita raportin ja todellisuuden välillä. Siitä lähtien Excel kulkee "varmuuden vuoksi" mukana. Luottamus on vaikea rakentaa jälkikäteen.</p>
+
+  <p><strong>BI on liian monimutkainen käyttää.</strong> Raportti on teknisesti oikein mutta navigoiminen vie liikaa aikaa. On helpompaa avata tuttu Excel kuin opetella uusi näkymä joka palaverissa.</p>
+
+  <p><strong>Kukaan ei ole kertaakaan kysynyt.</strong> Ei IT:ltä, ei johdolta, ei BI-toimittajalta. Controller kokoaa Exceliä koska kukaan ei ole pistänyt prosessia kyseenalaiseksi.</p>
+
+  <h2>Ratkaisu ei ole uusi BI-projekti</h2>
+
+  <p>Tämä ei vaadi uutta isoa investointia. Rakenne on useimmiten kunnossa — puuttuu bisnesymmärrys siitä mitä johto oikeasti tarvitsee ja muutama konkreettinen parannus raportteihin.</p>
+
+  <p>Teen 490€ BI-optimointikatsastuksen. Tunnin haastattelussa selvitän mitä controlleriltanne oikeasti kuluu aikaa, mitä raporteilta puuttuu, ja mitä pitää muuttaa. Kirjallinen raportti kolmessa arkipäivässä.</p>
+
+  <p>Taustani: 9 vuotta controllerina ja business partnerina. Olen se ihminen joka on kokonut sen Excelin — ja se ihminen joka on myöhemmin rakentanut Power BI:n korvaamaan sen. Tiedän kummankin puolen.</p>
+
+  <div class="cta-box">
+    <h3>Montako tuntia teillä menee kuukausiraporttiin?</h3>
+    <p>Jos vastaus on enemmän kuin tunti — 490€ katsastus selvittää miksi ja miten se muutetaan. Käänteinen takuu.</p>
+    <a href="https://wa.me/358405658921?text=Hei%20Harri!%20N%C3%A4in%20harriaro.fi%20ja%20olen%20kiinnostunut%20Power%20BI%20-optimoinnista.%20Voisiko%20jutella%3F" class="btn">WhatsApp — jutellaan</a>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-name">Harri <span>Aro</span> · harriaro.fi</span>
+  <div style="display:flex;gap:20px;">
+    <a href="/">Etusivu</a>
+    <a href="https://www.linkedin.com/in/harri-aro-8b2112122/" target="_blank">LinkedIn</a>
+    <a href="mailto:aro.harri@gmail.com">aro.harri@gmail.com</a>
+  </div>
+</footer>
+</body>
+</html>
