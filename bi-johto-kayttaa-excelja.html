@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teillä on Power BI — mutta johto käyttää yhä Exceliä. Miksi? | Harri Aro</title>
+<meta name="description" content="Power BI on teknisesti pystyssä mutta controller kokoaa silti Exceliä ennen johtoryhmää. Tässä syyt — ja miten tilanne korjataan.">
+<link rel="canonical" href="https://harriaro.fi/bi-johto-kayttaa-excelja.html">
+<meta property="og:title" content="Teillä on Power BI — mutta johto käyttää yhä Exceliä. Miksi?">
+<meta property="og:description" content="Power BI on teknisesti pystyssä mutta controller kokoaa silti Exceliä ennen johtoryhmää. Tässä syyt ja ratkaisu.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Teillä on Power BI — mutta johto käyttää yhä Exceliä. Miksi?","author":{"@type":"Person","name":"Harri Aro","url":"https://harriaro.fi"},"datePublished":"2026-08-28","url":"https://harriaro.fi/bi-johto-kayttaa-excelja.html"}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--bg:#0B0D10;--card:#13161C;--border:#1E2530;--amber:#F59E0B;--text:#F1F5F9;--muted:#64748B;--light:#94A3B8;--green:#22C55E}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(11,13,16,.92);backdrop-filter:blur(12px);z-index:100}
+  .nav-name{font-family:'Space Grotesk',sans-serif;font-weight:600;color:var(--text);text-decoration:none}
+  .nav-name span{color:var(--amber)}
+  .btn{display:inline-block;padding:10px 22px;background:var(--amber);color:#000;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;border-radius:8px;text-decoration:none}
+  .article{max-width:720px;margin:0 auto;padding:60px 32px 80px}
+  .article-eye{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:16px}
+  .article h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,4vw,42px);font-weight:700;line-height:1.15;letter-spacing:-.02em;margin-bottom:16px}
+  .article-meta{font-size:13px;color:var(--muted);margin-bottom:40px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+  .article h2{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;margin:40px 0 14px}
+  .article p{font-size:16px;color:var(--light);margin-bottom:18px;line-height:1.75}
+  .article strong{color:var(--text)}
+  .highlight{background:var(--card);border-left:3px solid var(--amber);border-radius:0 8px 8px 0;padding:20px 24px;margin:28px 0}
+  .highlight p{margin:0;color:var(--text);font-size:15px}
+  .checklist{list-style:none;display:flex;flex-direction:column;gap:10px;margin:20px 0 28px}
+  .checklist li{font-size:15px;color:var(--light);padding-left:24px;position:relative;line-height:1.6}
+  .checklist li::before{content:"→";position:absolute;left:0;color:var(--amber);font-weight:700}
+  .cta-box{background:var(--card);border:1px solid var(--amber);border-radius:12px;padding:32px;margin-top:48px;text-align:center}
+  .cta-box h3{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;margin-bottom:10px}
+  .cta-box p{color:var(--light);margin-bottom:20px;font-size:15px}
+  footer{padding:32px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+  .footer-name{font-family:'Space Grotesk',sans-serif;font-weight:600}
+  .footer-name span{color:var(--amber)}
+  footer a{color:var(--muted);font-size:13px;text-decoration:none}
+  @media(max-width:640px){.article{padding:40px 20px 60px}nav{padding:14px 20px}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-name">Harri <span>Aro</span></a>
+  <a href="https://wa.me/358405658921?text=Hei%20Harri!%20N%C3%A4in%20harriaro.fi%20ja%20olen%20kiinnostunut%20Power%20BI%20-katsastuksesta.%20Voisiko%20jutella%3F" class="btn">Varaa katsastus — 490€</a>
+</nav>
+
+<div class="article">
+  <div class="article-eye">Power BI -optimointi</div>
+  <h1>Teillä on Power BI — mutta johto käyttää yhä Exceliä. Miksi?</h1>
+  <div class="article-meta">Harri Aro · 28.8.2026 · 4 min lukuaika</div>
+
+  <p>Se on yksi yleisimmistä tilanteista jonka kohtaan: yritys on investoinut Power BI:hin, projekti on toimitettu "valmiina", ja silti controller kokoaa Exceliä joka maanantai ennen johtoryhmää. Power BI on auki jossakin, mutta kukaan ei oikein käytä sitä.</p>
+
+  <p>Tämä ei ole harvinainen poikkeus. Se on normi.</p>
+
+  <h2>Miksi Power BI jää käyttämättä?</h2>
+
+  <p>Tekninen toimitus ja bisnesvaikutus ovat kaksi eri asiaa. Iso konsulttitalo toimittaa raportteja jotka ovat teknisesti oikein — data on oikeasta paikasta, luvut täsmäävät kirjanpitoon, dashboardit näyttävät hyvältä demoissa.</p>
+
+  <p>Mutta johtoryhmäpalaveri on eri tilanne kuin demo. Siellä esitetään kysymyksiä joihin kukaan ei muistanut varautua. "Mikä on Pohjoisen alueen kate ilman kertaluonteisia eriä?" "Miten Q3 vertautuu budjettiin tuotelinjoittain?" Raportit eivät vastaa — ja controller avaa Excelin.</p>
+
+  <div class="highlight">
+    <p>Power BI -projekti onnistuu teknisesti mutta epäonnistuu kaupallisesti kun tekijä ei ymmärrä mitä kysymyksiä johtoryhmässä oikeasti esitetään.</p>
+  </div>
+
+  <h2>Kolme yleisintä syytä</h2>
+
+  <p><strong>1. Raportit rakennettiin IT:n toiveiden mukaan, ei johdon.</strong> Tekninen tekijä kysyi "mitä dataa tarvitaan?" — pitäisi kysyä "mitä päätöksiä tuetaan?" Nämä ovat eri kysymyksiä ja johtavat erilaisiin lopputuloksiin.</p>
+
+  <p><strong>2. Johto ei luota lukuihin.</strong> Kerran palaverissa huomattiin ristiriita raportin ja Excelin välillä. Siitä lähtien Exceliä käytetään "varmuuden vuoksi." Luottamus on vaikea rakentaa uudelleen.</p>
+
+  <p><strong>3. Kukaan ei kehitä.</strong> Projekti toimitettiin, toimittaja lähti. Kun liiketoiminta muuttui — uusi tuote, uusi alue, uusi organisaatio — raportit eivät päivittyneet. Ne kuvaavat vanhaa maailmaa.</p>
+
+  <h2>Miten tunnistaa onko tilanne tämä?</h2>
+
+  <ul class="checklist">
+    <li>Controller käyttää yli tunnin viikossa datan kokoamiseen Excelissä</li>
+    <li>Johtoryhmäpalaverin alussa "selvitetään lukua" ennen kuin päästään asiaan</li>
+    <li>Power BI on kirjautunut sisään korkeintaan kerran viikossa</li>
+    <li>Raportit eivät vastaa kysymyksiin joita johtoryhmässä esitetään</li>
+    <li>Viimeisin isompi muutos raportteihin on yli 6 kuukautta sitten</li>
+  </ul>
+
+  <p>Jos kolme näistä osuu kohdalleen, Power BI ei tee sitä mitä sen pitäisi tehdä.</p>
+
+  <h2>Mitä sille voi tehdä?</h2>
+
+  <p>Tilanne on korjattavissa — mutta se vaatii eri lähestymistavan kuin alkuperäinen projekti. Tekninen rakenne on usein kunnossa. Se mitä puuttuu on bisnesymmärrys: mitkä ovat ne kysymykset joihin johto tarvitsee vastauksen, ja miten raportit rakennetaan vastaamaan niihin.</p>
+
+  <p>Teen tähän 490€ BI-optimointikatsastuksen. Tunnin haastattelussa käyn läpi mitä teillä on, mitä puuttuu, ja mitä pitää muuttaa jotta johto oikeasti käyttää sitä. Kirjallinen raportti 3 arkipäivässä.</p>
+
+  <p>Taustani on corporate finance — olen ollut se controller joka kokoaa Exceliä ja se johtoryhmän jäsen joka odottaa raporttia. Tiedän mistä ongelma lähtee ja mihin sen pitää päättyä.</p>
+
+  <div class="cta-box">
+    <h3>Onko teillä tämä tilanne?</h3>
+    <p>490€ katsastuksessa selvitän miksi Power BI ei ole käytössä — ja mitä pitää muuttaa. Käänteinen takuu: ei löydöstä, ei laskua.</p>
+    <a href="https://wa.me/358405658921?text=Hei%20Harri!%20N%C3%A4in%20harriaro.fi%20ja%20olen%20kiinnostunut%20Power%20BI%20-optimoinnista.%20Voisiko%20jutella%3F" class="btn">WhatsApp — jutellaan</a>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-name">Harri <span>Aro</span> · harriaro.fi</span>
+  <div style="display:flex;gap:20px;">
+    <a href="/">Etusivu</a>
+    <a href="https://www.linkedin.com/in/harri-aro-8b2112122/" target="_blank">LinkedIn</a>
+    <a href="mailto:aro.harri@gmail.com">aro.harri@gmail.com</a>
+  </div>
+</footer>
+</body>
+</html>
