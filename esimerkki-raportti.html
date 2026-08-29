@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Esimerkkiraportti — Power BI -tyylinen johdon dashboard | harriaro.fi</title>
+<meta name="description" content="Esimerkki Power BI -tyylisestä johdon raportista dummy-datalla. Poraudu kuukausista tuotteisiin ja alueisiin — juuri näin toimii oikea ratkaisu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0B0D10;--card:#13161C;--card2:#1A1F28;--border:#1E2530;
+  --amber:#F59E0B;--text:#F1F5F9;--muted:#64748B;--light:#94A3B8;
+  --green:#22C55E;--red:#EF4444;--blue:#3B82F6;--purple:#8B5CF6;
+}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;background:rgba(11,13,16,.95);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.nav-left{display:flex;align-items:center;gap:8px;text-decoration:none}
+.nav-logo{width:32px;height:32px;border-radius:6px;background:var(--card2);border:1.5px solid var(--amber);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;color:var(--amber);letter-spacing:1px}
+.nav-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;color:var(--text)}
+.nav-name span{color:var(--amber)}
+.nav-badge{font-size:10px;padding:3px 8px;border-radius:99px;background:rgba(245,158,11,.15);color:var(--amber);border:1px solid rgba(245,158,11,.3);font-weight:600;letter-spacing:.05em}
+.btn-sm{padding:8px 16px;background:var(--amber);color:#000;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px;border-radius:6px;text-decoration:none;white-space:nowrap}
+
+/* LAYOUT */
+.shell{display:flex;height:calc(100vh - 49px)}
+
+/* SIDEBAR */
+.sidebar{width:200px;flex-shrink:0;background:var(--card);border-right:1px solid var(--border);padding:16px 0;display:flex;flex-direction:column;gap:2px}
+.sidebar-section{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding:8px 16px 4px}
+.sidebar-item{display:flex;align-items:center;gap:8px;padding:8px 16px;font-size:13px;color:var(--light);cursor:pointer;border-left:2px solid transparent;transition:all .12s}
+.sidebar-item:hover{background:var(--card2);color:var(--text)}
+.sidebar-item.active{background:rgba(245,158,11,.08);color:var(--amber);border-left-color:var(--amber)}
+.sidebar-item .icon{width:16px;text-align:center;font-size:14px}
+
+/* MAIN */
+.main{flex:1;overflow-y:auto;padding:20px 24px}
+
+/* BREADCRUMB */
+.breadcrumb{display:flex;align-items:center;gap:6px;margin-bottom:16px;font-size:12px;color:var(--muted)}
+.breadcrumb-item{cursor:pointer;transition:color .12s}
+.breadcrumb-item:hover{color:var(--text)}
+.breadcrumb-item.active{color:var(--text);font-weight:500}
+.breadcrumb-sep{color:var(--border)}
+
+/* TITLE BAR */
+.title-bar{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;gap:16px}
+.page-title{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--text)}
+.page-sub{font-size:12px;color:var(--muted);margin-top:3px}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filter-btn{padding:5px 12px;border-radius:6px;font-size:12px;font-weight:600;border:1px solid var(--border);background:var(--card);color:var(--light);cursor:pointer;transition:all .12s}
+.filter-btn:hover,.filter-btn.active{border-color:var(--amber);color:var(--amber);background:rgba(245,158,11,.08)}
+
+/* KPI GRID */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px}
+.kpi-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.kpi-val{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;line-height:1;margin-bottom:4px}
+.kpi-delta{font-size:11px;display:flex;align-items:center;gap:4px}
+.kpi-delta.up{color:var(--green)}
+.kpi-delta.down{color:var(--red)}
+
+/* CHARTS ROW */
+.charts-row{display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-bottom:16px}
+.chart-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px}
+.chart-title{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;margin-bottom:4px}
+.chart-sub{font-size:11px;color:var(--muted);margin-bottom:16px}
+
+/* BAR CHART */
+.bar-chart-wrap{height:160px;display:flex;align-items:flex-end;gap:6px}
+.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer}
+.bar-col:hover .bar-rect{opacity:.8;transform:scaleY(1.03);transform-origin:bottom}
+.bar-col.selected .bar-rect{border:2px solid var(--amber)}
+.bar-rect{width:100%;border-radius:3px 3px 0 0;background:var(--amber);transition:all .15s;position:relative}
+.bar-rect.prev{background:var(--border)}
+.bar-label{font-size:9px;color:var(--muted)}
+.bar-val{font-size:9px;color:var(--amber);font-weight:600}
+
+/* DONUT */
+.donut-wrap{position:relative;width:120px;height:120px;margin:0 auto 12px}
+.donut-wrap svg{width:100%;height:100%}
+.donut-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
+.donut-center-val{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700}
+.donut-center-label{font-size:10px;color:var(--muted)}
+.legend{display:flex;flex-direction:column;gap:6px}
+.legend-item{display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer}
+.legend-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+.legend-label{flex:1;color:var(--light)}
+.legend-val{color:var(--text);font-weight:500}
+.legend-pct{color:var(--muted);font-size:11px}
+
+/* TABLE */
+.table-card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.table-head{display:grid;padding:10px 16px;background:rgba(30,37,48,.5);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.table-row{display:grid;padding:10px 16px;border-top:1px solid rgba(30,37,48,.5);cursor:pointer;transition:background .1s}
+.table-row:hover{background:rgba(255,255,255,.02)}
+.table-row.header-row{font-size:11px}
+.cell-name{font-weight:500;color:var(--text)}
+.cell-val{font-family:'Space Grotesk',sans-serif;color:var(--text)}
+.cell-bar{display:flex;align-items:center;gap:6px}
+.mini-bar{height:4px;border-radius:2px;background:var(--amber)}
+.cell-delta{font-size:11px}
+.cell-delta.up{color:var(--green)}
+.cell-delta.down{color:var(--red)}
+.drill-arrow{color:var(--muted);font-size:12px}
+.table-row:hover .drill-arrow{color:var(--amber)}
+
+/* NOTICE */
+.demo-notice{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;gap:10px;font-size:12px;color:var(--light)}
+.demo-notice strong{color:var(--amber)}
+
+/* DETAIL PANEL */
+.detail-header{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between}
+.detail-back{font-size:12px;color:var(--amber);cursor:pointer;display:flex;align-items:center;gap:4px}
+.detail-back:hover{color:var(--text)}
+
+/* LEVEL 3 table */
+.trans-table{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.trans-row{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 100px;padding:9px 16px;border-bottom:1px solid rgba(30,37,48,.5);font-size:12px}
+.trans-row.header{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:rgba(30,37,48,.5)}
+
+/* RESPONSIVE */
+@media(max-width:768px){.sidebar{display:none}.kpi-grid{grid-template-columns:1fr 1fr}.charts-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-left" style="text-decoration:none">
+    <div class="nav-logo">HA</div>
+    <span class="nav-name">Harri <span>Aro</span></span>
+  </a>
+  <div style="display:flex;align-items:center;gap:10px">
+    <span class="nav-badge">DEMO · ESIMERKKIDATA</span>
+    <a href="https://wa.me/358405658921?text=Hei%20Harri!%20N%C3%A4in%20esimerkkidashboardin%20ja%20olen%20kiinnostunut.%20Voisiko%20jutella%3F" class="btn-sm">Varaa katsastus — 490€</a>
+  </div>
+</nav>
+
+<div class="shell">
+  <div class="sidebar">
+    <div class="sidebar-section">Johtonäkymä</div>
+    <div class="sidebar-item active" onclick="setView('myynti')"><span class="icon">📊</span>Myynti</div>
+    <div class="sidebar-item" onclick="setView('talous')"><span class="icon">💰</span>Talous</div>
+    <div class="sidebar-item" onclick="setView('kustannukset')"><span class="icon">📉</span>Kustannukset</div>
+    <div class="sidebar-section" style="margin-top:8px">Raportit</div>
+    <div class="sidebar-item" onclick="setView('kuukausiraportti')"><span class="icon">📄</span>Kuukausiraportti</div>
+    <div class="sidebar-item" onclick="setView('budjetti')"><span class="icon">🎯</span>Budjetti vs. toteuma</div>
+  </div>
+  <div class="main" id="main"></div>
+</div>
+
+<script>
+// ====================== DATA ======================
+const months = ['Tam','Hel','Maa','Huh','Tou','Kes','Hei','Elo'];
+const fullMonths = ['Tammikuu','Helmikuu','Maaliskuu','Huhtikuu','Toukokuu','Kesäkuu','Heinäkuu','Elokuu'];
+
+const data = {
+  revenue: [420,388,512,475,540,498,567,602],
+  prevYear: [390,402,480,450,495,470,520,555],
+  margin: [38.2,36.1,40.5,39.8,41.2,40.0,42.1,43.5],
+  costs: [260,248,305,286,317,299,328,340],
+
+  products: {
+    0: [{name:'Palvelutuote A',rev:180,prev:165,pct:43},{name:'Palvelutuote B',rev:142,prev:138,pct:34},{name:'Palvelutuote C',rev:98,prev:87,pct:23}],
+    1: [{name:'Palvelutuote A',rev:162,prev:170,pct:42},{name:'Palvelutuote B',rev:138,prev:142,pct:36},{name:'Palvelutuote C',rev:88,prev:90,pct:22}],
+    2: [{name:'Palvelutuote A',rev:224,prev:205,pct:44},{name:'Palvelutuote B',rev:178,prev:168,pct:35},{name:'Palvelutuote C',rev:110,prev:107,pct:21}],
+    3: [{name:'Palvelutuote A',rev:198,prev:190,pct:42},{name:'Palvelutuote B',rev:168,prev:155,pct:35},{name:'Palvelutuote C',rev:109,prev:105,pct:23}],
+    4: [{name:'Palvelutuote A',rev:235,prev:215,pct:43},{name:'Palvelutuote B',rev:188,prev:172,pct:35},{name:'Palvelutuote C',rev:117,prev:108,pct:22}],
+    5: [{name:'Palvelutuote A',rev:210,prev:198,pct:42},{name:'Palvelutuote B',rev:172,prev:165,pct:35},{name:'Palvelutuote C',rev:116,prev:107,pct:23}],
+    6: [{name:'Palvelutuote A',rev:245,prev:225,pct:43},{name:'Palvelutuote B',rev:195,prev:178,pct:34},{name:'Palvelutuote C',rev:127,prev:117,pct:23}],
+    7: [{name:'Palvelutuote A',rev:264,prev:240,pct:44},{name:'Palvelutuote B',rev:202,prev:188,pct:34},{name:'Palvelutuote C',rev:136,prev:127,pct:22}],
+  },
+
+  regions: {
+    'Palvelutuote A': [{region:'Etelä-Suomi',rev:112,pct:42},{region:'Länsi-Suomi',rev:84,pct:32},{region:'Itä-Suomi',rev:68,pct:26}],
+    'Palvelutuote B': [{region:'Etelä-Suomi',rev:86,pct:43},{region:'Länsi-Suomi',rev:62,pct:30},{region:'Itä-Suomi',rev:54,pct:27}],
+    'Palvelutuote C': [{region:'Etelä-Suomi',rev:58,pct:43},{region:'Länsi-Suomi',rev:44,pct:32},{region:'Itä-Suomi',rev:34,pct:25}],
+  },
+
+  customers: {
+    'Etelä-Suomi': [
+      {id:'TIL-2840',customer:'Asiakasyritys Oy',date:'12.8.',val:28500,status:'Maksettu'},
+      {id:'TIL-2841',customer:'Pohjoinen Partners',date:'14.8.',val:19800,status:'Maksettu'},
+      {id:'TIL-2842',customer:'Kaakkois Trading',date:'15.8.',val:31200,status:'Odottaa'},
+      {id:'TIL-2843',customer:'Metropoli Services',date:'18.8.',val:22100,status:'Maksettu'},
+    ],
+    'Länsi-Suomi': [
+      {id:'TIL-2844',customer:'Rannikon Yritys',date:'11.8.',val:21300,status:'Maksettu'},
+      {id:'TIL-2845',customer:'Tampereen Toimi',date:'16.8.',val:18900,status:'Odottaa'},
+      {id:'TIL-2846',customer:'Länsi-Group',date:'19.8.',val:23800,status:'Maksettu'},
+    ],
+    'Itä-Suomi': [
+      {id:'TIL-2847',customer:'Savon Services',date:'13.8.',val:17400,status:'Maksettu'},
+      {id:'TIL-2848',customer:'Karjala Trade',date:'17.8.',val:16600,status:'Maksettu'},
+    ],
+  }
+};
+
+// ====================== STATE ======================
+let state = {level:1, month:null, product:null, region:null, activeFilter:'ytd'};
+
+// ====================== RENDER ======================
+function fmt(n){return(n*1000).toLocaleString('fi-FI')+'€'}
+function fmtSmall(n){return n.toLocaleString('fi-FI')}
+function pctDelta(a,b){const d=((a-b)/b*100);return(d>0?'+':'')+d.toFixed(1)+'%'}
+function isUp(a,b){return a>=b}
+
+function setView(v){
+  document.querySelectorAll('.sidebar-item').forEach(el=>el.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  if(v==='myynti') renderLevel1();
+  else renderComingSoon(v);
+}
+
+function renderComingSoon(v){
+  const labels={talous:'Talousraportti',kustannukset:'Kustannusanalyysi',kuukausiraportti:'Kuukausiraportti',budjetti:'Budjetti vs. toteuma'};
+  document.getElementById('main').innerHTML=`
+    <div style="display:flex;align-items:center;justify-content:center;height:60vh;flex-direction:column;gap:16px;text-align:center">
+      <div style="font-size:40px">📊</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700">${labels[v]||v}</div>
+      <div style="color:var(--muted);font-size:14px;max-width:320px">Tämä on esimerkkidemo. Oikeassa toteutuksessa kaikki raportit ovat käytettävissä täältä.</div>
+      <a href="https://wa.me/358405658921?text=Hei%20Harri!%20N%C3%A4in%20esimerkkidashboardin.%20Voisiko%20jutella%3F" style="margin-top:8px;padding:10px 22px;background:var(--amber);color:#000;font-family:'Space Grotesk',sans-serif;font-weight:600;border-radius:8px;text-decoration:none;font-size:14px">Jutellaan toteutuksesta →</a>
+    </div>`;
+}
+
+// LEVEL 1 — Monthly overview
+function renderLevel1(){
+  state={level:1,month:null,product:null,region:null,activeFilter:state.activeFilter};
+  const totalRev = data.revenue.reduce((a,b)=>a+b,0);
+  const totalPrev = data.prevYear.reduce((a,b)=>a+b,0);
+  const avgMargin = (data.margin.reduce((a,b)=>a+b,0)/data.margin.length).toFixed(1);
+  const totalCost = data.costs.reduce((a,b)=>a+b,0);
+  const latestRev = data.revenue[7];
+  const latestPrev = data.prevYear[7];
+  const maxRev = Math.max(...data.revenue,...data.prevYear);
+
+  document.getElementById('main').innerHTML=`
+    <div class="demo-notice">
+      <span>👆</span>
+      <span>Tämä on <strong>interaktiivinen demo</strong> — klikkaa kuukausipalkkia tai riviä porautuaksesi tarkempiin lukuihin</span>
+    </div>
+
+    <div class="title-bar">
+      <div>
+        <div class="page-title">Myynti — Johtonäkymä</div>
+        <div class="page-sub">Esimerkkiyritys Oy · Tammikuu–Elokuu 2026 · Dummy-data</div>
+      </div>
+      <div class="filters">
+        ${['ytd','q3','q2','q1'].map(f=>`<div class="filter-btn ${state.activeFilter===f?'active':''}" onclick="setFilter('${f}')">${f==='ytd'?'YTD':f.toUpperCase()}</div>`).join('')}
+      </div>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi" style="border-top:2px solid var(--amber)">
+        <div class="kpi-label">Liikevaihto YTD</div>
+        <div class="kpi-val" style="color:var(--amber)">${fmt(totalRev)}</div>
+        <div class="kpi-delta ${isUp(totalRev,totalPrev)?'up':'down'}">${isUp(totalRev,totalPrev)?'▲':'▼'} ${pctDelta(totalRev,totalPrev)} vs. edv.</div>
+      </div>
+      <div class="kpi" style="border-top:2px solid var(--green)">
+        <div class="kpi-label">Käyttökate</div>
+        <div class="kpi-val" style="color:var(--green)">${avgMargin}%</div>
+        <div class="kpi-delta up">▲ +2,1pp vs. edv.</div>
+      </div>
+      <div class="kpi" style="border-top:2px solid var(--blue)">
+        <div class="kpi-label">Kulut YTD</div>
+        <div class="kpi-val" style="color:var(--blue)">${fmt(totalCost)}</div>
+        <div class="kpi-delta down">▲ +4,2% vs. edv.</div>
+      </div>
+      <div class="kpi" style="border-top:2px solid var(--purple)">
+        <div class="kpi-label">Elokuu (viimeisin)</div>
+        <div class="kpi-val" style="color:var(--purple)">${fmt(latestRev)}</div>
+        <div class="kpi-delta ${isUp(latestRev,latestPrev)?'up':'down'}">${isUp(latestRev,latestPrev)?'▲':'▼'} ${pctDelta(latestRev,latestPrev)} vs. edv.</div>
+      </div>
+    </div>
+
+    <div class="charts-row">
+      <div class="chart-card">
+        <div class="chart-title">Liikevaihto kuukausittain — klikkaa kuukautta</div>
+        <div class="chart-sub">Amber = 2026 · Harmaa = 2025 · Poraudu klikkaamalla ↓</div>
+        <div class="bar-chart-wrap" id="barChart"></div>
+        <div style="display:flex;gap:4px;margin-top:12px">
+          ${months.map((m,i)=>`<div style="flex:1;text-align:center;font-size:9px;color:var(--muted)">${m}</div>`).join('')}
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Tuotejakauma YTD</div>
+        <div class="chart-sub">% liikevaihdosta</div>
+        <div class="donut-wrap">
+          <svg viewBox="0 0 36 36">
+            ${donutSegments([43,35,22],['#F59E0B','#3B82F6','#8B5CF6'])}
+          </svg>
+          <div class="donut-center">
+            <div class="donut-center-val">43%</div>
+            <div class="donut-center-label">Tuote A</div>
+          </div>
+        </div>
+        <div class="legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#F59E0B"></div><span class="legend-label">Palvelutuote A</span><span class="legend-val">43%</span></div>
+          <div class="legend-item"><div class="legend-dot" style="background:#3B82F6"></div><span class="legend-label">Palvelutuote B</span><span class="legend-val">35%</span></div>
+          <div class="legend-item"><div class="legend-dot" style="background:#8B5CF6"></div><span class="legend-label">Palvelutuote C</span><span class="legend-val">22%</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-card">
+      <div class="table-head" style="grid-template-columns:1.5fr 1fr 1fr 1fr 80px">
+        <div>Kuukausi</div><div>Liikevaihto</div><div>vs. edv. vuosi</div><div>Kate-%</div><div></div>
+      </div>
+      ${months.map((m,i)=>`
+        <div class="table-row" style="grid-template-columns:1.5fr 1fr 1fr 1fr 80px" onclick="drillMonth(${i})">
+          <div class="cell-name">${fullMonths[i]}</div>
+          <div class="cell-val">${fmt(data.revenue[i])}</div>
+          <div class="cell-delta ${isUp(data.revenue[i],data.prevYear[i])?'up':'down'}">${pctDelta(data.revenue[i],data.prevYear[i])}</div>
+          <div class="cell-val">${data.margin[i]}%</div>
+          <div class="drill-arrow" style="text-align:right">Poraudu →</div>
+        </div>`).join('')}
+    </div>
+  `;
+
+  // Draw bars
+  renderBars(maxRev);
+}
+
+function donutSegments(pcts, colors){
+  let offset=25, r=15.91549430918954;
+  const c=2*Math.PI*r;
+  return pcts.map((p,i)=>{
+    const dashArray=`${p/100*c} ${c}`;
+    const el=`<circle cx="18" cy="18" r="${r}" fill="none" stroke="${colors[i]}" stroke-width="3.5" stroke-dasharray="${dashArray}" stroke-dashoffset="${-offset+c}" transform="rotate(-90 18 18)"/>`;
+    offset-=p/100*c;
+    return el;
+  }).join('');
+}
+
+function renderBars(maxRev){
+  const bc=document.getElementById('barChart');
+  if(!bc)return;
+  bc.innerHTML=months.map((m,i)=>`
+    <div class="bar-col ${state.month===i?'selected':''}" onclick="drillMonth(${i})">
+      <div style="font-size:9px;color:var(--amber);font-weight:600">${fmt(data.revenue[i]).replace('€','')}</div>
+      <div style="width:100%;display:flex;flex-direction:column;align-items:center;gap:1px;height:120px;justify-content:flex-end">
+        <div class="bar-rect prev" style="height:${data.prevYear[i]/maxRev*110}px;opacity:.35"></div>
+        <div class="bar-rect" style="height:${data.revenue[i]/maxRev*110}px"></div>
+      </div>
+    </div>`).join('');
+}
+
+function setFilter(f){state.activeFilter=f;renderLevel1();}
+
+// LEVEL 2 — Product breakdown for a month
+function drillMonth(i){
+  state.level=2; state.month=i;
+  const prods=data.products[i];
+  const total=data.revenue[i];
+  const maxProd=Math.max(...prods.map(p=>p.rev));
+
+  document.getElementById('main').innerHTML=`
+    <div class="demo-notice">
+      <span>👆</span><span>Klikkaa tuoteriviä porautuaksesi aluekohtaisiin lukuihin</span>
+    </div>
+    <div class="breadcrumb">
+      <span class="breadcrumb-item" onclick="renderLevel1()">Myynti</span>
+      <span class="breadcrumb-sep">›</span>
+      <span class="breadcrumb-item active">${fullMonths[i]}</span>
+    </div>
+    <div class="title-bar">
+      <div>
+        <div class="page-title">${fullMonths[i]} 2026 — Tuotejakauma</div>
+        <div class="page-sub">Yhteensä ${fmt(total)} · Klikkaa riviä porautuaksesi alueisiin ↓</div>
+      </div>
+      <div class="detail-back" onclick="renderLevel1()">← Takaisin kuukausinäkymään</div>
+    </div>
+
+    <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr)">
+      ${prods.map(p=>`
+        <div class="kpi" style="cursor:pointer;border-top:2px solid var(--amber)" onclick="drillProduct(${i},'${p.name}')">
+          <div class="kpi-label">${p.name}</div>
+          <div class="kpi-val" style="color:var(--amber)">${fmt(p.rev)}</div>
+          <div class="kpi-delta ${isUp(p.rev,p.prev)?'up':'down'}">${isUp(p.rev,p.prev)?'▲':'▼'} ${pctDelta(p.rev,p.prev)} vs. edv. · Poraudu →</div>
+        </div>`).join('')}
+    </div>
+
+    <div class="chart-card" style="margin-bottom:16px">
+      <div class="chart-title">Tuotteet — ${fullMonths[i]}</div>
+      <div class="chart-sub">Klikkaa tuotetta alueporautumista varten</div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px">
+        ${prods.map(p=>`
+          <div style="cursor:pointer" onclick="drillProduct(${i},'${p.name}')">
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;font-size:12px">
+              <span style="color:var(--text);font-weight:500">${p.name}</span>
+              <span style="color:var(--amber)">${fmt(p.rev)} (${p.pct}%)</span>
+            </div>
+            <div style="height:8px;background:var(--border);border-radius:4px;overflow:hidden">
+              <div style="height:100%;width:${p.pct}%;background:var(--amber);border-radius:4px;transition:width .3s"></div>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>
+
+    <div class="table-card">
+      <div class="table-head" style="grid-template-columns:2fr 1fr 1fr 1fr 80px">
+        <div>Tuote</div><div>Liikevaihto</div><div>vs. edv.</div><div>Osuus</div><div></div>
+      </div>
+      ${prods.map(p=>`
+        <div class="table-row" style="grid-template-columns:2fr 1fr 1fr 1fr 80px" onclick="drillProduct(${i},'${p.name}')">
+          <div class="cell-name">${p.name}</div>
+          <div class="cell-val">${fmt(p.rev)}</div>
+          <div class="cell-delta ${isUp(p.rev,p.prev)?'up':'down'}">${pctDelta(p.rev,p.prev)}</div>
+          <div style="display:flex;align-items:center;gap:6px">
+            <div style="width:48px;height:4px;background:var(--border);border-radius:2px"><div style="width:${p.pct}%;height:100%;background:var(--amber);border-radius:2px"></div></div>
+            <span style="font-size:11px;color:var(--light)">${p.pct}%</span>
+          </div>
+          <div class="drill-arrow" style="text-align:right">Alueet →</div>
+        </div>`).join('')}
+    </div>
+  `;
+}
+
+// LEVEL 3 — Region breakdown for product
+function drillProduct(monthIdx, productName){
+  state.level=3; state.month=monthIdx; state.product=productName;
+  const regions=data.regions[productName];
+  const customers=data.customers;
+
+  document.getElementById('main').innerHTML=`
+    <div class="breadcrumb">
+      <span class="breadcrumb-item" onclick="renderLevel1()">Myynti</span>
+      <span class="breadcrumb-sep">›</span>
+      <span class="breadcrumb-item" onclick="drillMonth(${monthIdx})">${fullMonths[monthIdx]}</span>
+      <span class="breadcrumb-sep">›</span>
+      <span class="breadcrumb-item active">${productName}</span>
+    </div>
+    <div class="title-bar">
+      <div>
+        <div class="page-title">${productName} — Aluejakauma</div>
+        <div class="page-sub">${fullMonths[monthIdx]} 2026 · Klikkaa aluetta nähdäksesi tilaukset ↓</div>
+      </div>
+      <div class="detail-back" onclick="drillMonth(${monthIdx})">← Takaisin tuotteisiin</div>
+    </div>
+
+    <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr)">
+      ${regions.map(r=>`
+        <div class="kpi" style="cursor:pointer;border-top:2px solid var(--blue)" onclick="showOrders('${r.region}')">
+          <div class="kpi-label">${r.region}</div>
+          <div class="kpi-val" style="color:var(--blue)">${fmt(r.rev)}</div>
+          <div class="kpi-delta up">Osuus ${r.pct}% · Näytä tilaukset →</div>
+        </div>`).join('')}
+    </div>
+
+    <div class="table-card" style="margin-bottom:16px">
+      <div class="table-head" style="grid-template-columns:2fr 1fr 1fr 80px">
+        <div>Alue</div><div>Liikevaihto</div><div>Osuus</div><div></div>
+      </div>
+      ${regions.map(r=>`
+        <div class="table-row" style="grid-template-columns:2fr 1fr 1fr 80px" onclick="showOrders('${r.region}')">
+          <div class="cell-name">${r.region}</div>
+          <div class="cell-val">${fmt(r.rev)}</div>
+          <div style="display:flex;align-items:center;gap:6px">
+            <div style="width:60px;height:4px;background:var(--border);border-radius:2px"><div style="width:${r.pct}%;height:100%;background:var(--blue);border-radius:2px"></div></div>
+            <span style="font-size:11px;color:var(--light)">${r.pct}%</span>
+          </div>
+          <div class="drill-arrow" style="text-align:right">Tilaukset →</div>
+        </div>`).join('')}
+    </div>
+
+    <div id="orderPanel"></div>
+
+    <div style="margin-top:20px;padding:16px;background:var(--card);border:1px solid rgba(245,158,11,.2);border-radius:10px;text-align:center">
+      <div style="font-size:13px;color:var(--light);margin-bottom:10px">Tämä oli kolmas porautumistaso. Oikeassa toteutuksessa pääset aina tositasolla asti.</div>
+      <a href="https://wa.me/358405658921?text=Hei%20Harri!%20N%C3%A4in%20esimerkkidashboardin%20ja%20haluaisin%20vastaavan%20omaan%20yritykseeni.%20Voisiko%20jutella%3F" style="padding:10px 22px;background:var(--amber);color:#000;font-family:'Space Grotesk',sans-serif;font-weight:600;border-radius:8px;text-decoration:none;font-size:14px;display:inline-block">Haluatko tämän yrityksellesi? Jutellaan →</a>
+    </div>
+  `;
+}
+
+function showOrders(region){
+  const orders=data.customers[region]||[];
+  const panel=document.getElementById('orderPanel');
+  if(panel){
+    panel.innerHTML=`
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;margin-bottom:10px;color:var(--text)">${region} — Tilaukset (${orders.length} kpl)</div>
+      <div class="trans-table">
+        <div class="trans-row header">
+          <div>Tilausnumero</div><div>Asiakas</div><div>Päivä</div><div>Summa</div><div>Tila</div>
+        </div>
+        ${orders.map(o=>`
+          <div class="trans-row">
+            <div style="color:var(--blue);font-weight:500">${o.id}</div>
+            <div style="color:var(--text)">${o.customer}</div>
+            <div style="color:var(--light)">${o.date} 2026</div>
+            <div style="color:var(--text);font-weight:500">${o.val.toLocaleString('fi-FI')} €</div>
+            <div style="color:${o.status==='Maksettu'?'var(--green)':'var(--amber)'}">${o.status}</div>
+          </div>`).join('')}
+      </div>`;
+  }
+}
+
+// Init
+renderLevel1();
+</script>
+
+</body>
+</html>
