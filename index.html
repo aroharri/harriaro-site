@@ -3,790 +3,487 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Power BI pk-yrityksille — johdon näkymä kolmessa viikossa | Harri Aro</title>
-<meta name="description" content="Lopeta maanantain Excel-kokoaminen. Rakennan Power BI -dashboardin pk-yrityksellesi — kiinteällä hinnalla, kolmessa viikossa. Aloitetaan 490€ katsastuksella.">
+<title>Harri Aro — Power BI pk-yrityksille | Johdon raportointi joka oikeasti käytetään</title>
+<meta name="description" content="Power BI -konsultti joka tulee talousjohdosta. Automatisoin toistuvat raportit ja jään kunnes ne oikeasti käytetään. Katsastus 490€ — one-source 1990€.">
 <link rel="canonical" href="https://harriaro.fi/">
-
-<!-- Open Graph -->
-<meta property="og:type" content="website">
+<meta property="og:title" content="Harri Aro — Power BI joka oikeasti käytetään">
+<meta property="og:description" content="Sama raportti ajetaan joka maanantai käsin. Minä automatisoin sen — ja jään kunnes se oikeasti käytetään.">
 <meta property="og:url" content="https://harriaro.fi/">
-<meta property="og:title" content="Power BI pk-yrityksille — johdon näkymä kolmessa viikossa | Harri Aro">
-<meta property="og:description" content="Lopeta maanantain Excel-kokoaminen. Rakennan Power BI -dashboardin pk-yrityksellesi — kiinteällä hinnalla, kolmessa viikossa. Aloitetaan 490€ katsastuksella.">
-<meta property="og:site_name" content="Harri Aro — harriaro.fi">
-<meta name="twitter:card" content="summary">
-
-<!-- Schema.org -->
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Person",
-      "@id": "https://harriaro.fi/#harri",
-      "name": "Harri Aro",
-      "url": "https://harriaro.fi",
-      "jobTitle": "Power BI -konsultti",
-      "description": "Power BI -rakentaja pk-yrityksille. Rakennan johdon raportointinäkymät — kiinteällä hinnalla, kolmessa viikossa.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Sipoo",
-        "addressCountry": "FI"
-      },
-      "sameAs": ["https://www.linkedin.com/in/harri-aro-8b2112122/"]
-    },
-    {
-      "@type": "Service",
-      "@id": "https://harriaro.fi/#katsastus",
-      "name": "Power BI -katsastus",
-      "description": "Selvitän tarkalleen mitä dataa yrityksellänne on, missä se piilee, ja miten Power BI rakennetaan juuri teidän tilanteeseenne. Kirjallinen raportti 3 arkipäivässä.",
-      "provider": { "@id": "https://harriaro.fi/#harri" },
-      "offers": {
-        "@type": "Offer",
-        "price": "490",
-        "priceCurrency": "EUR"
-      }
-    },
-    {
-      "@type": "Service",
-      "@id": "https://harriaro.fi/#projekti",
-      "name": "Power BI dashboard -projekti",
-      "description": "Valmis Power BI -kokonaisuus pk-yritykselle — datamalli, raportit, automaattiset päivitykset, käyttäjäkoulutus. Tyypillisesti 3 viikkoa aloituksesta käyttöönottoon.",
-      "provider": { "@id": "https://harriaro.fi/#harri" },
-      "offers": {
-        "@type": "Offer",
-        "priceRange": "2500-7000€",
-        "priceCurrency": "EUR"
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Mitä dataa tarvitaan ennen kuin voi aloittaa Power BI -projektin?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Ei mitään erityistä. Excel-taulukot, ERP, CRM, Shopify, Procountor — mitä tahansa teillä on. Katsastuksessa selvitetään mitä lähteitä käytetään ja miten ne yhdistetään."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Kuinka paljon Power BI -dashboard maksaa?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Dashboard-projekti maksaa 2 500–7 000€ kiinteällä hinnalla. Aloitetaan 490€ katsastuksella, jossa selvitetään tarkka scope ja hinta ennen sitoutumista."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Kuinka kauan Power BI -projekti kestää?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Tyypillinen dashboard-projekti: 2–4 viikkoa aloituksesta käyttöönottoon. Isoilla konsulttitaloilla sama projekti kestää 3–6 kuukautta."
-          }
-        }
-      ]
-    }
-  ]
-}
+{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://harriaro.fi/#harri","name":"Harri Aro","url":"https://harriaro.fi","jobTitle":"Power BI -konsultti","description":"Power BI -konsultti joka tulee talousjohdosta. 9 vuotta group controlleri- ja treasury-tehtävissä. Rakennan johdon raportointia pk-yrityksille ja varmistan käyttöönoton.","address":{"@type":"PostalAddress","addressLocality":"Sipoo","addressCountry":"FI"},"sameAs":["https://www.linkedin.com/in/harri-aro-8b2112122/"]},{"@type":"Service","@id":"https://harriaro.fi/#katsastus","name":"Power BI -katsastus","description":"Scope-paperi jonka voi viedä johtoryhmälle. Selvitän nykytilan hinnan, onko Power BI oikea ratkaisu ja mikä se maksaa.","provider":{"@id":"https://harriaro.fi/#harri"},"offers":{"@type":"Offer","price":"490","priceCurrency":"EUR"}},{"@type":"Service","@id":"https://harriaro.fi/#onesource","name":"One-source Power BI","description":"Toistettava paketti yhdestä lähteestä. Procountor, Netvisor tai Excel Power BI:hin. Valmis 5 työpäivässä.","provider":{"@id":"https://harriaro.fi/#harri"},"offers":{"@type":"Offer","price":"1990","priceCurrency":"EUR"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Korvaako Power BI hallitusraportin?","acceptedAnswer":{"@type":"Answer","text":"Ei — eikä sen pitäisikään. Hallituspaketti jäädytetään aina koska päätös, vastuu ja tilintarkastus kiinnittyvät siihen dokumenttiin. Power BI on työkalu jolla controller analysoi lukuja ennen jäädytystä — ja myyntijohtaja seuraa viikkoa reaaliajassa."}},{"@type":"Question","name":"Kuinka paljon Power BI -projekti maksaa?","acceptedAnswer":{"@type":"Answer","text":"One-source (yksi datalähde) 1990€, Standard (2-3 lähdettä) 6000-10000€. Aloitetaan 490€ katsastuksella jossa selvitetään tarkka scope ja hinta."}},{"@type":"Question","name":"Mitä tapahtuu kun lopetat kuukausisopimuksen?","acceptedAnswer":{"@type":"Answer","text":"Irtisanomisaika 30 päivää. Lähtöpäivänä toimitan kaikki tiedostot .pbip-formaatissa, täydellisen dokumentaation ja seuraavan tekijän ohjeen. Et jää riippuvaiseksi minusta."}}]}]}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0B0D10;--card:#13161C;--card2:#1A1F28;--border:#1E2530;
+  --amber:#F59E0B;--amber-d:#D97706;--text:#F1F5F9;--muted:#64748B;
+  --light:#94A3B8;--green:#22C55E;--r:8px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
 
-  :root {
-    --bg:       #0B0D10;
-    --card:     #13161C;
-    --card2:    #1A1F28;
-    --border:   #1E2530;
-    --amber:    #F59E0B;
-    --amber-d:  #D97706;
-    --text:     #F1F5F9;
-    --muted:    #64748B;
-    --light:    #94A3B8;
-    --green:    #22C55E;
-    --r:        8px;
-  }
+/* NAV */
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:12px 32px;background:rgba(11,13,16,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-left{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-avatar{width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid var(--amber);flex-shrink:0}
+.nav-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;color:var(--text)}
+.nav-name span{color:var(--amber)}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:var(--amber);color:#000;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;border-radius:var(--r);text-decoration:none;transition:background .15s;border:none;cursor:pointer}
+.btn:hover{background:var(--amber-d)}
+.btn-ghost{background:transparent;color:var(--amber);border:1.5px solid var(--amber)}
+.btn-ghost:hover{background:rgba(245,158,11,.08)}
+.btn-green{background:#25D366;color:#fff}
+.btn-green:hover{background:#1fad56}
 
-  html { scroll-behavior: smooth; }
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:80px 32px 64px;max-width:1100px;margin:0 auto}
+.hero-eye{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:18px}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(34px,5vw,52px);font-weight:700;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px}
+.hero h1 em{font-style:normal;color:var(--amber)}
+.hero-sub{font-size:18px;color:var(--light);margin-bottom:28px;line-height:1.65}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+.hero-note{font-size:12px;color:var(--muted);margin-top:16px}
+.hero-note strong{color:var(--light)}
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
+/* MOCK DASHBOARD */
+.dashboard-mock{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;overflow:hidden}
+.dash-titlebar{display:flex;align-items:center;gap:8px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.dash-dot{width:8px;height:8px;border-radius:50%}
+.dash-title{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:600;color:var(--muted);margin-left:4px}
+.dash-kpis{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px}
+.kpi-card{background:var(--card2);border-radius:6px;padding:10px 12px;opacity:0;animation:fadeUp .4s forwards}
+.kpi-card:nth-child(1){animation-delay:.1s}
+.kpi-card:nth-child(2){animation-delay:.25s}
+.kpi-card:nth-child(3){animation-delay:.4s}
+.kpi-label{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.kpi-val{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700}
+.kpi-delta{font-size:10px;color:var(--green);margin-top:2px}
+.bar-chart{height:90px;display:flex;align-items:flex-end;gap:6px;margin-bottom:14px}
+.bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+.bar{width:100%;border-radius:3px 3px 0 0;background:var(--amber);transform:scaleY(0);transform-origin:bottom;animation:growBar .6s cubic-bezier(.22,1,.36,1) forwards}
+.bar-wrap:nth-child(1) .bar{animation-delay:.5s}
+.bar-wrap:nth-child(2) .bar{animation-delay:.6s}
+.bar-wrap:nth-child(3) .bar{animation-delay:.7s}
+.bar-wrap:nth-child(4) .bar{animation-delay:.8s}
+.bar-wrap:nth-child(5) .bar{animation-delay:.9s}
+.bar-wrap:nth-child(6) .bar{animation-delay:1.0s}
+.bar-label{font-size:8px;color:var(--muted)}
+.dash-line{height:1px;background:var(--border);margin-bottom:12px}
+.dash-row{display:flex;justify-content:space-between;font-size:11px;color:var(--light);padding:5px 0;border-bottom:1px solid rgba(30,37,48,.5);opacity:0;animation:fadeUp .3s forwards}
+.dash-row:nth-child(1){animation-delay:1.1s}
+.dash-row:nth-child(2){animation-delay:1.2s}
+.dash-row:nth-child(3){animation-delay:1.3s}
+.dash-row .g{color:var(--green)}
+.dash-row .r{color:#EF4444}
+@keyframes growBar{to{transform:scaleY(1)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
-  /* NAV */
-  nav {
-    position: sticky; top: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 16px 32px;
-    background: rgba(11,13,16,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-name {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 600; font-size: 16px;
-    color: var(--text);
-    text-decoration: none;
-  }
-  .nav-name span { color: var(--amber); }
-  .btn {
-    display: inline-block;
-    padding: 10px 22px;
-    background: var(--amber);
-    color: #000;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 600; font-size: 14px;
-    border-radius: var(--r);
-    text-decoration: none;
-    transition: background .15s;
-    border: none; cursor: pointer;
-  }
-  .btn:hover { background: var(--amber-d); }
-  .btn-ghost {
-    background: transparent;
-    color: var(--amber);
-    border: 1.5px solid var(--amber);
-  }
-  .btn-ghost:hover { background: rgba(245,158,11,.08); }
+/* PROOF STRIP */
+.proof{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:24px 32px}
+.proof-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
+.proof-item{text-align:center}
+.proof-num{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;color:var(--amber);line-height:1.1}
+.proof-txt{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.4}
 
-  /* HERO */
-  .hero {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    align-items: center;
-    padding: 80px 32px 72px;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  .hero-eyebrow {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--amber);
-    margin-bottom: 20px;
-  }
-  .hero h1 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(36px, 5vw, 54px);
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -.02em;
-    margin-bottom: 20px;
-  }
-  .hero h1 em {
-    font-style: normal;
-    color: var(--amber);
-  }
-  .hero-sub {
-    font-size: 18px;
-    color: var(--light);
-    margin-bottom: 32px;
-    line-height: 1.6;
-  }
-  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
-  .hero-note {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 16px;
-  }
-  .hero-note strong { color: var(--light); }
+/* SECTIONS */
+section{padding:64px 32px}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-eye{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
+.section-h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,3.5vw,36px);font-weight:700;line-height:1.15;letter-spacing:-.02em;margin-bottom:16px}
+.section-sub{font-size:17px;color:var(--light);max-width:560px;line-height:1.65;margin-bottom:40px}
 
-  /* MOCK DASHBOARD */
-  .dashboard-mock {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px;
-    overflow: hidden;
-  }
-  .dash-titlebar {
-    display: flex; align-items: center; gap: 8px;
-    margin-bottom: 16px; padding-bottom: 12px;
-    border-bottom: 1px solid var(--border);
-  }
-  .dash-dot { width: 8px; height: 8px; border-radius: 50%; }
-  .dash-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 12px; font-weight: 600;
-    color: var(--muted);
-    margin-left: 4px;
-  }
-  .dash-kpis {
-    display: grid; grid-template-columns: 1fr 1fr 1fr;
-    gap: 10px; margin-bottom: 16px;
-  }
-  .kpi-card {
-    background: var(--card2);
-    border-radius: 6px; padding: 10px 12px;
-    opacity: 0; animation: fadeUp .4s forwards;
-  }
-  .kpi-card:nth-child(1) { animation-delay: .1s; }
-  .kpi-card:nth-child(2) { animation-delay: .25s; }
-  .kpi-card:nth-child(3) { animation-delay: .4s; }
-  .kpi-label { font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; }
-  .kpi-val {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 18px; font-weight: 700;
-    color: var(--text);
-  }
-  .kpi-delta { font-size: 10px; color: var(--green); margin-top: 2px; }
+/* SOPII/EI SOPII */
+.fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px}
+.fit-card{background:var(--card);border-radius:10px;padding:22px;border-top:3px solid}
+.fit-card.yes{border-color:var(--green)}
+.fit-card.no{border-color:#EF4444}
+.fit-card h3{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;margin-bottom:14px}
+.fit-card.yes h3{color:var(--green)}
+.fit-card.no h3{color:#EF4444}
+.fit-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.fit-list li{font-size:14px;color:var(--light);padding-left:20px;position:relative;line-height:1.5}
+.fit-card.yes .fit-list li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:700}
+.fit-card.no .fit-list li::before{content:"✗";position:absolute;left:0;color:#EF4444;font-weight:700}
 
-  /* Bar chart */
-  .bar-chart { height: 100px; display: flex; align-items: flex-end; gap: 6px; margin-bottom: 14px; }
-  .bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
-  .bar {
-    width: 100%; border-radius: 3px 3px 0 0;
-    background: var(--amber);
-    transform: scaleY(0); transform-origin: bottom;
-    animation: growBar .6s cubic-bezier(.22,1,.36,1) forwards;
-  }
-  .bar.dim { background: var(--border); }
-  .bar:nth-child(1) { animation-delay: .5s; }
-  .bar-wrap:nth-child(1) .bar { animation-delay: .5s; }
-  .bar-wrap:nth-child(2) .bar { animation-delay: .6s; }
-  .bar-wrap:nth-child(3) .bar { animation-delay: .7s; }
-  .bar-wrap:nth-child(4) .bar { animation-delay: .8s; }
-  .bar-wrap:nth-child(5) .bar { animation-delay: .9s; }
-  .bar-wrap:nth-child(6) .bar { animation-delay: 1.0s; }
-  .bar-label { font-size: 8px; color: var(--muted); }
+/* TUOTTEET */
+.products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.product-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;display:flex;flex-direction:column;position:relative}
+.product-card.featured{border-color:var(--amber);background:linear-gradient(160deg,#1a1500 0%,var(--card) 60%)}
+.product-card.featured::before{content:"Suosituin";position:absolute;top:14px;right:14px;font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#000;background:var(--amber);padding:3px 8px;border-radius:99px}
+.product-tag{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.product-name{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;margin-bottom:6px}
+.product-price{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;color:var(--amber);line-height:1;margin-bottom:4px}
+.product-price-note{font-size:11px;color:var(--muted);margin-bottom:16px}
+.product-desc{font-size:13px;color:var(--light);line-height:1.6;margin-bottom:18px;flex:1}
+.product-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+.product-list li{font-size:12px;color:var(--light);padding-left:18px;position:relative}
+.product-list li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:700}
 
-  .dash-line {
-    height: 1px; background: var(--border);
-    margin-bottom: 12px;
-  }
-  .dash-table-row {
-    display: flex; justify-content: space-between;
-    font-size: 11px; color: var(--light);
-    padding: 5px 0; border-bottom: 1px solid rgba(30,37,48,.5);
-    opacity: 0; animation: fadeUp .3s forwards;
-  }
-  .dash-table-row:nth-child(1) { animation-delay: 1.1s; }
-  .dash-table-row:nth-child(2) { animation-delay: 1.2s; }
-  .dash-table-row:nth-child(3) { animation-delay: 1.3s; }
-  .dash-table-row .green { color: var(--green); }
+/* POLTETTU OSTAJA */
+.burned-section{background:linear-gradient(135deg,#0f0a1a 0%,#0B0D10 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.burned-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.burned-signs{display:flex;flex-direction:column;gap:10px}
+.burned-sign{background:var(--card);border-radius:8px;padding:14px 16px;font-size:14px;color:var(--light);border-left:3px solid #EF4444;line-height:1.5}
 
-  @keyframes growBar {
-    to { transform: scaleY(1); }
-  }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(6px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+/* STEPS */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.step{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px}
+.step-num{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
+.step h3{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;margin-bottom:10px}
+.step p{font-size:13px;color:var(--light);line-height:1.6}
 
-  /* PROOF STRIP */
-  .proof {
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 28px 32px;
-  }
-  .proof-inner {
-    max-width: 1100px; margin: 0 auto;
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-  }
-  .proof-item { text-align: center; }
-  .proof-num {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 28px; font-weight: 700;
-    color: var(--amber);
-    line-height: 1.1;
-  }
-  .proof-txt { font-size: 13px; color: var(--muted); margin-top: 4px; }
+/* HARRI */
+.harri-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.harri-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.harri-tag{background:var(--card2);border:1px solid var(--border);border-radius:6px;padding:5px 12px;font-size:12px;color:var(--light)}
+.harri-cards{display:flex;flex-direction:column;gap:12px}
+.harri-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px}
+.harri-card-eye{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--amber);margin-bottom:6px}
+.harri-card-title{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;margin-bottom:6px}
+.harri-card-desc{font-size:12px;color:var(--light);line-height:1.6}
 
-  /* SECTIONS */
-  section { padding: 72px 32px; }
-  .section-inner { max-width: 1100px; margin: 0 auto; }
-  .section-eye {
-    font-size: 11px; font-weight: 600; letter-spacing: .1em;
-    text-transform: uppercase; color: var(--amber);
-    margin-bottom: 12px;
-  }
-  .section-h2 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(26px, 3.5vw, 38px);
-    font-weight: 700; line-height: 1.15;
-    letter-spacing: -.02em;
-    margin-bottom: 16px;
-  }
-  .section-sub {
-    font-size: 17px; color: var(--light);
-    max-width: 560px; line-height: 1.65;
-    margin-bottom: 48px;
-  }
+/* EI TEHDÄ */
+.nope-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.nope-card{background:var(--card);border-radius:10px;padding:18px}
+.nope-title{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;color:#EF4444;margin-bottom:8px}
+.nope-desc{font-size:13px;color:var(--light);line-height:1.6}
 
-  /* PRODUCTS */
-  .products-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-  .product-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px; padding: 28px;
-    display: flex; flex-direction: column;
-    position: relative; overflow: hidden;
-  }
-  .product-card.featured {
-    border-color: var(--amber);
-    background: linear-gradient(160deg, #1a1500 0%, var(--card) 60%);
-  }
-  .product-card.featured::before {
-    content: "Yleisin aloituspiste";
-    position: absolute; top: 16px; right: 16px;
-    font-size: 10px; font-weight: 600;
-    letter-spacing: .07em; text-transform: uppercase;
-    color: #000; background: var(--amber);
-    padding: 3px 9px; border-radius: 99px;
-  }
-  .product-tag {
-    font-size: 11px; font-weight: 600; letter-spacing: .08em;
-    text-transform: uppercase; color: var(--muted);
-    margin-bottom: 12px;
-  }
-  .product-name {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 20px; font-weight: 700;
-    margin-bottom: 8px;
-  }
-  .product-price {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 32px; font-weight: 700;
-    color: var(--amber); line-height: 1;
-    margin-bottom: 4px;
-  }
-  .product-price-note { font-size: 12px; color: var(--muted); margin-bottom: 20px; }
-  .product-desc { font-size: 14px; color: var(--light); line-height: 1.6; margin-bottom: 24px; flex: 1; }
-  .product-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-  .product-list li {
-    font-size: 13px; color: var(--light);
-    padding-left: 20px; position: relative;
-  }
-  .product-list li::before {
-    content: "✓"; position: absolute; left: 0;
-    color: var(--green); font-weight: 700;
-  }
+/* COMPARE */
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.compare-col{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px}
+.compare-col.me{border-color:var(--amber)}
+.compare-head{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;margin-bottom:18px;color:var(--muted)}
+.compare-col.me .compare-head{color:var(--amber)}
+.compare-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.compare-list li{font-size:13px;color:var(--light);padding-left:22px;position:relative;line-height:1.5}
+.compare-col.them .compare-list li::before{content:"✗";position:absolute;left:0;color:#EF4444;font-weight:700}
+.compare-col.me .compare-list li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:700}
 
-  /* HOW IT WORKS */
-  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-  .step {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px; padding: 28px;
-  }
-  .step-num {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 11px; font-weight: 700; letter-spacing: .1em;
-    text-transform: uppercase; color: var(--amber);
-    margin-bottom: 14px;
-  }
-  .step h3 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 17px; font-weight: 600;
-    margin-bottom: 10px;
-  }
-  .step p { font-size: 14px; color: var(--light); line-height: 1.6; }
+/* CTA */
+.cta-section{background:linear-gradient(135deg,#0f1a0a 0%,#0B0D10 50%,#1a1200 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.cta-inner{max-width:680px;margin:0 auto;text-align:center}
+.cta-inner h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,4vw,40px);font-weight:700;line-height:1.15;letter-spacing:-.02em;margin-bottom:14px}
+.cta-inner p{font-size:17px;color:var(--light);margin-bottom:28px;line-height:1.6}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+.cta-facts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:8px}
+.cta-fact{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;text-align:left}
+.cta-fact-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px}
+.cta-fact-val{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600}
 
-  /* WHY NOT BIG AGENCY */
-  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  .compare-col {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px; padding: 28px;
-  }
-  .compare-col.them { opacity: .75; }
-  .compare-col.me { border-color: var(--amber); }
-  .compare-head {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 14px; font-weight: 700;
-    margin-bottom: 20px; color: var(--muted);
-  }
-  .compare-col.me .compare-head { color: var(--amber); }
-  .compare-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-  .compare-list li {
-    font-size: 14px; color: var(--light);
-    padding-left: 24px; position: relative; line-height: 1.5;
-  }
-  .compare-list li::before {
-    position: absolute; left: 0; font-weight: 700;
-  }
-  .compare-col.them .compare-list li::before { content: "✗"; color: #EF4444; }
-  .compare-col.me   .compare-list li::before { content: "✓"; color: var(--green); }
+/* BLOG */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.blog-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;text-decoration:none;display:flex;flex-direction:column;transition:border-color .15s}
+.blog-card:hover{border-color:var(--amber)}
+.blog-eye{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--amber);margin-bottom:8px}
+.blog-title{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;line-height:1.4}
+.blog-desc{font-size:13px;color:var(--light);line-height:1.5;flex:1}
+.blog-link{font-size:12px;font-weight:600;color:var(--amber);margin-top:12px}
 
-  /* CTA SECTION */
-  .cta-section {
-    background: linear-gradient(135deg, #0f1a0a 0%, #0B0D10 50%, #1a1200 100%);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-  .cta-inner { max-width: 680px; margin: 0 auto; text-align: center; }
-  .cta-inner h2 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(28px, 4vw, 42px);
-    font-weight: 700; line-height: 1.15;
-    letter-spacing: -.02em; margin-bottom: 16px;
-  }
-  .cta-inner p { font-size: 17px; color: var(--light); margin-bottom: 32px; line-height: 1.6; }
-  .cta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
-  .cta-fact {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 8px; padding: 14px 16px; text-align: left;
-  }
-  .cta-fact-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 4px; }
-  .cta-fact-val { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; }
-  .cta-note { font-size: 12px; color: var(--muted); margin-top: 8px; }
+/* FAQ */
+details{border-bottom:1px solid var(--border);padding:18px 0}
+details:first-child{border-top:1px solid var(--border)}
+summary{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:20px;color:var(--amber)}
+details[open] summary::after{content:"–"}
+details p{font-size:14px;color:var(--light);line-height:1.7;margin-top:12px;max-width:680px}
 
-  /* FAQ */
-  .faq-list { display: flex; flex-direction: column; gap: 0; }
-  details {
-    border-bottom: 1px solid var(--border);
-    padding: 20px 0;
-  }
-  details:first-child { border-top: 1px solid var(--border); }
-  summary {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 16px; font-weight: 600;
-    cursor: pointer; list-style: none;
-    display: flex; justify-content: space-between; align-items: center;
-    color: var(--text);
-  }
-  summary::-webkit-details-marker { display: none; }
-  summary::after {
-    content: "+"; font-size: 22px; color: var(--amber);
-    line-height: 1; flex-shrink: 0;
-  }
-  details[open] summary::after { content: "–"; }
-  details p {
-    font-size: 14px; color: var(--light);
-    line-height: 1.7; margin-top: 14px;
-    max-width: 680px;
-  }
+/* DIVIDER / FOOTER */
+.divider{height:1px;background:var(--border)}
+footer{padding:32px;border-top:1px solid var(--border)}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+.footer-name{font-family:'Space Grotesk',sans-serif;font-weight:600}
+.footer-name span{color:var(--amber)}
+.footer-links{display:flex;gap:18px}
+.footer-links a{font-size:13px;color:var(--muted);text-decoration:none}
+.footer-links a:hover{color:var(--text)}
 
-  /* FOOTER */
-  footer {
-    padding: 40px 32px;
-    border-top: 1px solid var(--border);
-  }
-  .footer-inner {
-    max-width: 1100px; margin: 0 auto;
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 16px;
-  }
-  .footer-name {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 600; font-size: 15px; color: var(--text);
-  }
-  .footer-name span { color: var(--amber); }
-  .footer-links { display: flex; gap: 20px; }
-  .footer-links a {
-    font-size: 13px; color: var(--muted); text-decoration: none;
-  }
-  .footer-links a:hover { color: var(--text); }
-
-  /* DIVIDER */
-  .divider { height: 1px; background: var(--border); }
-
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    nav { padding: 14px 20px; }
-    .hero { grid-template-columns: 1fr; padding: 48px 20px 40px; gap: 32px; }
-    .dashboard-mock { order: -1; }
-    .proof-inner { grid-template-columns: 1fr 1fr; gap: 20px; }
-    .products-grid { grid-template-columns: 1fr; }
-    .steps { grid-template-columns: 1fr; }
-    .compare-grid { grid-template-columns: 1fr; }
-    .cta-grid { grid-template-columns: 1fr; }
-    section { padding: 52px 20px; }
-    .proof { padding: 24px 20px; }
-    .footer-inner { flex-direction: column; align-items: flex-start; }
-  }
+@media(max-width:768px){
+  nav{padding:12px 16px}
+  .hero{grid-template-columns:1fr;padding:40px 16px}
+  .dashboard-mock{order:-1}
+  .proof-inner{grid-template-columns:repeat(3,1fr)}
+  .fit-grid,.products-grid,.steps,.harri-grid,.compare-grid,.nope-grid,.cta-facts{grid-template-columns:1fr}
+  .blog-grid{grid-template-columns:1fr}
+  section{padding:48px 16px}
+  .proof{padding:20px 16px}
+}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-name">Harri <span>Aro</span></a>
-  <a href="mailto:aro.harri@gmail.com?subject=Power BI -katsastus" class="btn">Varaa katsastus — 490€</a>
+  <a href="/" class="nav-left">
+    <img src="data:image/jpeg;base64,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" alt="Harri Aro" class="nav-avatar">
+    <span class="nav-name">Harri <span>Aro</span></span>
+  </a>
+  <a href="https://wa.me/358405658921?text=Hei%20Harri!%20N%C3%A4in%20harriaro.fi%20ja%20olen%20kiinnostunut%20Power%20BI%20-katsastuksesta.%20Voisiko%20jutella%3F" class="btn btn-green">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    WhatsApp
+  </a>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-left">
-    <div class="hero-eyebrow">Power BI · Pk-yritykset · Sipoo / Koko Suomi</div>
-    <h1>Data on jo teillä. Minä teen siitä <em>johdon näkymän.</em></h1>
-    <p class="hero-sub">Rakennan Power BI -dashboardit pk-yrityksille — nopeasti, selkeästi, hinnoilla näkyvissä. Aloitetaan 490€ katsastuksella.</p>
+  <div>
+    <div class="hero-eye">Power BI · Johdon raportointi · Sipoo / Koko Suomi</div>
+    <h1>Sama raportti ajetaan joka maanantai käsin. Minä <em>automatisoin sen</em> — ja jään kunnes se oikeasti käytetään.</h1>
+    <p class="hero-sub">Power BI -konsultti joka tulee talousjohdosta — ei IT:stä. Katsastus 490€. One-source valmis 5 päivässä.</p>
     <div class="hero-ctas">
-      <a href="mailto:aro.harri@gmail.com?subject=Power BI -katsastus" class="btn">Varaa katsastus — 490€</a>
+      <a href="https://wa.me/358405658921?text=Hei%20Harri!%20N%C3%A4in%20harriaro.fi%20ja%20olen%20kiinnostunut%20Power%20BI%20-katsastuksesta.%20Voisiko%20jutella%3F" class="btn btn-green">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Varaa katsastus — 490€
+      </a>
       <a href="#tuotteet" class="btn btn-ghost">Katso tuotteet</a>
     </div>
-    <p class="hero-note">
-      <strong>Käänteinen takuu:</strong> jos katsastuksessa ei löydy vähintään 3 konkreettista kohtaa — ette maksa mitään.
-    </p>
+    <p class="hero-note"><strong>Käänteinen takuu:</strong> jos katsastuksessa ei löydy vähintään 3 konkreettista kohtaa — ette maksa mitään.</p>
   </div>
-
-  <div class="hero-right">
-    <div class="dashboard-mock">
-      <div class="dash-titlebar">
-        <div class="dash-dot" style="background:#EF4444;"></div>
-        <div class="dash-dot" style="background:#F59E0B;"></div>
-        <div class="dash-dot" style="background:#22C55E;"></div>
-        <span class="dash-title">Myynnin johtonäkymä · Power BI</span>
-      </div>
-      <div class="dash-kpis">
-        <div class="kpi-card">
-          <div class="kpi-label">Liikevaihto</div>
-          <div class="kpi-val">2,4M€</div>
-          <div class="kpi-delta">↑ 18%</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Myynti kate</div>
-          <div class="kpi-val">34,2%</div>
-          <div class="kpi-delta">↑ 2,1pp</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Avoimet</div>
-          <div class="kpi-val">47</div>
-          <div class="kpi-delta">↓ 12</div>
-        </div>
-      </div>
-
-      <div class="bar-chart">
-        <div class="bar-wrap">
-          <div class="bar" style="height:55px;"></div>
-          <div class="bar-label">He</div>
-        </div>
-        <div class="bar-wrap">
-          <div class="bar" style="height:70px;"></div>
-          <div class="bar-label">Ma</div>
-        </div>
-        <div class="bar-wrap">
-          <div class="bar" style="height:48px;"></div>
-          <div class="bar-label">Hu</div>
-        </div>
-        <div class="bar-wrap">
-          <div class="bar" style="height:80px;"></div>
-          <div class="bar-label">To</div>
-        </div>
-        <div class="bar-wrap">
-          <div class="bar" style="height:65px;"></div>
-          <div class="bar-label">Ke</div>
-        </div>
-        <div class="bar-wrap">
-          <div class="bar" style="height:90px;"></div>
-          <div class="bar-label">He</div>
-        </div>
-      </div>
-
-      <div class="dash-line"></div>
-      <div class="dash-table-row">
-        <span>Tuote A</span><span>892 kpl</span><span class="green">+24%</span>
-      </div>
-      <div class="dash-table-row">
-        <span>Tuote B</span><span>441 kpl</span><span class="green">+7%</span>
-      </div>
-      <div class="dash-table-row">
-        <span>Tuote C</span><span>218 kpl</span><span style="color:#EF4444">−3%</span>
-      </div>
+  <div class="dashboard-mock">
+    <div class="dash-titlebar">
+      <div class="dash-dot" style="background:#EF4444"></div>
+      <div class="dash-dot" style="background:#F59E0B"></div>
+      <div class="dash-dot" style="background:#22C55E"></div>
+      <span class="dash-title">Myynnin johtonäkymä · Power BI</span>
     </div>
+    <div class="dash-kpis">
+      <div class="kpi-card"><div class="kpi-label">Liikevaihto</div><div class="kpi-val">2,4M€</div><div class="kpi-delta">↑ 18%</div></div>
+      <div class="kpi-card"><div class="kpi-label">Kate</div><div class="kpi-val">34,2%</div><div class="kpi-delta">↑ 2,1pp</div></div>
+      <div class="kpi-card"><div class="kpi-label">Avoimet</div><div class="kpi-val">47</div><div class="kpi-delta">↓ 12</div></div>
+    </div>
+    <div class="bar-chart">
+      <div class="bar-wrap"><div class="bar" style="height:52px"></div><div class="bar-label">He</div></div>
+      <div class="bar-wrap"><div class="bar" style="height:68px"></div><div class="bar-label">Ma</div></div>
+      <div class="bar-wrap"><div class="bar" style="height:45px"></div><div class="bar-label">Hu</div></div>
+      <div class="bar-wrap"><div class="bar" style="height:78px"></div><div class="bar-label">To</div></div>
+      <div class="bar-wrap"><div class="bar" style="height:62px"></div><div class="bar-label">Ke</div></div>
+      <div class="bar-wrap"><div class="bar" style="height:85px"></div><div class="bar-label">He</div></div>
+    </div>
+    <div class="dash-line"></div>
+    <div class="dash-row"><span>Tuote A</span><span>892 kpl</span><span class="g">+24%</span></div>
+    <div class="dash-row"><span>Tuote B</span><span>441 kpl</span><span class="g">+7%</span></div>
+    <div class="dash-row"><span>Tuote C</span><span>218 kpl</span><span class="r">−3%</span></div>
   </div>
 </div>
 
 <!-- PROOF STRIP -->
 <div class="proof">
   <div class="proof-inner">
-    <div class="proof-item">
-      <div class="proof-num">3 vko</div>
-      <div class="proof-txt">Käyntikelpoinen dashboard — isoilla taloilla 3–6 kk</div>
-    </div>
-    <div class="proof-item">
-      <div class="proof-num">490€</div>
-      <div class="proof-txt">Katsastus — sis. selvityksen, scoopen ja hinnan</div>
-    </div>
-    <div class="proof-item">
-      <div class="proof-num">0€</div>
-      <div class="proof-txt">Katsastuksesta — jos ei löydy 3 kehityskohtaa</div>
-    </div>
-    <div class="proof-item">
-      <div class="proof-num">1 hlö</div>
-      <div class="proof-txt">Puhut aina suoraan tekijälle — ei myyntiä välistä</div>
-    </div>
+    <div class="proof-item"><div class="proof-num">490€</div><div class="proof-txt">Katsastus — scope-paperi johtoryhmälle</div></div>
+    <div class="proof-item"><div class="proof-num">1990€</div><div class="proof-txt">One-source — valmis 5 päivässä</div></div>
+    <div class="proof-item"><div class="proof-num">0€</div><div class="proof-txt">Jos ei 3 löydöstä katsastuksessa</div></div>
+    <div class="proof-item"><div class="proof-num">30 pv</div><div class="proof-txt">Irtisanomisaika — ei lukkoja</div></div>
+    <div class="proof-item"><div class="proof-num">1 hlö</div><div class="proof-txt">Sama henkilö myy ja rakentaa</div></div>
   </div>
 </div>
 
-<!-- PRODUCTS -->
+<!-- SOPIIKO POWER BI -->
+<section>
+  <div class="section-inner">
+    <div class="section-eye">Sopiiko Power BI teille?</div>
+    <h2 class="section-h2">Rehellinen arvio ennen ostopäätöstä</h2>
+    <p class="section-sub">Katsastuksessa selvitän aina ensin kannattaako Power BI teille. Joskus vastaus on ei — ja se on yhtä arvokas tieto.</p>
+    <div class="fit-grid">
+      <div class="fit-card yes">
+        <h3>✓ Power BI kannattaa kun...</h3>
+        <ul class="fit-list">
+          <li>Joku käyttää aikaa saman raportin valmisteluun ja jakamiseen säännöllisesti — vaikka data tulisi yhdestäkin järjestelmästä</li>
+          <li>Useampi ihminen tarvitsee saman tiedon ja nyt se pitää toimittaa heille erikseen</li>
+          <li>Haluatte porautua lukuihin itse — ei pyyntö-vastaus-syklin kautta</li>
+          <li>Sama raportti toistetaan viikoittain tai kuukausittain</li>
+        </ul>
+      </div>
+      <div class="fit-card no">
+        <h3>✗ Power BI ei kannata kun...</h3>
+        <ul class="fit-list">
+          <li>Teet kertaluonteista analyysia tai what-if -skenaarioita — Excel on siihen oikea työkalu</li>
+          <li>Olet ainoa käyttäjä eikä dataa tarvitse jakaa muille</li>
+          <li>Tarvitset virallisen tilinpäätöksen tai ALV-raportin — kirjanpitosysteemi hoitaa ne paremmin</li>
+          <li>Hallitusraportti — se jäädytetään aina, Power BI ei korvaa sitä</li>
+        </ul>
+      </div>
+    </div>
+    <p style="font-size:14px;color:var(--muted);margin-top:8px;">Jos et ole varma — 490€ katsastus selvittää sen. Käänteinen takuu: ei löydöstä, ei laskua.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TUOTTEET -->
 <section id="tuotteet">
   <div class="section-inner">
-    <div class="section-eye">Tuotteet · Power BI pk-yrityksille</div>
-    <h2 class="section-h2">Kolme selkeää askelta — hinnat näkyvissä</h2>
-    <p class="section-sub">Power BI -dashboard kiinteällä hinnalla. Ei tuntilaskutusta, ei yllätyksiä. Aloitetaan selvityksellä.</p>
-
+    <div class="section-eye">Tuotteet · kaikki hinnat näkyvissä</div>
+    <h2 class="section-h2">Neljä selkeää vaihtoehtoa</h2>
+    <p class="section-sub">Kukaan muu ei näytä hintoja. Minä näytän — koska läpinäkyvyys on osa lupausta.</p>
     <div class="products-grid">
 
-      <div class="product-card featured">
-        <div class="product-tag">Vaihe 1 · Aloita tästä</div>
-        <div class="product-name">PBI-katsastus</div>
+      <div class="product-card">
+        <div class="product-tag">Aloita tästä</div>
+        <div class="product-name">Katsastus</div>
         <div class="product-price">490€</div>
-        <div class="product-price-note">Kertaluonteinen · alv 0%</div>
-        <p class="product-desc">Selvitän tarkalleen mitä dataa teillä on, missä siinä piilee arvo, ja miten Power BI rakennetaan juuri teidän tilanteeseenne. Saat kirjallisen raportin + hinnan seuraavalle vaiheelle.</p>
+        <div class="product-price-note">Kertaluonteinen · 3 arkipäivää</div>
+        <p class="product-desc">Scope-paperi jonka voi viedä johtoryhmälle. Selvitän nykytilan hinnan ääneen, onko Power BI oikea ratkaisu, ja mikä se maksaa.</p>
         <ul class="product-list">
           <li>60 min haastattelu</li>
-          <li>Kirjallinen löydösraportti (3+ kohtaa)</li>
-          <li>Scope ja hinta-arvio projektille</li>
-          <li>Käänteinen takuu — ei tuloksia, ei laskua</li>
+          <li>Nykytilan kustannuslaskelma</li>
+          <li>Kirjallinen löydösraportti</li>
+          <li>Kiinteä hintaarvio seuraavalle vaiheelle</li>
+          <li>Käänteinen takuu</li>
+        </ul>
+      </div>
+
+      <div class="product-card featured">
+        <div class="product-tag">Nopein aloitus</div>
+        <div class="product-name">One-source</div>
+        <div class="product-price">1990€</div>
+        <div class="product-price-note">Kiinteä hinta · 5 työpäivää</div>
+        <p class="product-desc">Yksi lähde — Procountor, Netvisor tai Excel — Power BI:hin. Valmis talousraporttipaketti 5 päivässä. Adoption-sprint sisältyy.</p>
+        <ul class="product-list">
+          <li>P&L vs budjetti, kassavirta, kustannukset, myynti</li>
+          <li>Max 8 raporttisivua</li>
+          <li>Adoption-sprint: 2 palaveria 2 vkon aikana</li>
+          <li>Docs-as-code: kaikki dokumentoitu</li>
+          <li>Malli sinun tenantissasi</li>
         </ul>
       </div>
 
       <div class="product-card">
-        <div class="product-tag">Vaihe 2 · Rakentaminen</div>
-        <div class="product-name">Dashboard-projekti</div>
-        <div class="product-price">2 500–7 000€</div>
-        <div class="product-price-note">Kiinteä hinta · scope katsastuksesta</div>
-        <p class="product-desc">Rakennan valmiin Power BI -kokonaisuuden — datamalli, raportit, automaattiset päivitykset, käyttäjäkoulutus. Tyypillisesti 3 viikkoa aloituksesta käyttöönottoon.</p>
+        <div class="product-tag">Räätälöity</div>
+        <div class="product-name">Standard</div>
+        <div class="product-price">6 000–10 000€</div>
+        <div class="product-price-note">Kiinteä hinta · 3–4 viikkoa</div>
+        <p class="product-desc">2–3 datalähdettä integroituna. Scope lukitaan katsastuksessa. Max 3 lähdettä per tietomalli — tämä on laadun tae, ei rajoite.</p>
         <ul class="product-list">
-          <li>Datamalli + tietomallintaminen</li>
-          <li>Interaktiiviset raportit & dashboardit</li>
-          <li>Datalähteiden integraatiot</li>
-          <li>Automaattiset päivitykset</li>
-          <li>Loppukäyttäjäkoulutus</li>
+          <li>2–3 lähdettä (esim. ERP + CRM + budjetti)</li>
+          <li>8–15 raporttia</li>
+          <li>Adoption-sprint 4 viikkoa</li>
+          <li>Docs-as-code + seuraavan tekijän ohje</li>
+          <li>30 pv irtisanomisaika kuukausikehitykseen</li>
         </ul>
       </div>
 
       <div class="product-card">
-        <div class="product-tag">Vaihe 3 · Jatkuva kehitys</div>
-        <div class="product-name">Kuukausikehitys</div>
-        <div class="product-price">1 500–2 000€<span style="font-size:18px;font-weight:500;">/kk</span></div>
-        <div class="product-price-note">Kuukausisopimus · alv 0%</div>
-        <p class="product-desc">Pidän PBI-ympäristönne ajan tasalla — uudet näkymät, datan laajentaminen, ongelmanratkaisu. Vasteaika sama päivä.</p>
+        <div class="product-tag">Poltetuille ostajille</div>
+        <div class="product-name">Diagnostiikka</div>
+        <div class="product-price">490€</div>
+        <div class="product-price-note">Kertaluonteinen · 3 arkipäivää</div>
+        <p class="product-desc">Teillä on jo Power BI mutta kukaan ei käytä sitä. Selvitän miksi — ilman että ehdotan automaattisesti uutta isoa projektia.</p>
         <ul class="product-list">
-          <li>Uudet raportit ja näkymät</li>
-          <li>Datalähteiden päivitykset</li>
-          <li>Suorituskyvyn optimointi</li>
-          <li>Sama päivä -vasteaika</li>
+          <li>Olemassa olevan mallin läpikäynti</li>
+          <li>Miksi raportit eivät ole käytössä</li>
+          <li>Mitä korjataan ilman isoa projektia</li>
+          <li>Rehellinen arvio — ei automaattista myyntiä</li>
         </ul>
       </div>
 
+    </div>
+    <div style="margin-top:20px;padding:16px 20px;background:var(--card);border-radius:8px;border:1px solid var(--border);">
+      <div style="font-size:13px;color:var(--light);">
+        <strong style="color:var(--text);">Kuukausikehitys 1 500–2 000€/kk</strong> — ylläpito, uudet raportit, adoption-seuranta. 
+        Irtisanomisaika 30 päivää. Lähtöpäivänä toimitan kaikki tiedostot .pbip-formaatissa + dokumentaation. Et jää riippuvaiseksi minusta.
+      </div>
     </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- HOW KATSASTUS WORKS -->
+<!-- POLTETTU OSTAJA -->
+<section class="burned-section">
+  <div class="section-inner">
+    <div class="burned-grid">
+      <div>
+        <div class="section-eye">Oletteko tässä tilanteessa?</div>
+        <h2 class="section-h2">BI on pystyssä — mutta kukaan ei käytä sitä</h2>
+        <p style="font-size:17px;color:var(--light);line-height:1.75;margin-bottom:24px;">
+          Iso talo toimitti dashboardit, lähti, kukaan ei opettanut johtoryhmää käyttämään. Raportit ovat jossain. Controller kokoaa yhä Exceliä. Lisenssit maksetaan edelleen.
+        </p>
+        <p style="font-size:17px;color:var(--light);line-height:1.75;margin-bottom:32px;">
+          490€ diagnostiikka selvittää miksi — ilman että ehdotan heti uutta isoa projektia. Joskus ongelma on adoption, ei tekniikka. Ja se korjataan halvemmalla.
+        </p>
+        <a href="https://wa.me/358405658921?text=Hei%20Harri!%20Meill%C3%A4%20on%20Power%20BI%20mutta%20se%20ei%20ole%20k%C3%A4yt%C3%B6ss%C3%A4.%20Voisiko%20jutella%3F" class="btn btn-green">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Jutellaan diagnostiikasta
+        </a>
+      </div>
+      <div class="burned-signs">
+        <div class="burned-sign">Raportit ovat olemassa mutta viimeinen kirjautuminen oli kuukausia sitten</div>
+        <div class="burned-sign">Controller kokoaa yhä Exceliä vaikka Power BI on pystyssä</div>
+        <div class="burned-sign">Johtoryhmä pyytää lukuja sähköpostilla eikä avaa dashboardia</div>
+        <div class="burned-sign">Iso talo toimitti ja lähti — kukaan ei tiedä miten malli toimii</div>
+        <div class="burned-sign">Lisenssit maksetaan mutta ROI:ta ei näy</div>
+        <div class="burned-sign">Uusi muutos vaatii uuden tarjouksen ja kolme viikkoa odottamista</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- MITEN TOIMII -->
 <section>
   <div class="section-inner">
-    <div class="section-eye">Power BI -käyttöönotto pk-yritykselle — näin se toimii</div>
+    <div class="section-eye">Katsastusprosessi · Power BI käyttöönotto pk-yritykselle</div>
     <h2 class="section-h2">Selvitys ennen sitoutumista</h2>
-    <p class="section-sub">490€ katsastus on se piste josta kaikki alkaa. Selvitän missä johdon raportoinnissa on pullonkaulat — ennen kuin sitoudutte mihinkään isoon.</p>
-
+    <p class="section-sub">490€ katsastus on se piste josta kaikki alkaa. Scope-paperi jonka voi viedä johtoryhmälle.</p>
     <div class="steps">
       <div class="step">
         <div class="step-num">Vaihe 01 · Haastattelu</div>
         <h3>60 min — kerrot minulle</h3>
-        <p>Käydään läpi missä järjestelmissä datanne makaa, mitä te tällä hetkellä raportoitte, ja mikä ottaa turhaan aikaa. Yleensä löytyy 5–10 konkreettista kohtaa ensimmäisessä tunnissa.</p>
+        <p>Käydään läpi missä data on, mitä raportteja tehdään nyt käsin, ja montako tuntia siihen menee. Lasken nykytilan kustannuksen ääneen — controllerin tunnit × 12kk. Tämä on se paperi joka perustelee investoinnin johtoryhmälle.</p>
       </div>
       <div class="step">
         <div class="step-num">Vaihe 02 · Raportti</div>
-        <h3>3 arkipäivässä kirjallinen löydös</h3>
-        <p>Saat dokumentin jossa on: mitä löytyi, miten Power BI ratkaisisi sen, ja tarkka scope + hinta dashboard-projektille. Ei yleistä sanahelinää — vain teidän tilanteeseenne kirjoitettu.</p>
+        <h3>3 arkipäivässä kirjallinen selvitys</h3>
+        <p>Onko Power BI oikea ratkaisu — ja jos on, mikä tuote sopii (one-source vai standard), tarkka scope ja kiinteä hinta. Jos vastaus on ei, kerron miksi ja mitä sen sijaan. Ei myyntipuheita.</p>
       </div>
       <div class="step">
         <div class="step-num">Vaihe 03 · Päätös</div>
         <h3>30 min läpikäynti — te päätätte</h3>
-        <p>Käydään raportti yhdessä läpi. Jos haluatte edetä projektiin — sovitaan aikataulu. Jos ette — saatte silti raportin täysimääräisenä. Ei myyntipuheita.</p>
+        <p>Käydään raportti läpi. Jos haluatte edetä — sovitaan aikataulu. Jos ette — saatte silti raportin täysimääräisenä. Scope-paperi jää teille joka tapauksessa.</p>
       </div>
     </div>
   </div>
 </section>
 
 <div class="divider"></div>
-
-<!-- WHY NOT BIG AGENCY -->
-<section>
-  <div class="section-inner">
-    <div class="section-eye">Power BI -freelancer vs. konsulttitalo</div>
-    <h2 class="section-h2">Isot konsulttitalot on rakennettu isoille projekteille</h2>
-    <p class="section-sub">Ei niitä vastaan mitään — mutta pk-yrityksen tilanne ei sovi niiden koneistoon. Myyntisykli 6–8 viikkoa, hinta ei näkyvissä, tekijä selviää myöhemmin.</p>
-
-    <div class="compare-grid">
-      <div class="compare-col them">
-        <div class="compare-head">↗ Iso konsulttitalo / IT-talo</div>
-        <ul class="compare-list">
-          <li>Myyntisykli 4–8 viikkoa ennen aloitusta</li>
-          <li>Puhut myyjälle, tekijä selviää myöhemmin</li>
-          <li>Hinnat ei näkyvissä — pyydä tarjous</li>
-          <li>Projekti jakautuu usealle konsultille</li>
-          <li>Minimiprojekti 20 000€+</li>
-          <li>PBI on osa laajempaa ekosysteemipalvelua</li>
-        </ul>
-      </div>
-      <div class="compare-col me">
-        <div class="compare-head">harriaro.fi</div>
-        <ul class="compare-list">
-          <li>Katsastuksesta sopimus 1 viikossa</li>
-          <li>Puhut aina suoraan tekijälle</li>
-          <li>Kaikki hinnat sivulla</li>
-          <li>Minä teen — alusta loppuun</li>
-          <li>Aloitetaan 490€ katsastuksella</li>
-          <li>Power BI on ainoa mitä teen</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- MIKSI HARRI -->
 <section>
   <div class="section-inner">
     <div class="section-eye">Tausta</div>
     <h2 class="section-h2">Useimmat Power BI -rakentajat tulevat IT-puolelta.<br>Minä tulen talousjohdosta.</h2>
-
-    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items:start; margin-top: 8px;">
+    <div class="harri-grid">
       <div>
-        <p style="font-size:17px; color:var(--light); line-height:1.75; margin-bottom:20px;">
-          9 vuotta johdon laskentatoimea — group controlleri, treasury, business partner. Olen rakentanut P&amp;L:n, taseen ja kassavirran hallitukselle, johtoryhmälle ja omistajalle. En kirjanpitoa — johtamisen numeroita. Niitä joista päätetään investoinneista, hinnoittelusta ja strategiasta.
-        </p>
-        <p style="font-size:17px; color:var(--light); line-height:1.75; margin-bottom:20px;">
-          Se näkyy lopputuotteessa. En rakenna teknisesti hienoja dashboardeja joita kukaan ei käytä. Rakennan näkymän josta oikeasti johdetaan — koska olen istunut sillä puolella pöytää ja tiedän mitä sieltä katsotaan.
-        </p>
-
-        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:28px;">
-          <span style="background:var(--card2); border:1px solid var(--border); border-radius:6px; padding:6px 14px; font-size:13px; color:var(--light);">BBA · talousjohtaminen</span>
-          <span style="background:var(--card2); border:1px solid var(--border); border-radius:6px; padding:6px 14px; font-size:13px; color:var(--light);">MBA · strateginen johtaminen</span>
-          <span style="background:var(--card2); border:1px solid var(--border); border-radius:6px; padding:6px 14px; font-size:13px; color:var(--light);">9 v. corporate finance</span>
-          <span style="background:var(--card2); border:1px solid var(--border); border-radius:6px; padding:6px 14px; font-size:13px; color:var(--light);">Hallitusraportointi</span>
-          <span style="background:var(--card2); border:1px solid var(--border); border-radius:6px; padding:6px 14px; font-size:13px; color:var(--light);">M&amp;A due diligence</span>
-          <span style="background:var(--card2); border:1px solid var(--border); border-radius:6px; padding:6px 14px; font-size:13px; color:var(--light);">ERP/BI-uudistus</span>
+        <p style="font-size:17px;color:var(--light);line-height:1.75;margin-bottom:18px;">9 vuotta johdon laskentatoimea — group controlleri, treasury, business partner. Olen rakentanut P&L:n, taseen ja kassavirran hallitukselle, johtoryhmälle ja omistajalle. En kirjanpitoa — johtamisen numeroita. Niitä joista päätetään investoinneista, hinnoittelusta ja strategiasta.</p>
+        <p style="font-size:17px;color:var(--light);line-height:1.75;margin-bottom:18px;">Tiedän mitä johtoryhmä oikeasti katsoo maanantaiaamuna — koska olen istunut sillä puolella pöytää ja rakentanut sen raportin. En rakenna teknisesti hienoja dashboardeja joita kukaan ei käytä. Rakennan näkymän josta oikeasti johdetaan.</p>
+        <div class="harri-tags">
+          <span class="harri-tag">BBA · talousjohtaminen</span>
+          <span class="harri-tag">MBA · strateginen johtaminen</span>
+          <span class="harri-tag">9 v. johdon laskentatoimi</span>
+          <span class="harri-tag">Hallitusraportointi</span>
+          <span class="harri-tag">M&A due diligence</span>
+          <span class="harri-tag">ERP/BI-uudistus</span>
         </div>
       </div>
-
-      <div style="display:flex; flex-direction:column; gap:12px;">
-        <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; padding:20px;">
-          <div style="font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.07em; color:var(--amber); margin-bottom:8px;">Kansainvälinen lentokenttäoperaattori</div>
-          <div style="font-size:15px; color:var(--text); font-weight:600; margin-bottom:6px;">Power BI -talousraportointikokonaisuus</div>
-          <div style="font-size:13px; color:var(--light); line-height:1.6;">Rakensin yhtiön ensimmäisen Power BI -ympäristön — siirsimme talousraportoinnin manuaalisesta Excel-kokoamisesta automaattiseen raportointiin. Johtoryhmä- ja esimiessovellukset, tuloslaskelma, tase, budjettitoteuma. Opinnäytetyönä tehty, tuotantoon otettu.</div>
+      <div class="harri-cards">
+        <div class="harri-card">
+          <div class="harri-card-eye">Kansainvälinen lentokenttäoperaattori</div>
+          <div class="harri-card-title">Power BI -talousraportointikokonaisuus</div>
+          <div class="harri-card-desc">Rakensin yhtiön ensimmäisen Power BI -ympäristön — siirsimme talousraportoinnin manuaalisesta Excel-kokoamisesta automaattiseen. Johtoryhmä- ja esimiessovellukset, tuloslaskelma, tase, budjettitoteuma. Opinnäytetyönä tehty, tuotantoon otettu.</div>
         </div>
-
-        <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; padding:20px;">
-          <div style="font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.07em; color:var(--amber); margin-bottom:8px;">Valtion omistama infrastruktuurikonserni</div>
-          <div style="font-size:15px; color:var(--text); font-weight:600; margin-bottom:6px;">Group Finance Controller — hallitus- ja omistajaraportointi</div>
-          <div style="font-size:13px; color:var(--light); line-height:1.6;">P&amp;L, tase, kassavirta, treasury ja henkilöstöraportointi johtoryhmälle, hallitukselle ja Suomen valtiolle omistajana. Johdin ERP/BI-järjestelmäuudistuksen esiselvityksestä kilpailutukseen ja käyttöönottoon. M&amp;A due diligence kahdessa yrityskaupassa.</div>
+        <div class="harri-card">
+          <div class="harri-card-eye">Valtion omistama infrastruktuurikonserni</div>
+          <div class="harri-card-title">Group Finance Controller — hallitus- ja omistajaraportointi</div>
+          <div class="harri-card-desc">P&L, tase, kassavirta, treasury ja henkilöstöraportointi johtoryhmälle, hallitukselle ja Suomen valtiolle omistajana. Johdin ERP/BI-järjestelmäuudistuksen esiselvityksestä kilpailutukseen. M&A due diligence kahdessa yrityskaupassa.</div>
         </div>
-
-        <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; padding:20px;">
-          <div style="font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.07em; color:var(--amber); margin-bottom:8px;">Kansainvälinen matkailukonserni</div>
-          <div style="font-size:15px; color:var(--text); font-weight:600; margin-bottom:6px;">Senior Finance Business Partner — dataohjattu myynti</div>
-          <div style="font-size:13px; color:var(--light); line-height:1.6;">Rakensin ensimmäisen tuotekohtaisen kannattavuusseurannan myyntilinjoittain. Kampanjoiden hinnoittelumallinnus ja kannattavuusseuranta — kampanjat pysyivät tavoitteissaan.</div>
+        <div class="harri-card">
+          <div class="harri-card-eye">Kansainvälinen matkailukonserni</div>
+          <div class="harri-card-title">Senior Finance Business Partner</div>
+          <div class="harri-card-desc">Rakensin ensimmäisen tuotekohtaisen kannattavuusseurannan myyntilinjoittain. Kampanjoiden hinnoittelumallinnus ja kannattavuusseuranta data-ohjattuna.</div>
         </div>
       </div>
     </div>
@@ -795,217 +492,155 @@
 
 <div class="divider"></div>
 
-<!-- CTA SECTION -->
+<!-- MITÄ EN TEE -->
+<section>
+  <div class="section-inner">
+    <div class="section-eye">Rehellisyys</div>
+    <h2 class="section-h2">Mitä en tee — ja miksi</h2>
+    <p class="section-sub">Rajaukseni ovat laadun tae. Lupaan vähemmän ja toimitan sen mitä lupaan.</p>
+    <div class="nope-grid">
+      <div class="nope-card">
+        <div class="nope-title">En korvaa hallitusraporttia</div>
+        <div class="nope-desc">Hallituspaketti jäädytetään aina — koska päätös, vastuu ja tilintarkastus kiinnittyvät siihen dokumenttiin. Power BI on analyysiympäristö jolla controller valmistelee sen nopeammin.</div>
+      </div>
+      <div class="nope-card">
+        <div class="nope-title">En tee yli 3 lähteen malleja</div>
+        <div class="nope-desc">Useampi lähde tarkoittaa enemmän liitoskohtia, enemmän virhelähteitä ja mallia jota kukaan ei enää ymmärrä. Yli 3 lähteen tilanteessa suosittelen tietovarastoa ensin — ja kerron keneltä sen saa.</div>
+      </div>
+      <div class="nope-card">
+        <div class="nope-title">En tee ad hoc -analyysia</div>
+        <div class="nope-desc">Excel on parempi what-if -skenaarioihin ja kertaluonteiseen analyysiin. En rakenna Power BI:tä tilanteeseen jossa Excel oikeasti riittää.</div>
+      </div>
+      <div class="nope-card">
+        <div class="nope-title">En tee virallisia tilinpäätöksiä</div>
+        <div class="nope-desc">ALV-raportit, tilinpäätökset, tilintarkastettavat dokumentit — kirjanpitosysteemi tekee ne paremmin. En myy ratkaisua joka ei sovi tarkoitukseen.</div>
+      </div>
+      <div class="nope-card">
+        <div class="nope-title">En rakenna myynti/toimitus-kuilua</div>
+        <div class="nope-desc">Sama henkilö joka myy on se joka rakentaa. Ei myyjää, ei junioria, ei siirtymistä. Sinä tiedät aina kenen kanssa teet töitä.</div>
+      </div>
+      <div class="nope-card">
+        <div class="nope-title">En jätä ilman omistajuutta</div>
+        <div class="nope-desc">Malli on sinun tenantissasi. Docs-as-code. Seuraavan tekijän ohje. 30 pv irtisanomisaika. Voit kilpailuttaa seuraavan tekijän milloin haluat.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- MIKSI EI ISO TALO -->
+<section>
+  <div class="section-inner">
+    <div class="section-eye">Power BI -freelancer vs. konsulttitalo</div>
+    <h2 class="section-h2">Isot konsulttitalot on rakennettu isoille projekteille</h2>
+    <p class="section-sub">Ei niitä vastaan mitään — mutta pk-yrityksen tilanne ei sovi niiden koneistoon.</p>
+    <div class="compare-grid">
+      <div class="compare-col them">
+        <div class="compare-head">↗ Iso konsulttitalo</div>
+        <ul class="compare-list">
+          <li>Myyntihenkilö myy, junior rakentaa — et tiedä kuka tekee</li>
+          <li>Myyntisykli 4–8 viikkoa ennen aloitusta</li>
+          <li>AI-governance estää kehittäjiä käyttämästä tekoälyä — kehitys on hitaampaa</li>
+          <li>Muutos vaatii uuden tarjouksen ja 2–4 viikkoa</li>
+          <li>Malli jää heidän arkkitehtuuriinsa — uusi riippuvuus</li>
+          <li>Minimiprojekti 15 000€+</li>
+        </ul>
+      </div>
+      <div class="compare-col me">
+        <div class="compare-head">harriaro.fi</div>
+        <ul class="compare-list">
+          <li>Sama henkilö myy ja rakentaa — aina</li>
+          <li>Katsastuksesta sopimus viikossa</li>
+          <li>AI-avusteinen kehitys — nopeampi ja halvempi</li>
+          <li>Muutos seuraavalla viikolla</li>
+          <li>Malli sinun tenantissasi, docs-as-code, exit-klausuuli</li>
+          <li>One-source 1990€, katsastus 490€</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
 <section class="cta-section">
   <div class="section-inner">
     <div class="cta-inner">
       <div class="section-eye">Aloitetaan</div>
       <h2>490€ selvittää onko Power BI oikea ratkaisu teille</h2>
-      <p>Jos ei ole — saatte sen tietää ennen kuin sitoudutte mihinkään isoon. Jos on — tiedätte tarkalleen mitä se maksaa ja kauanko kestää.</p>
-
-      <div class="cta-grid">
-        <div class="cta-fact">
-          <div class="cta-fact-label">Katsastus</div>
-          <div class="cta-fact-val">490€ · 3 arkipäivässä raportti</div>
-        </div>
-        <div class="cta-fact">
-          <div class="cta-fact-label">Takuu</div>
-          <div class="cta-fact-val">Ei 3 löydöstä → ei laskua</div>
-        </div>
-        <div class="cta-fact">
-          <div class="cta-fact-label">Projekti</div>
-          <div class="cta-fact-val">2 500–7 000€ · kiinteä hinta</div>
-        </div>
-        <div class="cta-fact">
-          <div class="cta-fact-label">Aloitus</div>
-          <div class="cta-fact-val">Viikoissa — ei kuukausissa</div>
-        </div>
+      <p>Scope-paperi jonka voi viedä johtoryhmälle. Nykytilan kustannuslaskelma ääneen. Kiinteä hinta seuraavalle vaiheelle. Tai rehellinen "ei kannata" — sekin on arvokas.</p>
+      <div class="cta-facts">
+        <div class="cta-fact"><div class="cta-fact-label">Katsastus</div><div class="cta-fact-val">490€ · 3 arkipäivässä</div></div>
+        <div class="cta-fact"><div class="cta-fact-label">One-source</div><div class="cta-fact-val">1990€ · 5 päivässä</div></div>
+        <div class="cta-fact"><div class="cta-fact-label">Takuu</div><div class="cta-fact-val">Ei löydöstä → ei laskua</div></div>
       </div>
-
-      <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-        <a href="https://wa.me/358405658921?text=Hei%20Harri!%20N%C3%A4in%20harriaro.fi%20ja%20olen%20kiinnostunut%20Power%20BI%20-katsastuksesta.%20Voisiko%20jutella%3F" class="btn" style="font-size:16px; padding:14px 28px; background:#25D366; display:flex; align-items:center; gap:8px;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <div class="cta-btns">
+        <a href="https://wa.me/358405658921?text=Hei%20Harri!%20N%C3%A4in%20harriaro.fi%20ja%20olen%20kiinnostunut%20Power%20BI%20-katsastuksesta.%20Voisiko%20jutella%3F" class="btn btn-green" style="font-size:16px;padding:14px 28px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           WhatsApp
         </a>
-        <a href="mailto:aro.harri@gmail.com?subject=Power BI -katsastus" class="btn btn-ghost" style="font-size:16px; padding:14px 28px;">
-          Sähköposti
-        </a>
+        <a href="mailto:aro.harri@gmail.com?subject=Power BI -katsastus" class="btn btn-ghost" style="font-size:16px;padding:14px 28px;">Sähköposti</a>
       </div>
-      <p class="cta-note" style="margin-top:16px;">Tai soita: <a href="tel:+358405658921" style="color:var(--amber);">+358 40 565 8921</a></p>
+      <p style="font-size:12px;color:var(--muted);">Tai soita: <a href="tel:+358405658921" style="color:var(--amber);">+358 40 565 8921</a></p>
     </div>
   </div>
 </section>
+
+<!-- BLOGIT -->
+<section>
+  <div class="section-inner">
+    <div class="section-eye">Artikkelit</div>
+    <h2 class="section-h2" style="margin-bottom:24px;">Power BI pk-yrityksille — lue lisää</h2>
+    <div class="blog-grid" style="margin-bottom:16px;">
+      <a href="/controllerin-excel.html" class="blog-card"><div class="blog-eye">Kipupiste</div><div class="blog-title">Controllerin Excel — Suomen kallein kuukausiraportti</div><div class="blog-desc">Teillä on Power BI. Silti controller käyttää kolme tuntia Excelin kokoamiseen. Lasketaan mitä se maksaa.</div><div class="blog-link">Lue artikkeli →</div></a>
+      <a href="/powerbi-vai-excel.html" class="blog-card"><div class="blog-eye">Excel vai Power BI?</div><div class="blog-title">Power BI vai Excel — milloin on aika vaihtaa?</div><div class="blog-desc">Maanantain raportti kestää kaksi tuntia. Milloin Excel loppuu ja Power BI alkaa?</div><div class="blog-link">Lue artikkeli →</div></a>
+      <a href="/bi-johto-kayttaa-excelja.html" class="blog-card"><div class="blog-eye">BI-optimointi</div><div class="blog-title">Teillä on Power BI — mutta johto käyttää yhä Exceliä</div><div class="blog-desc">Tekniikka on pystyssä mutta bisnes ei hyödy. Kolme yleisintä syytä.</div><div class="blog-link">Lue artikkeli →</div></a>
+    </div>
+    <div class="blog-grid">
+      <a href="/bi-toimittajan-panttivanki.html" class="blog-card"><div class="blog-eye">Toimittajariippuvuus</div><div class="blog-title">Toimittajan panttivanki — otatko omistajuuden takaisin?</div><div class="blog-desc">Jokainen muutos vaatii toimittajaa ja maksaa viikkoja. Näin vapaudut.</div><div class="blog-link">Lue artikkeli →</div></a>
+      <a href="/genai-vs-powerbi.html" class="blog-card"><div class="blog-eye">Tekoäly ja BI</div><div class="blog-title">Miksi ChatGPT ei korvaa Power BI:tä</div><div class="blog-desc">ChatGPT vastaa kysymyksiin. Power BI on näkymä ennen kuin kysymystä edes esitetään.</div><div class="blog-link">Lue artikkeli →</div></a>
+      <a href="/bi-tekoaly-keksii-lukuja.html" class="blog-card"><div class="blog-eye">AI-varoitus</div><div class="blog-title">Tekoäly BI:ssä keksii lukuja — datamallin laatu ratkaisee</div><div class="blog-desc">Microsoft varoittaa itse: Copilot voi keksiä lukuja jos malli on puutteellinen.</div><div class="blog-link">Lue artikkeli →</div></a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
 
 <!-- FAQ -->
 <section>
   <div class="section-inner">
     <div class="section-eye">Usein kysyttyä · Power BI hinta ja käyttöönotto</div>
-    <h2 class="section-h2" style="margin-bottom:40px;">Yleisimmät kysymykset</h2>
-
-    <div class="faq-list">
-      <details>
-        <summary>Mitä dataa tarvitaan ennen kuin voi aloittaa?</summary>
-        <p>Ei mitään erityistä. Excel-taulukot, ERP, CRM, Shopify, Procountor — mitä tahansa teillä on. Katsastuksessa selvitetään mitä lähteitä käytetään ja miten ne yhdistetään. Yleensä löydämme datan josta asiakas ei edes tiennyt.</p>
-      </details>
-      <details>
-        <summary>Tarvitaanko Power BI Pro -lisenssi?</summary>
-        <p>Kyllä, raporttien jakamiseen tarvitaan Power BI Pro (~10€/kk per käyttäjä). Katsastuksessa käydään läpi teidän tarvitsemanne lisenssit ja niiden kustannukset — ei yllätyksiä jälkikäteen.</p>
-      </details>
-      <details>
-        <summary>Kuinka kauan projekti kestää?</summary>
-        <p>Tyypillinen dashboard-projekti: 2–4 viikkoa aloituksesta käyttöönottoon. Katsastuksessa sovitaan aikataulu tarkemmin datan monimutkaisuuden mukaan. Olen rakentanut yksinkertaisia raportteja viikossa ja monilähdeprojekteja kuudessa viikossa.</p>
-      </details>
-      <details>
-        <summary>Voitko korjata tai kehittää meillä jo olevan Power BI:n?</summary>
-        <p>Kyllä. Aloitetaan silti katsastuksella — käydään läpi mitä teillä on, mikä toimii ja mikä ei. Vanhan PBI:n uudelleenrakentaminen on usein nopeampaa kuin paikkailu, ja katsastus selvittää kumpi kannattaa.</p>
-      </details>
-      <details>
-        <summary>Miten hinnoittelu toimii projektissa?</summary>
-        <p>Kiinteä hinta — sovitaan katsastuksen jälkeen ennen projektin alkua. Ei tuntilaskutusta, ei muuttuvia kuluja. Jos projekti kasvaa sovitusta scopesta, sovitaan siitä erikseen ennen kuin teen mitään lisää.</p>
-      </details>
-      <details>
-        <summary>Toimiiko tämä etänä vai onko käynti paikan päällä?</summary>
-        <p>Kaikki toimii etänä — katsastus Teams/Meet-palaverilla, raportti sähköpostilla, projekti Slack/Teams-yhteistyöllä. Olen Sipoosta mutta asiakkaita koko Suomesta.</p>
-      </details>
-    </div>
+    <h2 class="section-h2" style="margin-bottom:32px;">Yleisimmät kysymykset</h2>
+    <details><summary>Korvaako Power BI hallitusraportin?</summary><p>Ei — eikä sen pitäisikään. Hallituspaketti jäädytetään aina, koska päätös, vastuu ja tilintarkastus kiinnittyvät siihen dokumenttiin. Power BI on työkalu jolla controller analysoi lukuja ennen jäädytystä — ja myyntijohtaja seuraa viikkoa reaaliajassa. Nämä ovat eri tarkoituksia eri työkaluille.</p></details>
+    <details><summary>Miksi max 3 datalähdettä per malli?</summary><p>Useampi lähde tarkoittaa enemmän liitoskohtia, enemmän virhelähteitä ja mallia jota kukaan ei enää ymmärrä. Moni BI-projekti epäonnistuu juuri siksi. Yli 3 lähteen tilanteessa suosittelen tietovarastoa ensin — ja kerron keneltä sen saa. Se ei tarkoita ettei kauppaa synny, vaan että scope pitää ratkaista oikein.</p></details>
+    <details><summary>Mitä tapahtuu jos lopetat kuukausisopimuksen?</summary><p>Irtisanomisaika on 30 päivää. Lähtöpäivänä toimitan kaikki tiedostot .pbip-formaatissa, täydellisen dokumentaation ja seuraavan tekijän ohjeen. Malli on sinun tenantissasi — et jää riippuvaiseksi minusta. Voit kilpailuttaa seuraavan tekijän tai jatkaa itse.</p></details>
+    <details><summary>Oletko rakentanut pk-yrityksille vai vain isoille konserneille?</summary><p>Molempia. BBA-opinnäytetyö oli käytännön Power BI -järjestelmän rakentaminen kansainväliselle lentokenttäoperaattorille — tuotantoon otettu projekti, ei demo. One-source -paketti on suunniteltu juuri pk-mittakaavaan: yksi lähde, valmis 5 päivässä, 1990€.</p></details>
+    <details><summary>Mitä jos meillä on jo Power BI mutta se ei toimi?</summary><p>Siihen on Diagnostiikka — 490€. Katsomme ensin mitä teillä on ennen kuin ehdotan mitään. 60 minuuttia + olemassa olevan mallin läpikäynti. Kirjallinen raportti miksi raportit eivät ole käytössä ja mitä korjataan. Ei automaattisesti johda uuteen isoon projektiin.</p></details>
+    <details><summary>Miten Netvisor tai Procountor integroituu Power BI:hin?</summary><p>Ne eivät integroidu suoraan — tarvitaan välikerros. Yleisimmät polut ovat BI Book, Petari tai API-yhteys. Katsastuksessa selvitän mikä polku sopii juuri teidän tilanteeseen ja mitä se maksaa. One-source -paketissa integraatioratkaisu sisältyy.</p></details>
+    <details><summary>Mitä jos sairastut kesken projektin?</summary><p>Kaikki työ on dokumentoitu ja sinun tenantissasi koko projektin ajan — ei vain lopussa. Jos jotain tapahtuu, toinen tekijä pystyy jatkamaan seuraavan tekijän ohjeen avulla. Docs-as-code tarkoittaa että tieto ei ole minun päässäni.</p></details>
   </div>
 </section>
-
-<!-- BLOG -->
-<section>
-  <div class="section-inner">
-    <div class="section-eye">Artikkelit</div>
-    <h2 class="section-h2">Power BI pk-yrityksille — lue lisää</h2>
-    <div style="display:grid; grid-template-columns: repeat(3,1fr); gap:16px; margin-bottom:16px;">
-
-      <a href="/powerbi-vai-excel.html" style="text-decoration:none;">
-        <div class="step" style="height:100%; transition: border-color .15s;" onmouseover="this.style.borderColor='#F59E0B'" onmouseout="this.style.borderColor='#1E2530'">
-          <div class="step-num">Excel vai Power BI?</div>
-          <h3 style="font-size:16px; margin-bottom:10px;">Power BI vai Excel — milloin on aika vaihtaa?</h3>
-          <p>Maanantain raportti kestää kaksi tuntia. Luvut eivät täsmää. Tiedät että tähän on ratkaisu — mutta milloin Excel loppuu ja Power BI alkaa?</p>
-          <p style="margin-top:12px; color:#F59E0B; font-size:13px; font-weight:600;">Lue artikkeli →</p>
-        </div>
-      </a>
-
-      <a href="/genai-vs-powerbi.html" style="text-decoration:none;">
-        <div class="step" style="height:100%; transition: border-color .15s;" onmouseover="this.style.borderColor='#F59E0B'" onmouseout="this.style.borderColor='#1E2530'">
-          <div class="step-num">Tekoäly vs. Power BI</div>
-          <h3 style="font-size:16px; margin-bottom:10px;">Miksi ChatGPT ei korvaa Power BI:tä</h3>
-          <p>ChatGPT vastaa kysymyksiin. Power BI on näkymä joka on auki ennen kuin kysymystä edes osataan esittää. Miksi molemmat tarvitaan?</p>
-          <p style="margin-top:12px; color:#F59E0B; font-size:13px; font-weight:600;">Lue artikkeli →</p>
-        </div>
-      </a>
-
-      <a href="/powerbi-hinta.html" style="text-decoration:none;">
-        <div class="step" style="height:100%; transition: border-color .15s;" onmouseover="this.style.borderColor='#F59E0B'" onmouseout="this.style.borderColor='#1E2530'">
-          <div class="step-num">Hinta ja kustannukset</div>
-          <h3 style="font-size:16px; margin-bottom:10px;">Power BI -dashboard hinta Suomessa 2026</h3>
-          <p>Konsulttitalot piilottavat hinnat. Tässä avoimesti mitä Power BI -projekti maksaa Suomessa — ja mistä hintaerot syntyvät.</p>
-          <p style="margin-top:12px; color:#F59E0B; font-size:13px; font-weight:600;">Lue artikkeli →</p>
-        </div>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- BI OPTIMOINTI -->
-<section style="background:linear-gradient(135deg,#0f1a2a 0%,#0B0D10 100%); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
-  <div class="section-inner">
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;">
-      <div>
-        <div class="section-eye">Onko BI jo olemassa?</div>
-        <h2 class="section-h2">BI-optimointi — kun järjestelmä on mutta ei toimi</h2>
-        <p style="font-size:17px; color:var(--light); line-height:1.75; margin-bottom:24px;">Moni yritys on jo investoinut Power BI:hin. Ongelma ei ole puuttuva järjestelmä — ongelma on että se ei vastaa kysymyksiin joita johtoryhmässä oikeasti esitetään.</p>
-        <p style="font-size:17px; color:var(--light); line-height:1.75; margin-bottom:32px;">Tunnistan tilanteen nopeasti ja korjaan sen — ilman että olemassa oleva toimittajasuhde vaarantuu.</p>
-        <a href="https://wa.me/358405658921?text=Hei%20Harri!%20N%C3%A4in%20harriaro.fi%20ja%20olen%20kiinnostunut%20Power%20BI%20-optimoinnista.%20Voisiko%20jutella%3F" class="btn">Jutellaan tilanteesta</a>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:12px;">
-        <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;display:flex;gap:14px;align-items:flex-start;">
-          <div style="color:var(--amber);font-size:20px;flex-shrink:0;">↗</div>
-          <div>
-            <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;margin-bottom:4px;font-size:15px;">Johto ei käytä BI:tä</div>
-            <div style="font-size:13px;color:var(--light);">Tekniikka on pystyssä mutta controller kokoaa yhä Exceliä. Selvitän miksi ja mitä muutetaan.</div>
-          </div>
-        </div>
-        <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;display:flex;gap:14px;align-items:flex-start;">
-          <div style="color:var(--amber);font-size:20px;flex-shrink:0;">🔒</div>
-          <div>
-            <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;margin-bottom:4px;font-size:15px;">Toimittajariippuvuus</div>
-            <div style="font-size:13px;color:var(--light);">Jokainen muutos vaatii toimittajaa. Avaan rakenteen niin että teillä on aito valinta.</div>
-          </div>
-        </div>
-        <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;display:flex;gap:14px;align-items:flex-start;">
-          <div style="color:var(--amber);font-size:20px;flex-shrink:0;">🔄</div>
-          <div>
-            <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;margin-bottom:4px;font-size:15px;">Organisaatio muuttui, BI ei</div>
-            <div style="font-size:13px;color:var(--light);">Yrityskauppa, fuusio tai rakenneuudistus. Raportit kuvaavat vanhaa maailmaa. Päivitän ne vastaamaan nykytilaa.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- BLOGI OPTIMOINTI -->
-<section>
-  <div class="section-inner">
-    <div class="section-eye">Artikkelit · BI-optimointi</div>
-    <h2 class="section-h2" style="margin-bottom:16px;">Onko teillä jo Power BI?</h2>
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
-      <a href="/bi-johto-kayttaa-excelja.html" style="text-decoration:none;">
-        <div class="step" style="height:100%;transition:border-color .15s;" onmouseover="this.style.borderColor='#F59E0B'" onmouseout="this.style.borderColor='#1E2530'">
-          <div class="step-num">Käyttöaste</div>
-          <h3 style="font-size:16px;margin-bottom:10px;">BI on pystyssä — mutta johto käyttää yhä Exceliä. Miksi?</h3>
-          <p>Tekniikka toimii mutta bisnes ei hyödy. Kolme yleisintä syytä ja miten ne korjataan.</p>
-          <p style="margin-top:12px;color:#F59E0B;font-size:13px;font-weight:600;">Lue artikkeli →</p>
-        </div>
-      </a>
-      <a href="/bi-toimittajan-panttivanki.html" style="text-decoration:none;">
-        <div class="step" style="height:100%;transition:border-color .15s;" onmouseover="this.style.borderColor='#F59E0B'" onmouseout="this.style.borderColor='#1E2530'">
-          <div class="step-num">Toimittajariippuvuus</div>
-          <h3 style="font-size:16px;margin-bottom:10px;">Toimittajan panttivanki — otatko omistajuuden takaisin?</h3>
-          <p>Jokainen muutos maksaa ja kestää viikkoja. Näin vapaudut riippuvuudesta menettämättä mitä on rakennettu.</p>
-          <p style="margin-top:12px;color:#F59E0B;font-size:13px;font-weight:600;">Lue artikkeli →</p>
-        </div>
-      </a>
-      <a href="/bi-yrityskauppa-organisaatiomuutos.html" style="text-decoration:none;">
-        <div class="step" style="height:100%;transition:border-color .15s;" onmouseover="this.style.borderColor='#F59E0B'" onmouseout="this.style.borderColor='#1E2530'">
-          <div class="step-num">M&A ja organisaatiomuutos</div>
-          <h3 style="font-size:16px;margin-bottom:10px;">Yrityskauppa tehty — näkyykö uusi liiketoiminta raporteilla?</h3>
-          <p>BI kuvaa vanhaa maailmaa juuri silloin kun dataohjattu johtaminen olisi kriittisintä.</p>
-          <p style="margin-top:12px;color:#F59E0B;font-size:13px;font-weight:600;">Lue artikkeli →</p>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div>
       <div class="footer-name">Harri <span>Aro</span> · harriaro.fi</div>
-      <div style="font-size:12px; color:var(--muted); margin-top:4px;">Power BI -rakentaja pk-yrityksille · Sipoo, Suomi</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:4px;">Power BI -konsultti · Johdon laskentatoimesta · Sipoo, Suomi</div>
     </div>
     <div class="footer-links">
       <a href="https://www.linkedin.com/in/harri-aro-8b2112122/" target="_blank">LinkedIn</a>
       <a href="mailto:aro.harri@gmail.com">aro.harri@gmail.com</a>
+      <a href="tel:+358405658921">040 565 8921</a>
     </div>
   </div>
 </footer>
 
 <!-- FLOATING WHATSAPP -->
 <a href="https://wa.me/358405658921?text=Hei%20Harri!%20N%C3%A4in%20harriaro.fi%20ja%20olen%20kiinnostunut%20Power%20BI%20-katsastuksesta.%20Voisiko%20jutella%3F"
-   style="position:fixed; bottom:24px; right:24px; width:56px; height:56px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 16px rgba(0,0,0,.4); z-index:999; transition:transform .15s;"
+   style="position:fixed;bottom:24px;right:24px;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.4);z-index:999;transition:transform .15s;"
    onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"
-   aria-label="Lähetä WhatsApp-viesti">
+   aria-label="WhatsApp">
   <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
