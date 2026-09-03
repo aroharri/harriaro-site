@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pikavastaus-botti — asiakaskyselyt vastattu minuuteissa | harriaro.fi</title>
+<meta name="description" content="Asiakkaan sähköpostikyselyyn vastataan minuuteissa — myös illalla ja viikonloppuna. 270€/kk. Katto, LVI, remontti, piha.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0B0D10;--card:#13161C;--card2:#1A1F28;--border:#1E2530;--amber:#F59E0B;--text:#F1F5F9;--muted:#64748B;--light:#94A3B8;--green:#22C55E;--red:#EF4444}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:12px 32px;background:rgba(11,13,16,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-left{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo{width:32px;height:32px;border-radius:6px;background:var(--card2);border:1.5px solid var(--amber);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;color:var(--amber)}
+.nav-name{font-family:'Space Grotesk',sans-serif;font-weight:600;color:var(--text)}
+.nav-name span{color:var(--amber)}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:var(--amber);color:#000;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;border-radius:8px;text-decoration:none}
+.btn-green{background:#25D366;color:#fff}
+section{padding:64px 32px}
+.inner{max-width:960px;margin:0 auto}
+.eye{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
+h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(32px,5vw,52px);font-weight:700;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px}
+h1 em{font-style:normal;color:var(--amber)}
+h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,3vw,34px);font-weight:700;line-height:1.15;letter-spacing:-.02em;margin-bottom:16px}
+.sub{font-size:17px;color:var(--light);line-height:1.65;margin-bottom:28px;max-width:560px}
+.divider{height:1px;background:var(--border)}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:80px 32px 64px;max-width:960px;margin:0 auto}
+.hero-note{font-size:12px;color:var(--muted);margin-top:14px}
+
+/* FLOW MOCK */
+.flow{display:flex;flex-direction:column;gap:0}
+.flow-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 20px;position:relative}
+.flow-item+.flow-item::before{content:'↓';position:absolute;top:-18px;left:50%;transform:translateX(-50%);color:var(--amber);font-size:16px;font-weight:700}
+.flow-item+.flow-item{margin-top:12px}
+.flow-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--amber);margin-bottom:4px}
+.flow-text{font-size:13px;color:var(--light)}
+.flow-time{font-size:11px;color:var(--green);margin-top:3px}
+
+/* PROOF */
+.proof{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:24px 32px}
+.proof-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.proof-num{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;color:var(--amber)}
+.proof-txt{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.4}
+
+/* CARDS */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px}
+.card h3{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;margin-bottom:8px}
+.card p{font-size:13px;color:var(--light);line-height:1.6}
+.card.yes{border-top:3px solid var(--green)}
+.card.no{border-top:3px solid var(--red)}
+.card.yes h3{color:var(--green)}
+.card.no h3{color:var(--red)}
+.check-list{list-style:none;display:flex;flex-direction:column;gap:7px;margin-top:10px}
+.check-list li{font-size:13px;color:var(--light);padding-left:20px;position:relative}
+.check-list.yes li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:700}
+.check-list.no li::before{content:"✗";position:absolute;left:0;color:var(--red)}
+
+/* PRICE */
+.price-box{background:linear-gradient(135deg,#1a1200 0%,var(--card) 60%);border:1px solid var(--amber);border-radius:16px;padding:40px;text-align:center;max-width:440px;margin:0 auto}
+.price-big{font-family:'Space Grotesk',sans-serif;font-size:56px;font-weight:700;color:var(--amber);line-height:1}
+.price-unit{font-size:18px;color:var(--muted);margin-bottom:24px}
+.price-list{list-style:none;display:flex;flex-direction:column;gap:8px;text-align:left;margin-bottom:28px}
+.price-list li{font-size:14px;color:var(--light);padding-left:20px;position:relative}
+.price-list li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:700}
+.price-note{font-size:12px;color:var(--muted);margin-top:14px}
+
+/* STEPS */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.step{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;text-align:center}
+.step-num{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;color:var(--amber);margin-bottom:8px}
+.step h3{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;margin-bottom:6px}
+.step p{font-size:12px;color:var(--light);line-height:1.5}
+
+/* CTA */
+.cta-section{background:linear-gradient(135deg,#0f1a0a 0%,var(--bg) 50%,#1a1200 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:64px 32px;text-align:center}
+.cta-inner{max-width:580px;margin:0 auto}
+
+footer{padding:28px 32px;border-top:1px solid var(--border)}
+.footer-inner{max-width:960px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-name{font-family:'Space Grotesk',sans-serif;font-weight:600}
+.footer-name span{color:var(--amber)}
+.footer-links{display:flex;gap:18px}
+.footer-links a{font-size:13px;color:var(--muted);text-decoration:none}
+
+@media(max-width:768px){nav{padding:12px 16px}.hero{grid-template-columns:1fr;padding:40px 16px}.proof-inner,.grid-2,.grid-3,.steps{grid-template-columns:1fr}section{padding:48px 16px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-left" style="text-decoration:none">
+    <div class="nav-logo">HA</div>
+    <span class="nav-name">Harri <span>Aro</span></span>
+  </a>
+  <a href="https://wa.me/358405658921?text=Hei%20Harri!%20N%C3%A4in%20pikavastaus-botin.%20Voisiko%20jutella%3F" class="btn btn-green">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Kysy demoa
+  </a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <div class="eye">⚡ Pikavastaus-botti · 270€/kk</div>
+    <h1>Asiakaskyselyihin vastataan <em>minuuteissa</em> — myös illalla ja viikonloppuna.</h1>
+    <p class="sub">Botti kerää tarjouksia varten tarvittavat tiedot, kirjaa liidin ja hälyttää kun asiakas on kuuma. Sinä teet käynnin ja kaupan.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a href="https://wa.me/358405658921?text=Hei%20Harri!%20Pikavastaus-botti%20kiinnostaa.%20Voisiko%20jutella%3F" class="btn btn-green">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Kysy 30 min demoa
+      </a>
+      <a href="/" class="btn" style="background:transparent;border:1.5px solid var(--border);color:var(--light)">← Johdon raportointi</a>
+    </div>
+    <p class="hero-note">Käyttöönotto 1–2 päivää · Irtisanominen 1 kk · Ei sitoutumista</p>
+  </div>
+
+  <div class="flow">
+    <div class="flow-item">
+      <div class="flow-label">Asiakas kirjoittaa</div>
+      <div class="flow-text">"Hei, tarvitsisin tarjouksen katon uusimisesta. Osoite on Mäkitie 4, Vantaa."</div>
+      <div class="flow-time">Perjantai klo 19:42</div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-label">Botti vastaa — ~5 min</div>
+      <div class="flow-text">"Hei! Otetaan asia hoitoon. Voisitko vielä kertoa puhelinnumerosi, niin soitamme ja sovimme käynnin?"</div>
+      <div class="flow-time">Perjantai klo 19:47 ✓</div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-label">Sinulle hälytys</div>
+      <div class="flow-text">🔥 Hot lead — Mäkitie 4 Vantaa · Puh: 040 123 4567 · Katon uusiminen</div>
+      <div class="flow-time">Notion + ilmoitus · Heti</div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-label">Sinä teet kaupan</div>
+      <div class="flow-text">Soitat maanantaina. Asiakas muistaa sinut — vastasite ensimmäisenä.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROOF -->
+<div class="proof">
+  <div class="proof-inner">
+    <div><div class="proof-num">~5 min</div><div class="proof-txt">Vastausaika — myös illalla ja viikonloppuna</div></div>
+    <div><div class="proof-num">24/7</div><div class="proof-txt">Sähköpostin seuranta — ei kiinni koskaan</div></div>
+    <div><div class="proof-num">270€</div><div class="proof-txt">Kuukaudessa — käyttöönotto sisältyy</div></div>
+    <div><div class="proof-num">1–2 pv</div><div class="proof-txt">Käyttöönotto — live tällä viikolla</div></div>
+  </div>
+</div>
+
+<!-- KENELLE -->
+<section>
+  <div class="inner">
+    <div class="eye">Kenelle</div>
+    <h2>Sopii — ei sovi</h2>
+    <div class="grid-2">
+      <div class="card yes">
+        <h3>✓ Sopii kun</h3>
+        <ul class="check-list yes">
+          <li>Saapuu tarjous- tai palvelukyselyitä sähköpostiin</li>
+          <li>Käynti tai arvio paikan päällä kuuluu myyntiin</li>
+          <li>Yrittäjä tai pieni tiimi ei ehdi vastata heti</li>
+          <li>Leadit katoavat yöksi tai viikonlopuksi</li>
+          <li>Katto, LVI, remontti, piha tai muu käyntimyynti</li>
+        </ul>
+      </div>
+      <div class="card no">
+        <h3>✗ Ei sovi kun</h3>
+        <ul class="check-list no">
+          <li>Pelkkä verkkokauppa — ei käyntimyyntiä</li>
+          <li>Iso contact center jolla on jo prosessit</li>
+          <li>Et halua automaattivastausta asiakkaille</li>
+          <li>Inbox on myynti, laskutus ja kaikki sekaisin</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- MITÄ SISÄLTYY -->
+<section>
+  <div class="inner">
+    <div class="eye">Mitä sisältyy</div>
+    <h2>Kaikki yhdellä kuukausihinnalla</h2>
+    <div class="grid-3">
+      <div class="card">
+        <h3>⚡ Pikavastaaja</h3>
+        <p>Oma botti yrityksen nimellä. Vastaa suomeksi, kysyy vain puuttuvat tiedot. Ei hintoja, ei lupauksia — vain tiedonkeruu.</p>
+      </div>
+      <div class="card">
+        <h3>📋 Notion-CRM</h3>
+        <p>Jokainen liidi kirjataan automaattisesti. New → Qualifying → Hot → Käynti sovittu → Voitettu/Hävitty.</p>
+      </div>
+      <div class="card">
+        <h3>🔥 Hot-hälytys</h3>
+        <p>Kun liidi täyttää sovitut kriteerit, saat ilmoituksen. Tiedät milloin soittaa — ei hukkaan menneitä mahdollisuuksia.</p>
+      </div>
+      <div class="card">
+        <h3>🔄 Palaavat asiakkaat</h3>
+        <p>Sama sähköpostiosoite = sama lead-rivi, sama ketju. Ei aloiteta alusta.</p>
+      </div>
+      <div class="card">
+        <h3>🛡️ Guardrailit</h3>
+        <p>Ei hintoja, ei takuita, ei keksittyjä aikatauluja. Botti kerää — sinä lupaat.</p>
+      </div>
+      <div class="card">
+        <h3>🔧 Kuukausisäätö</h3>
+        <p>Kentät, sävy, stop-säännöt. Pieni säätö kuukausittain mukana hinnassa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- HINTA -->
+<section>
+  <div class="inner" style="text-align:center">
+    <div class="eye">Hinta</div>
+    <h2 style="margin-bottom:32px">Yksi hinta — kaikki sisältyy</h2>
+    <div class="price-box">
+      <div class="price-big">270€</div>
+      <div class="price-unit">/ kuukausi + alv</div>
+      <ul class="price-list">
+        <li>Käyttöönotto sisältyy (1–2 päivää)</li>
+        <li>24/7 sähköpostin seuranta</li>
+        <li>Notion-CRM + hot-hälytys</li>
+        <li>Kuukausittainen kevyt säätö</li>
+        <li>Irtisanominen 1 kalenterikuukauden irtisanomisajalla</li>
+      </ul>
+      <a href="https://wa.me/358405658921?text=Hei%20Harri!%20Pikavastaus-botti%20kiinnostaa.%20Voisiko%20jutella%3F" class="btn btn-green" style="width:100%;justify-content:center;font-size:15px;padding:13px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Kysy 30 min demoa
+      </a>
+      <p class="price-note">Demo omalla tai demo-inboxilla. Ei sitoutumista.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- MITEN KÄYTTÖÖNOTTO -->
+<section>
+  <div class="inner">
+    <div class="eye">Käyttöönotto</div>
+    <h2>Live tällä viikolla — 4 askelta</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Yrityksen ääni</h3>
+        <p>Mitä kysytään, mitä ei koskaan luvata. Sävy ja säännöt.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Inbox kytketään</h3>
+        <p>Lead-sähköposti liitetään. Notion-CRM avataan.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Testiviesti</h3>
+        <p>Hyväksytään yhdessä ennen liveä. Ei yllätyksiä.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Live</div>
+        <p>Botti vastaa. Sinulle hälytys kun lead on kuuma.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-section">
+  <div class="cta-inner">
+    <div class="eye" style="text-align:center;margin-bottom:12px">Aloitetaan</div>
+    <h2>30 min demo — näet miten toimii</h2>
+    <p class="sub" style="margin:0 auto 24px;text-align:center">Testataan omalla tai demo-inboxilla. Näet mitä botti vastaa ja miten liidi näkyy Notionissa. Ei sitoutumista.</p>
+    <a href="https://wa.me/358405658921?text=Hei%20Harri!%20Pikavastaus-botti%20kiinnostaa.%20Haluaisin%2030%20min%20demon." class="btn btn-green" style="font-size:16px;padding:14px 28px">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp — sovitaan demo
+    </a>
+    <p style="font-size:12px;color:var(--muted);margin-top:14px">Tai soita: <a href="tel:+358405658921" style="color:var(--amber)">+358 40 565 8921</a></p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <span class="footer-name">Harri <span>Aro</span> · harriaro.fi</span>
+    <div class="footer-links">
+      <a href="/">Johdon raportointi →</a>
+      <a href="https://www.linkedin.com/in/harri-aro-8b2112122/" target="_blank">LinkedIn</a>
+      <a href="mailto:aro.harri@gmail.com">aro.harri@gmail.com</a>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/358405658921?text=Hei%20Harri!%20Pikavastaus-botti%20kiinnostaa." style="position:fixed;bottom:24px;right:24px;width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.4);z-index:999" aria-label="WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+</body>
+</html>
